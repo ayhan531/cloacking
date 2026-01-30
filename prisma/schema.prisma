@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Site {
+  id             String   @id @default(uuid())
+  name           String
+  domain         String   @unique
+  maskType       String   @default("corporate")
+  maskContent    String   // JSON string
+  bettingContent String   // JSON string
+  cloakingRules  String   // JSON string
+  seoSettings    String   // JSON string
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  isActive       Boolean  @default(true)
+}
+
+model Settings {
+  id           String @id @default("general")
+  platformName String @default("Cloaking Platform")
+  adminEmail   String @default("admin@example.com")
+  updatedAt    DateTime @updatedAt
+}
