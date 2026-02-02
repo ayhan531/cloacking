@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
+import { headers } from "next/headers";
+import { prisma } from "@/lib/prisma";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +20,39 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Cloaking Platform",
-  description: "Advanced cloaking platform for multi-site management",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const host = headersList.get("host") || "";
+
+  // Clean port if existing (e.g. localhost:3000 -> localhost)
+  const domain = host.split(':')[0];
+
+  try {
+    const site = await prisma.site.findUnique({
+      where: { domain },
+    });
+
+    if (site) {
+      const seo = JSON.parse(site.seoSettings);
+      return {
+        title: seo.metaTitle || site.name,
+        description: seo.metaDescription || "Modern ve güvenilir çözümler.",
+        keywords: seo.keywords ? (Array.isArray(seo.keywords) ? seo.keywords.join(", ") : seo.keywords) : "",
+        robots: "index, follow",
+        alternates: {
+          canonical: `https://${domain}`,
+        },
+      };
+    }
+  } catch (error) {
+    console.error("Metadata fetch error:", error);
+  }
+
+  return {
+    title: "Cloaking Platform",
+    description: "Advanced cloaking platform for multi-site management",
+  };
+}
 
 export default function RootLayout({
   children,

@@ -343,7 +343,7 @@ export default function SitesPage() {
                                 <TabsTrigger value="design">Tasarım</TabsTrigger>
                                 <TabsTrigger value="mask">Mask Content</TabsTrigger>
                                 <TabsTrigger value="bet">Bet Content</TabsTrigger>
-                                <TabsTrigger value="cloaking">Cloaking</TabsTrigger>
+                                <TabsTrigger value="cloaking">SEO & Cloaking</TabsTrigger>
                                 <TabsTrigger value="advanced">Takip & Gelişmiş</TabsTrigger>
                             </TabsList>
 
@@ -901,77 +901,172 @@ export default function SitesPage() {
                             </TabsContent>
 
                             <TabsContent value="cloaking" className="space-y-4 pt-4">
-                                <div className="space-y-4">
+                                <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-100">
+                                    <CardHeader className="pb-2">
+                                        <CardTitle className="text-sm flex items-center gap-2">
+                                            <TrendingUp className="w-4 h-4 text-indigo-600" />
+                                            Sihirli SEO Aracı
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-xs text-slate-600 mb-4">Tek tıkla "Bonus Veren Siteler 2026" anahtar kelimesi için tam uyumlu SEO ayarlarını oluşturun.</p>
+                                        <Button
+                                            size="sm"
+                                            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200"
+                                            onClick={() => {
+                                                const magicTitle = "Bonus Veren Siteler 2026 - En Yüksek Deneme Bonusu Veren Bahis Siteleri";
+                                                const magicDesc = "2026 yılının en güncel, güvenilir ve yüksek bonus veren siteleri listesi. Çevrimsiz deneme bonusu, yatırım bonusları ve özel promosyonlar sunan siteleri hemen keşfedin.";
+                                                const magicKeywords = ["bonus veren siteler 2026", "deneme bonusu veren siteler 2026", "güvenilir bahis siteleri", "bedava bonus", "casino bonusları 2026"];
+                                                const magicArticle = `
+                                                    <article>
+                                                        <h1>Bonus Veren Siteler 2026: En Güncel ve Güvenilir Liste</h1>
+                                                        <p>2026 yılında profesyonel oyuncuların en çok aradığı konuların başında <strong>bonus veren siteler 2026</strong> gelmektedir. Dijital dünyada rekabetin artmasıyla birlikte, platformlar kullanıcılarını memnun etmek için oldukça avantajlı teklifler sunmaktadır.</p>
+                                                        
+                                                        <h2>Deneme Bonusu Veren Siteler 2026 Avantajları</h2>
+                                                        <p>Yeni yıla damga vuran <strong>deneme bonusu veren siteler</strong>, kullanıcıların herhangi bir yatırım yapmadan siteyi test etmesine olanak tanır. 2026 yılında bu bonus miktarları 100 TL ile 500 TL arasında değişiklik göstermektedir.</p>
+                                                        
+                                                        <ul>
+                                                            <li><strong>Yatırım Şartsız Bonuslar:</strong> Hiçbir ücret ödemeden kazanç sağlama şansı.</li>
+                                                            <li><strong>Çevrimsiz Bonuslar:</strong> Kazancınızı anında çekebileceğiniz şartlar.</li>
+                                                            <li><strong>Özel VIP Paketler:</strong> Sadık üyelere özel 2026 promosyonları.</li>
+                                                        </ul>
+
+                                                        <h2>2026'da Neden Bu Siteleri Tercih Etmelisiniz?</h2>
+                                                        <p>Güvenilirlik, hızlı ödeme ve yüksek oranlar bir platformun kalitesini belirler. 2026 bonus listemizdeki tüm siteler lisanslı ve denetlenebilir yapıdadır. <em>Bonus veren siteler</em> arasında seçim yaparken dikkat etmeniz gereken en önemli kural, kullanım şartlarını detaylıca okumaktır.</p>
+                                                        
+                                                        <h3>Hızlı ve Güvenilir Finansal İşlemler</h3>
+                                                        <p>2026 yılında kripto paralar ve dijital cüzdanlar ile ödeme yapan siteler ön plandadır. Bonus kazançlarınızı saniyeler içinde hesabınıza aktarabilen altyapılar, kullanıcı memnuniyetini en üst düzeye çıkarmaktadır.</p>
+                                                    </article>
+                                                `.trim();
+
+                                                setNewSite({
+                                                    ...newSite,
+                                                    seoSettings: {
+                                                        ...newSite.seoSettings,
+                                                        metaTitle: magicTitle,
+                                                        metaDescription: magicDesc,
+                                                        keywords: magicKeywords,
+                                                        hiddenSEOArticle: magicArticle
+                                                    }
+                                                });
+                                            }}
+                                        >
+                                            ✨ Sihirli SEO Ayarlarını Uygula
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-4">
+                                        <div className="space-y-2">
+                                            <Label className="font-bold">SEO Başlığı (Title)</Label>
+                                            <Input
+                                                placeholder="En İyi Bonus Veren Siteler 2026"
+                                                value={newSite.seoSettings.metaTitle}
+                                                onChange={(e) => setNewSite({
+                                                    ...newSite,
+                                                    seoSettings: { ...newSite.seoSettings, metaTitle: e.target.value }
+                                                })}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label className="font-bold">SEO Açıklaması (Description)</Label>
+                                            <Textarea
+                                                placeholder="Site hakkında kısa açıklama..."
+                                                className="h-20"
+                                                value={newSite.seoSettings.metaDescription || ''}
+                                                onChange={(e) => setNewSite({
+                                                    ...newSite,
+                                                    seoSettings: { ...newSite.seoSettings, metaDescription: e.target.value }
+                                                })}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label className="font-bold">Anahtar Kelimeler (Keywords)</Label>
+                                            <Input
+                                                placeholder="kelime1, kelime2, kelime3"
+                                                value={newSite.seoSettings.keywords ? (Array.isArray(newSite.seoSettings.keywords) ? newSite.seoSettings.keywords.join(', ') : newSite.seoSettings.keywords) : ''}
+                                                onChange={(e) => setNewSite({
+                                                    ...newSite,
+                                                    seoSettings: { ...newSite.seoSettings, keywords: e.target.value.split(',').map(s => s.trim()) }
+                                                })}
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-2">
-                                        <Label>SEO Başlığı (Google Görünen)</Label>
-                                        <Input
-                                            placeholder="En İyi Sigorta Hizmetleri | Güvenilir Acente"
-                                            value={newSite.seoSettings.metaTitle}
+                                        <Label className="font-bold">Gizli SEO Makalesi (Bots Only)</Label>
+                                        <Textarea
+                                            placeholder="Google botları için buraya zengin içerikli bir HTML makale girin..."
+                                            className="h-[210px] font-mono text-[10px]"
+                                            value={newSite.seoSettings.hiddenSEOArticle || ''}
                                             onChange={(e) => setNewSite({
                                                 ...newSite,
-                                                seoSettings: { ...newSite.seoSettings, metaTitle: e.target.value }
+                                                seoSettings: { ...newSite.seoSettings, hiddenSEOArticle: e.target.value }
                                             })}
                                         />
+                                        <p className="text-[10px] text-gray-500 italic">Bu içerik sadece botlara gösterilir, kullanıcılardan gizlenir.</p>
                                     </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <Card>
-                                            <CardHeader>
-                                                <CardTitle className="text-sm">Cloaking Kuralları</CardTitle>
-                                            </CardHeader>
-                                            <CardContent className="space-y-4">
-                                                <div className="flex items-center justify-between">
-                                                    <Label>Masaüstü &rarr; Maske</Label>
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={newSite.cloakingRules.showMaskTo.desktop}
-                                                        onChange={(e) => setNewSite({
-                                                            ...newSite,
-                                                            cloakingRules: {
-                                                                ...newSite.cloakingRules,
-                                                                showMaskTo: { ...newSite.cloakingRules.showMaskTo, desktop: e.target.checked }
-                                                            }
-                                                        })}
-                                                    />
-                                                </div>
-                                                <div className="flex items-center justify-between">
-                                                    <Label>Botlar &rarr; Maske</Label>
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={newSite.cloakingRules.showMaskTo.bots}
-                                                        onChange={(e) => setNewSite({
-                                                            ...newSite,
-                                                            cloakingRules: {
-                                                                ...newSite.cloakingRules,
-                                                                showMaskTo: { ...newSite.cloakingRules.showMaskTo, bots: e.target.checked }
-                                                            }
-                                                        })}
-                                                    />
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                        <Card>
-                                            <CardHeader>
-                                                <CardTitle className="text-sm">Hedef Ülkeler (TR, CY...)</CardTitle>
-                                            </CardHeader>
-                                            <CardContent>
-                                                <Input
-                                                    placeholder="TR, CY, AZ"
-                                                    value={(newSite.cloakingRules.showBettingTo.includedCountries || []).join(', ')}
-                                                    onChange={(e) => {
-                                                        const countries = e.target.value.split(',').map(c => c.trim().toUpperCase()).filter(c => c);
-                                                        setNewSite({
-                                                            ...newSite,
-                                                            cloakingRules: {
-                                                                ...newSite.cloakingRules,
-                                                                showBettingTo: { ...newSite.cloakingRules.showBettingTo, includedCountries: countries }
-                                                            }
-                                                        });
-                                                    }}
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4 pt-2">
+                                    <Card>
+                                        <CardHeader className="py-2">
+                                            <CardTitle className="text-sm">Cloaking Kuralları</CardTitle>
+                                        </CardHeader>
+                                        <CardContent className="space-y-4">
+                                            <div className="flex items-center justify-between">
+                                                <Label>Masaüstü &rarr; Maske</Label>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={newSite.cloakingRules.showMaskTo.desktop}
+                                                    onChange={(e) => setNewSite({
+                                                        ...newSite,
+                                                        cloakingRules: {
+                                                            ...newSite.cloakingRules,
+                                                            showMaskTo: { ...newSite.cloakingRules.showMaskTo, desktop: e.target.checked }
+                                                        }
+                                                    })}
                                                 />
-                                                <p className="text-[10px] text-gray-500 mt-2">Sadece bu ülkeler bahis sitesini görür.</p>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <Label>Botlar &rarr; Maske</Label>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={newSite.cloakingRules.showMaskTo.bots}
+                                                    onChange={(e) => setNewSite({
+                                                        ...newSite,
+                                                        cloakingRules: {
+                                                            ...newSite.cloakingRules,
+                                                            showMaskTo: { ...newSite.cloakingRules.showMaskTo, bots: e.target.checked }
+                                                        }
+                                                    })}
+                                                />
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                    <Card>
+                                        <CardHeader>
+                                            <CardTitle className="text-sm">Hedef Ülkeler (TR, CY...)</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <Input
+                                                placeholder="TR, CY, AZ"
+                                                value={(newSite.cloakingRules.showBettingTo.includedCountries || []).join(', ')}
+                                                onChange={(e) => {
+                                                    const countries = e.target.value.split(',').map(c => c.trim().toUpperCase()).filter(c => c);
+                                                    setNewSite({
+                                                        ...newSite,
+                                                        cloakingRules: {
+                                                            ...newSite.cloakingRules,
+                                                            showBettingTo: { ...newSite.cloakingRules.showBettingTo, includedCountries: countries }
+                                                        }
+                                                    });
+                                                }}
+                                            />
+                                            <p className="text-[10px] text-gray-500 mt-2">Sadece bu ülkeler bahis sitesini görür.</p>
+                                        </CardContent>
+                                    </Card>
                                 </div>
                             </TabsContent>
 
