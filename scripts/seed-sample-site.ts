@@ -80,9 +80,31 @@ async function main() {
     };
 
     const seoSettings = {
-        metaTitle: 'Bonus Veren Siteler 2026 - En Yüksek Deneme Bonusu Veren Bahis Siteleri',
-        metaDescription: '2026 yılının en güncel, güvenilir ve yüksek bonus veren siteleri listesi. Çevrimsiz deneme bonusu, yatırım bonusları ve özel promosyonlar sunan siteleri hemen keşfedin.',
+        metaTitle: 'Elite Global Tech | 2026 Teknik Analiz ve Dijital Platform İncelemeleri',
+        metaDescription: 'Elite Global Tech, 2026 yılı dijital ekosistemindeki en iyi bonus veren siteleri ve teknik altyapılarını inceleyen lider teknoloji hubudur. Uzman görüşleri ve detaylı rehberler.',
         keywords: ['bonus veren siteler 2026', 'deneme bonusu veren siteler 2026', 'güvenilir bahis siteleri', 'bedava bonus', 'casino bonusları 2026'],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "2026 yılında en yüksek deneme bonusunu hangi siteler veriyor?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "2026 yılında deneme bonusları 500 TL seviyesine ulaşmıştır. Elite Global Tech olarak yaptığımız teknik incelemeler, lisanslı ve güvenilir altyapıları tercih etmenizi önermektedir."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Bonus veren siteler güvenilir mi?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Güvenilirlik, platformun sahip olduğu lisans ve ödeme hızıyla ölçülür. 2026 rehberimizde sadece doğrulanmış ve teknik testlerden geçmiş siteler yer alır."
+                    }
+                }
+            ]
+        },
         hiddenSEOArticle: `
             <article>
                 <h1>Bonus Veren Siteler 2026: Sektördeki En Yeni Gelişmeler</h1>
@@ -91,7 +113,7 @@ async function main() {
                 <h2>Deneme Bonusu Veren Siteler 2026 Neden Önemli?</h2>
                 <p><strong>Deneme bonusu veren siteler</strong>, bir oyuncunun platformu risk almadan tanımasına imkan tanır. 2026 yılında profesyonel oyuncular artık sadece miktar değil, çevrim şartlarının kolaylığına bakmaktadır.</p>
                 
-                <h3>2026\'da Öne Çıkan Bonus Türleri</h3>
+                <h3>2026'da Öne Çıkan Bonus Türleri</h3>
                 <ul>
                     <li><strong>Yatırım Şartsız Bonuslar:</strong> Cebinizden para çıkmadan kazanç sağlamanın en kolay yolu.</li>
                     <li><strong>Kripto Yatırım Bonusları:</strong> Bitcoin veya Ethereum ile yapılan yatırımlara %50 ek fırsatlar.</li>

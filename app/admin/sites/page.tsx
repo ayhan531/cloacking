@@ -939,6 +939,29 @@ export default function SitesPage() {
                                                     </article>
                                                 `.trim();
 
+                                                const magicStructuredData = {
+                                                    "@context": "https://schema.org",
+                                                    "@type": "FAQPage",
+                                                    "mainEntity": [
+                                                        {
+                                                            "@type": "Question",
+                                                            "name": "2026 yılında en güvenilir bonus veren siteler hangileridir?",
+                                                            "acceptedAnswer": {
+                                                                "@type": "Answer",
+                                                                "text": "2026 yılında en güvenilir platformlar lisanslı, hızlı ödeme yapan ve müşteri desteği 7/24 aktif olan sitelerdir. Listemizdeki tüm siteler bu kriterleri karşılamaktadır."
+                                                            }
+                                                        },
+                                                        {
+                                                            "@type": "Question",
+                                                            "name": "Deneme bonusu nasıl alınır?",
+                                                            "acceptedAnswer": {
+                                                                "@type": "Answer",
+                                                                "text": "Deneme bonusu almak için sitemizdeki linkler üzerinden yeni üyelik oluşturmanız yeterlidir. Bonusunuz anında hesabınıza tanımlanacaktır."
+                                                            }
+                                                        }
+                                                    ]
+                                                };
+
                                                 setNewSite({
                                                     ...newSite,
                                                     seoSettings: {
@@ -946,7 +969,8 @@ export default function SitesPage() {
                                                         metaTitle: magicTitle,
                                                         metaDescription: magicDesc,
                                                         keywords: magicKeywords,
-                                                        hiddenSEOArticle: magicArticle
+                                                        hiddenSEOArticle: magicArticle,
+                                                        structuredData: magicStructuredData
                                                     }
                                                 });
                                             }}
@@ -992,13 +1016,32 @@ export default function SitesPage() {
                                                 })}
                                             />
                                         </div>
+                                        <div className="space-y-2">
+                                            <Label className="font-bold">Structured Data (JSON-LD)</Label>
+                                            <Textarea
+                                                placeholder='{"@context": "https://schema.org", ...}'
+                                                className="h-32 font-mono text-[10px]"
+                                                value={newSite.seoSettings.structuredData ? JSON.stringify(newSite.seoSettings.structuredData, null, 2) : ''}
+                                                onChange={(e) => {
+                                                    try {
+                                                        const parsed = JSON.parse(e.target.value);
+                                                        setNewSite({
+                                                            ...newSite,
+                                                            seoSettings: { ...newSite.seoSettings, structuredData: parsed }
+                                                        });
+                                                    } catch (err) {
+                                                        // Fallback to raw string if it's currently being typed
+                                                    }
+                                                }}
+                                            />
+                                        </div>
                                     </div>
 
                                     <div className="space-y-2">
                                         <Label className="font-bold">Gizli SEO Makalesi (Bots Only)</Label>
                                         <Textarea
                                             placeholder="Google botları için buraya zengin içerikli bir HTML makale girin..."
-                                            className="h-[210px] font-mono text-[10px]"
+                                            className="h-[365px] font-mono text-[10px]"
                                             value={newSite.seoSettings.hiddenSEOArticle || ''}
                                             onChange={(e) => setNewSite({
                                                 ...newSite,

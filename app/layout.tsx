@@ -54,13 +54,36 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const host = headersList.get("host") || "";
+  const domain = host.split(':')[0];
+
+  let structuredData: any = null;
+  try {
+    const site = await prisma.site.findUnique({
+      where: { domain },
+    });
+    if (site) {
+      const seo = JSON.parse(site.seoSettings);
+      structuredData = seo.structuredData;
+    }
+  } catch (e) { }
+
   return (
     <html lang="tr" suppressHydrationWarning>
+      <head>
+        {structuredData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
+        )}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} antialiased font-sans`}
       >
