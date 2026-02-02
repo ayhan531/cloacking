@@ -13,22 +13,38 @@ import type { SiteConfig, MaskContent, BettingContent, CloakingRules, SEOSetting
 import { useAuth } from '@/components/AuthProvider';
 
 const initialMaskContent: MaskContent = {
-    siteName: '',
-    heroTitle: '',
-    heroSubtitle: '',
-    features: [],
-    services: [],
-    testimonials: [],
+    siteName: 'ProSolutions Tech',
+    heroTitle: 'Dijital Geleceğinizi Bizimle İnşa Edin',
+    heroSubtitle: 'Yapay zeka destekli altyapımız ve uzman kadromuzla işinizi bir üst seviyeye taşıyoruz. Modern tasarım ve yüksek performans bir arada.',
+    features: [
+        { id: '1', icon: 'Shield', title: 'Hızlı Entegrasyon', description: 'Mevcut sistemlerinize saatler içinde uyum sağlar.' },
+        { id: '2', icon: 'Shield', title: 'Yüksek Güvenlik', description: 'Uçtan uca şifreleme ve gelişmiş koruma protokolleri.' },
+        { id: '3', icon: 'Shield', title: '7/24 Destek', description: 'Teknik ekibimiz her ihtiyacınızda yanınızda.' },
+        { id: '4', icon: 'Shield', title: 'Ölçeklenebilir', description: 'İşiniz büyüdükçe altyapımız size ayak uydurur.' }
+    ],
+    services: [
+        { id: '1', name: 'Yazılım Geliştirme', description: 'Size özel kurumsal yazılım çözümleri.', price: 'Başlangıç: $999' },
+        { id: '2', name: 'Dijital Pazarlama', description: 'Hedef kitlenize ulaşmanın en kısa yolu.', price: 'Haftalık: $199' },
+        { id: '3', name: 'Bulut Altyapı', description: 'Kesintisiz ve güvenli hosting hizmetleri.', price: 'Yıllık: $499' }
+    ],
+    testimonials: [
+        { id: '1', name: 'Ahmet Yılmaz', role: 'CEO, TechCorp', content: 'Çalışmaya başladığımızdan beri verimliliğimiz %40 arttı.', rating: 5 },
+        { id: '2', name: 'Selin Yıldız', role: 'Kurucu, DesignHub', content: 'Tasarım ve hız konusunda beklentilerimin çok üzerindeler.', rating: 5 }
+    ],
     contactInfo: {
-        email: '',
-        phone: '',
-        address: '',
-        socialMedia: {}
+        email: 'info@prosolutions.tech',
+        phone: '+90 212 555 0101',
+        address: 'Levent, Büyükdere Cad. No:199, İstanbul',
+        socialMedia: {
+            facebook: '#',
+            twitter: '#',
+            instagram: '#'
+        }
     },
     colorScheme: {
-        primary: '#3B82F6',
-        secondary: '#8B5CF6',
-        accent: '#EC4899',
+        primary: '#6366F1',
+        secondary: '#A855F7',
+        accent: '#F43F5E',
         background: '#FFFFFF',
         text: '#1F2937'
     }
