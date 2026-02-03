@@ -1,18 +1,17 @@
 import { headers } from "next/headers";
-import { prisma } from "@/lib/prisma";
 
 export async function GET() {
     const headersList = await headers();
-    const host = headersList.get("host") || "";
-    const domain = host.split(':')[0].replace('www.', '');
+    const host = headersList.get("host") || "flovazcomercial.com";
 
     const robots = `User-agent: *
 Allow: /
-Sitemap: https://${domain}/sitemap.xml`.trim();
+Sitemap: https://${host}/sitemap.xml`.trim();
 
     return new Response(robots, {
         headers: {
             "Content-Type": "text/plain; charset=utf-8",
+            "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=43200"
         },
     });
 }
