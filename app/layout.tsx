@@ -64,6 +64,7 @@ export default async function RootLayout({
   const domain = host.split(':')[0].replace('www.', '');
 
   let structuredData: any = null;
+  let breadcrumbData: any = null;
   try {
     const site = await prisma.site.findUnique({
       where: { domain },
@@ -71,6 +72,22 @@ export default async function RootLayout({
     if (site) {
       const seo = JSON.parse(site.seoSettings);
       structuredData = seo.structuredData;
+
+      breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": `https://${domain}`
+        }, {
+          "@type": "ListItem",
+          "position": 2,
+          "name": seo.metaTitle || "Bonus İncelemeleri",
+          "item": `https://${domain}`
+        }]
+      };
     }
   } catch (e) { }
 
@@ -81,6 +98,12 @@ export default async function RootLayout({
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
+        )}
+        {breadcrumbData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
           />
         )}
       </head>

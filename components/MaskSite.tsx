@@ -70,9 +70,15 @@ export default function MaskSite({ config }: MaskSiteProps) {
             <section className="relative pt-40 pb-24 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
                     <div className="relative z-10 space-y-10">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200/60 text-xs font-black tracking-widest text-slate-500 uppercase">
-                            <TrendingUp className="w-3.5 h-3.5 text-[var(--primary)] text-emerald-500" />
-                            Yeni Nesil Çözümler
+                        <div className="flex flex-wrap items-center gap-3">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200/60 text-xs font-black tracking-widest text-slate-500 uppercase">
+                                <TrendingUp className="w-3.5 h-3.5 text-[var(--primary)] text-emerald-500" />
+                                Yeni Nesil Çözümler
+                            </div>
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-[10px] font-bold text-emerald-600 uppercase tracking-tighter shadow-sm animate-pulse">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                Son Güncelleme: {new Date().toLocaleDateString('tr-TR')}
+                            </div>
                         </div>
 
                         <h2 className="text-6xl lg:text-8xl font-black tracking-tight leading-[0.9] font-outfit">
@@ -125,7 +131,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             {maskContent.heroImage ? (
                                 <img
                                     src={maskContent.heroImage}
-                                    alt="Hero"
+                                    alt={seoSettings.metaTitle || "Elite Global 2026 Teknik Analiz"}
                                     className="relative rounded-[40px] shadow-2xl w-full h-auto object-cover transform rotate-2 hover:rotate-0 transition-transform duration-700"
                                 />
                             ) : (
