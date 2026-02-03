@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const host = headersList.get("host") || "";
 
-  // Clean port if existing (e.g. localhost:3000 -> localhost)
-  const domain = host.split(':')[0];
+  // Clean port and handle www
+  const domain = host.split(':')[0].replace('www.', '');
 
   try {
     const site = await prisma.site.findUnique({
@@ -61,7 +61,7 @@ export default async function RootLayout({
 }>) {
   const headersList = await headers();
   const host = headersList.get("host") || "";
-  const domain = host.split(':')[0];
+  const domain = host.split(':')[0].replace('www.', '');
 
   let structuredData: any = null;
   try {
