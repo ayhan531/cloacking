@@ -4,11 +4,11 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
     const headersList = await headers();
     const host = headersList.get("host") || "";
-    const domain = host.split(':')[0];
+    const domain = host.split(':')[0].replace('www.', '');
 
     const robots = `User-agent: *
 Allow: /
-Sitemap: https://${domain}/sitemap.xml`;
+Sitemap: https://${domain}/sitemap.xml`.trim();
 
     return new Response(robots, {
         headers: {
