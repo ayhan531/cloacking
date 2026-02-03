@@ -12,7 +12,7 @@ Sitemap: https://${domain}/sitemap.xml`.trim();
 
     return new Response(robots, {
         headers: {
-            "Content-Type": "text/plain",
+            "Content-Type": "text/plain; charset=utf-8",
         },
     });
 }

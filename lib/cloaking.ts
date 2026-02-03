@@ -46,7 +46,7 @@ export async function detectDevice(): Promise<DeviceInfo> {
         // Try multiple IP geolocation services with shorter timeouts
         const responseData = await Promise.any([
             fetch('https://ipapi.co/json/', { signal: controller.signal }).then(res => res.json()),
-            fetch('http://ip-api.com/json/', { signal: controller.signal }).then(res => res.json()),
+            fetch('https://ip-api.com/json/', { signal: controller.signal }).then(res => res.json()),
             fetch('https://api.ipify.org?format=json', { signal: controller.signal })
                 .then(res => res.json())
                 .then(data => fetch(`https://ipapi.co/${data.ip}/json/`, { signal: controller.signal }))
