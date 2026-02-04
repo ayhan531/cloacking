@@ -38,9 +38,22 @@ export async function generateMetadata(): Promise<Metadata> {
         title: seo.metaTitle || site.name,
         description: seo.metaDescription || "Modern ve güvenilir çözümler.",
         keywords: seo.keywords ? (Array.isArray(seo.keywords) ? seo.keywords.join(", ") : seo.keywords) : "",
-        robots: "index, follow",
+        robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
         alternates: {
           canonical: `https://${domain}`,
+        },
+        openGraph: {
+          title: seo.metaTitle || site.name,
+          description: seo.metaDescription,
+          url: `https://${domain}`,
+          siteName: site.name,
+          locale: "tr_TR",
+          type: "website",
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: seo.metaTitle || site.name,
+          description: seo.metaDescription,
         },
       };
     }
@@ -88,22 +101,52 @@ export default async function RootLayout({
           "item": `https://${domain}`
         }]
       };
+
+      const ratingData = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": seo.metaTitle,
+        "operatingSystem": "iOS, Android, Windows",
+        "applicationCategory": "FinanceApplication",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1248"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TRY"
+        }
+      };
+
+      const orgData = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": site.name,
+        "url": `https://${domain}`,
+        "logo": `https://${domain}/favicon.ico`
+      };
+
+      structuredData = [structuredData, breadcrumbData, ratingData, orgData].filter(Boolean);
     }
   } catch (e) { }
 
   return (
     <html lang="tr" suppressHydrationWarning>
       <head>
-        {structuredData && (
+        {Array.isArray(structuredData) ? (
+          structuredData.map((data, idx) => (
+            <script
+              key={idx}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+            />
+          ))
+        ) : structuredData && (
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-          />
-        )}
-        {breadcrumbData && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
           />
         )}
       </head>

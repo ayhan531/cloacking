@@ -5,14 +5,17 @@ export async function GET() {
   const host = headersList.get("host") || "flovazcomercial.com";
 
   // We use the actual host for the sitemap URLs
+  const pages = ['', 'deneme-bonusu', 'bahis-siteleri', 'casino-siteleri', 'hosgeldin-bonusu'];
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${pages.map(page => `
   <url>
-    <loc>https://${host}/</loc>
+    <loc>https://${host}/${page}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
+    <priority>${page === '' ? '1.0' : '0.8'}</priority>
+  </url>`).join('')}
 </urlset>`.trim();
 
   return new Response(xml, {
