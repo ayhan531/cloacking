@@ -5,7 +5,7 @@ export async function GET() {
   const host = headersList.get("host") || "flovazcomercial.com";
 
   // We use the actual host for the sitemap URLs
-  const pages = ['', 'deneme-bonusu', 'bahis-siteleri', 'casino-siteleri', 'hosgeldin-bonusu'];
+  const pages = ['', 'deneme-bonusu', 'bahis-siteleri', 'casino-siteleri', 'hosgeldin-bonusu', 'hakkimizda'];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
