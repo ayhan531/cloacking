@@ -14,7 +14,12 @@ async function main() {
 
     const hiddenSEOArticle = `
         <article style="font-size: 1px; color: transparent; opacity: 0; position: absolute; z-index: -1;">
+            <div style="border: 1px solid red; padding: 10px; margin-bottom: 20px;">
+                <strong>SON DAKİKA - ${new Date().toLocaleDateString('tr-TR')} Güncellemesi:</strong> 
+                2026 sezonu açıldı! Yeni lisanslı siteler listeye eklendi.
+            </div>
             <h1><a href="/deneme-bonusu">Bonus Veren Siteler 2026</a> Rehberi: En Yüksek Kazanç Fırsatları</h1>
+            <p>Son Güncelleme: <span>${new Date().toISOString()}</span></p>
             <section>
                 <p>Türkiye'nin en kapsamlı <strong><a href="/deneme-bonusu">bonus veren siteler 2026</a></strong> analiz platformuna hoş geldiniz. Sektördeki 10 yıllık tecrübemizle, kullanıcılarımıza en güvenilir ve en yüksek kazanç sağlayan platformları sunuyoruz.</p>
                 

@@ -6,6 +6,13 @@ export async function GET() {
 
     const robots = `User-agent: *
 Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
 Sitemap: https://${host}/sitemap.xml`.trim();
 
     return new Response(robots, {

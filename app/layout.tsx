@@ -125,7 +125,24 @@ export default async function RootLayout({
         "@type": "Organization",
         "name": site.name,
         "url": `https://${domain}`,
-        "logo": `https://${domain}/favicon.ico`
+        "logo": `https://${domain}/favicon.ico`,
+        "description": "Türkiye'nin en güvenilir bahis ve deneme bonusu analiz platformu.",
+        "foundingDate": "2026",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Turkey"
+        },
+        "knowsAbout": ["Bahis", "Casino", "Deneme Bonusu", "İddaa", "Şans Oyunları"],
+        "sameAs": [
+          "https://twitter.com/flovazcomercial",
+          "https://instagram.com/flovazcomercial"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "areaServed": "TR",
+          "availableLanguage": "Turkish"
+        }
       };
 
       structuredData = [structuredData, breadcrumbData, ratingData, orgData].filter(Boolean);
