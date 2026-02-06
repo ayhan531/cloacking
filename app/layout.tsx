@@ -124,6 +124,7 @@ export default async function RootLayout({
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": site.name,
+        "alternateName": "Flovaz Bahis Rehberi",
         "url": `https://${domain}`,
         "logo": `https://${domain}/favicon.ico`,
         "description": "Türkiye'nin en güvenilir bahis ve deneme bonusu analiz platformu.",
@@ -133,10 +134,6 @@ export default async function RootLayout({
           "name": "Turkey"
         },
         "knowsAbout": ["Bahis", "Casino", "Deneme Bonusu", "İddaa", "Şans Oyunları"],
-        "sameAs": [
-          "https://twitter.com/flovazcomercial",
-          "https://instagram.com/flovazcomercial"
-        ],
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
