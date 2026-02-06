@@ -1,0 +1,22 @@
+{
+    "name": "Flovaz Bahis Rehberi",
+    "short_name": "FlovazBonus",
+    "description": "2026'nın en güvenilir deneme bonusu ve bahis sitesi analiz platformu.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        }
+    ],
+    "categories": [
+        "finance",
+        "entertainment",
+        "sports"
+    ],
+    "lang": "tr-TR"
+}
