@@ -373,6 +373,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         <div className="flex gap-8 text-white/20 text-xs font-black tracking-widest uppercase">
                             <a href="#" className="hover:text-white/40">Gizlilik Politikası</a>
                             <a href="#" className="hover:text-white/40">Kullanım Şartları</a>
+                            <a href="/deneme-bonusu" className="hover:text-white/40">Çerez Politikası</a>
                         </div>
                     </div>
                 </div>
