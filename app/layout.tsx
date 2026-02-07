@@ -164,6 +164,7 @@ export default async function RootLayout({
           />
         )}
         <link rel="manifest" href="/manifest.json" />
+        <meta name="msvalidate.01" content="CFC99ED6B4F53B1926ADDA5F3B4C1EAD" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} antialiased font-sans`}
