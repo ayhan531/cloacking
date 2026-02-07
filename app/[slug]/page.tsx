@@ -4,7 +4,45 @@ import { detectBotServer } from "@/lib/server-cloaking";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import type { SiteConfig } from "@/lib/types";
+import type { Metadata } from "next";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const headersList = await headers();
+    const host = headersList.get("host") || "";
+    const domain = host.split(':')[0].replace('www.', '');
+
+    try {
+        const site = await prisma.site.findUnique({
+            where: { domain },
+        });
+
+        if (site) {
+            const seo = JSON.parse(site.seoSettings);
+            // Use specific keyword title if available, otherwise fallback
+            const title = `${slug.replace(/-/g, ' ')} - ${site.name} 2026`;
+
+            return {
+                title: title.replace(/\b\w/g, c => c.toUpperCase()), // Capitalize
+                description: seo.metaDescription,
+                alternates: {
+                    canonical: `https://${domain}/${slug}`,
+                },
+                openGraph: {
+                    title: title,
+                    url: `https://${domain}/${slug}`,
+                }
+            };
+        }
+    } catch (e) { }
+
+    return {
+        title: "Bonus Veren Siteler 2026",
+        alternates: {
+            canonical: `https://${domain}/${slug}`,
+        }
+    };
+}
 export default async function SlugPage() {
     let domain = "";
     try {
