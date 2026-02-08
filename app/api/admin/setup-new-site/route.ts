@@ -20,6 +20,9 @@ export async function GET() {
         const maskContent = JSON.parse(site.maskContent);
         maskContent.siteName = newName;
         maskContent.heroTitle = 'Türkiye\'nin En Güncel Haber ve Analiz Portalı';
+        // Nuclear Ranking Strategy: Backlink from News Authority to Betting Target
+        maskContent.heroSubtitle = 'Son Dakika: 2026 Yılının En Yüksek Deneme Bonusu Veren Siteleri Listesi Güncellendi. Analizleri İncelemek İçin Tıklayın.';
+        maskContent.heroLink = 'https://flovazcomercial.com/deneme-bonusu';
 
         const seoSettings = JSON.parse(site.seoSettings);
         seoSettings.metaTitle = 'Haber Analiz 2026 - Güncel Gündem ve Analizler';
