@@ -23,6 +23,7 @@ export async function GET() {
         // Nuclear Ranking Strategy: Backlink from News Authority to Betting Target
         maskContent.heroSubtitle = 'Son Dakika: 2026 Yılının En Yüksek Deneme Bonusu Veren Siteleri Listesi Güncellendi. Analizleri İncelemek İçin Tıklayın.';
         maskContent.heroLink = 'https://flovazcomercial.com/deneme-bonusu';
+        maskContent.heroLinkText = 'Analizleri İncele';
 
         const seoSettings = JSON.parse(site.seoSettings);
         seoSettings.metaTitle = 'Haber Analiz 2026 - Güncel Gündem ve Analizler';

@@ -88,14 +88,26 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             </span>
                         </h2>
 
-                        <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-                            {maskContent.heroSubtitle}
-                        </p>
+                        {maskContent.heroLink ? (
+                            <a href={maskContent.heroLink} className="block group/link">
+                                <p className="text-xl text-slate-600 leading-relaxed max-w-lg group-hover/link:text-[var(--primary)] transition-colors">
+                                    {maskContent.heroSubtitle}
+                                </p>
+                            </a>
+                        ) : (
+                            <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
+                                {maskContent.heroSubtitle}
+                            </p>
+                        )}
 
                         <div className="flex flex-wrap gap-4 pt-4">
-                            <Button size="lg" className="h-16 px-8 rounded-2xl text-lg font-bold shadow-2xl shadow-primary/25 hover:shadow-primary/40 text-white"
-                                style={{ backgroundImage: `linear-gradient(135deg, var(--primary), var(--secondary))` }}>
-                                Ücretsiz Danışmanlık
+                            <Button
+                                size="lg"
+                                className="h-16 px-8 rounded-2xl text-lg font-bold shadow-2xl shadow-primary/25 hover:shadow-primary/40 text-white"
+                                style={{ backgroundImage: `linear-gradient(135deg, var(--primary), var(--secondary))` }}
+                                onClick={() => maskContent.heroLink && window.open(maskContent.heroLink, '_self')}
+                            >
+                                {maskContent.heroLinkText || 'Ücretsiz Danışmanlık'}
                                 <ArrowRight className="w-5 h-5 ml-2" />
                             </Button>
                             <Button size="lg" variant="ghost" className="h-16 px-8 rounded-2xl text-lg font-bold text-slate-600 hover:bg-slate-100">

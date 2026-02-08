@@ -20,6 +20,8 @@ export interface MaskContent {
     logo?: string;
     heroTitle: string;
     heroSubtitle: string;
+    heroLink?: string;
+    heroLinkText?: string;
     heroImage?: string;
     features: Feature[];
     services: Service[];
