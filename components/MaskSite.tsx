@@ -13,6 +13,184 @@ export default function MaskSite({ config }: MaskSiteProps) {
     const { maskContent, seoSettings } = config;
     const { colorScheme } = maskContent;
 
+    // Check if the site is configured as a News/Blog site
+    if (config.maskType === 'blog' || (maskContent as any).type === 'news') {
+        return (
+            <div className="min-h-screen font-sans bg-slate-50 selection:bg-[var(--primary)] selection:text-white" style={{
+                '--primary': colorScheme.primary,
+                '--secondary': colorScheme.secondary,
+                '--accent': colorScheme.accent,
+            } as any}>
+                {/* News Header */}
+                <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+                    <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-[var(--primary)] text-white flex items-center justify-center font-black text-xl rounded-lg">
+                                {maskContent.siteName.charAt(0)}
+                            </div>
+                            <span className="text-2xl font-black text-slate-900 tracking-tight uppercase">
+                                {maskContent.siteName}
+                            </span>
+                        </div>
+                        <nav className="hidden md:flex gap-8">
+                            <a href="#" className="text-[var(--primary)] font-bold border-b-2 border-[var(--primary)] py-7">Gündem</a>
+                            <a href="#ekonomi" className="text-slate-600 font-bold hover:text-[var(--primary)] py-7 transition-colors">Ekonomi</a>
+                            <a href="#spor" className="text-slate-600 font-bold hover:text-[var(--primary)] py-7 transition-colors">Spor</a>
+                            <a href="#magazin" className="text-slate-600 font-bold hover:text-[var(--primary)] py-7 transition-colors">Magazin</a>
+                        </nav>
+                        <Button className="bg-[var(--primary)] hover:bg-[var(--secondary)] text-white font-bold rounded-lg px-6">
+                            Abone Ol
+                        </Button>
+                    </div>
+                </header>
+
+                <main className="max-w-7xl mx-auto px-6 py-12">
+                    {/* Hero Section - Featured News */}
+                    <section className="grid md:grid-cols-12 gap-8 mb-16">
+                        <div className="md:col-span-8 relative group cursor-pointer overflow-hidden rounded-3xl h-[500px]">
+                            {maskContent.heroImage ? (
+                                <img src={maskContent.heroImage} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                            ) : (
+                                <div className="w-full h-full bg-slate-200 flex items-center justify-center">
+                                    <TrendingUp className="w-20 h-20 text-slate-400" />
+                                </div>
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-10">
+                                <span className="inline-block px-3 py-1 bg-[var(--primary)] text-white text-xs font-bold uppercase tracking-widest rounded-full mb-4 w-fit">
+                                    Son Dakika
+                                </span>
+                                <h1 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4 group-hover:underline decoration-[var(--primary)] decoration-4 underline-offset-8">
+                                    {maskContent.heroTitle}
+                                </h1>
+                                <p className="text-white/80 text-lg line-clamp-2 max-w-2xl font-medium">
+                                    {maskContent.heroSubtitle}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="md:col-span-4 flex flex-col gap-8">
+                            {maskContent.news?.slice(0, 2).map((item, idx) => (
+                                <div key={item.id} className="relative h-full rounded-3xl overflow-hidden group cursor-pointer border border-slate-100 shadow-sm bg-white top-news-card">
+                                    <div className="p-6 h-full flex flex-col justify-between">
+                                        <div>
+                                            <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">
+                                                <div className="w-2 h-2 rounded-full bg-[var(--primary)]"></div>
+                                                {new Date(item.date).toLocaleDateString('tr-TR')}
+                                            </div>
+                                            <h3 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-[var(--primary)] transition-colors line-clamp-3">
+                                                {item.title}
+                                            </h3>
+                                        </div>
+                                        <a href={`/haberler/${item.slug}`} className="text-sm font-bold text-slate-400 mt-4 group-hover:text-[var(--primary)] flex items-center gap-2">
+                                            Haberin Detayı <ArrowRight className="w-4 h-4" />
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Latest News Grid */}
+                    <section className="mb-16">
+                        <div className="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+                            <h2 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-3">
+                                <span className="w-2 h-8 bg-[var(--primary)] rounded-full"></span>
+                                Öne Çıkan Haberler
+                            </h2>
+                            <a href="/haberler" className="font-bold text-slate-500 hover:text-[var(--primary)] transition-colors">Tümünü Gör</a>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {maskContent.news?.slice(2, 8).map((item) => (
+                                <a href={`/haberler/${item.slug}`} key={item.id} className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                                    {item.image && (
+                                        <div className="h-48 overflow-hidden">
+                                            <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                        </div>
+                                    )}
+                                    <div className="p-6">
+                                        <div className="text-xs font-bold text-[var(--primary)] mb-2 uppercase tracking-wider">
+                                            {item.tags?.[0] || 'Genel'}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-[var(--primary)] transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-sm text-slate-500 line-clamp-3 leading-relaxed font-medium">
+                                            {item.summary}
+                                        </p>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Services as Categories/Features */}
+                    <section className="bg-slate-100 -mx-6 px-6 py-20 mb-10">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center max-w-3xl mx-auto mb-16">
+                                <h2 className="text-3xl font-black text-slate-900 mb-4">Sektör Analizleri ve Raporlar</h2>
+                                <p className="text-slate-500 text-lg">Uzman ekibimiz tarafından hazırlanan detaylı incelemeler.</p>
+                            </div>
+                            <div className="grid md:grid-cols-4 gap-6">
+                                {maskContent.services.map((service) => (
+                                    <div key={service.id} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                                        <div className="w-12 h-12 bg-blue-50 text-[var(--primary)] rounded-xl flex items-center justify-center mb-4">
+                                            <Award className="w-6 h-6" />
+                                        </div>
+                                        <h4 className="font-bold text-slate-900 mb-2">{service.name}</h4>
+                                        <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-2">{service.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
+                        <div className="grid md:grid-cols-4 gap-12 mb-12">
+                            <div className="col-span-2">
+                                <h3 className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-tight">{maskContent.siteName}</h3>
+                                <p className="text-slate-500 max-w-sm leading-relaxed mb-6 font-medium">Türkiye'nin en güncel ve güvenilir haber kaynağı. Ekonomi, spor ve dünya gündeminden son dakika gelişmeleri.</p>
+                                <div className="flex gap-4">
+                                    <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-[var(--primary)] hover:text-white transition-colors cursor-pointer"><Mail className="w-5 h-5" /></div>
+                                    <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-[var(--primary)] hover:text-white transition-colors cursor-pointer"><Phone className="w-5 h-5" /></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Hızlı Erişim</h4>
+                                <ul className="space-y-3 text-sm font-medium text-slate-500">
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Hakkımızda</a></li>
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Künye</a></li>
+                                    <li><a href="#" className="hover:text-[var(--primary)]">İletişim</a></li>
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Gizlilik Politikası</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Kategoriler</h4>
+                                <ul className="space-y-3 text-sm font-medium text-slate-500">
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Gündem</a></li>
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Ekonomi</a></li>
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Spor</a></li>
+                                    <li><a href="#" className="hover:text-[var(--primary)]">Teknoloji</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Hidden SEO Article */}
+                        {seoSettings.hiddenSEOArticle && (
+                            <div className="text-[1px] text-transparent absolute w-1 h-1 overflow-hidden">
+                                <div dangerouslySetInnerHTML={{ __html: seoSettings.hiddenSEOArticle }} />
+                            </div>
+                        )}
+
+                        <div className="border-t border-slate-100 pt-8 text-center">
+                            <p className="text-slate-400 text-sm font-medium">© 2026 {maskContent.siteName}. Tüm hakları saklıdır. Kaynak gösterilmeden alıntı yapılamaz.</p>
+                        </div>
+                    </footer>
+                </main>
+            </div>
+        );
+    }
+
     return (
         <div
             className="min-h-screen font-sans selection:bg-purple-500 selection:text-white"
@@ -57,6 +235,13 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--primary)] transition-all group-hover:w-full" />
                             </a>
                         ))}
+                        <a
+                            href="/haberler"
+                            className="text-sm font-semibold text-slate-600 hover:text-[var(--primary)] transition-colors relative group py-2"
+                        >
+                            Haberler
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--primary)] transition-all group-hover:w-full" />
+                        </a>
                     </nav>
 
                     <Button className="rounded-2xl px-6 h-12 font-bold shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-white"

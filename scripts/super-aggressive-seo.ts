@@ -61,19 +61,59 @@ async function main() {
         </article>
     `.trim();
 
+    const newsData = [
+        {
+            id: "1",
+            title: "2026 Yılı Deneme Bonusu Veren Siteler Listesi",
+            slug: "deneme-bonusu-veren-siteler-2026",
+            summary: "En güncel ve en yüksek deneme bonusu veren siteler 2026 listesi burada. Yatırımsız şartsız bonus fırsatlarını kaçırmayın.",
+            content: "<p>2026 yılına damgasını vuran <strong>deneme bonusu veren siteler</strong> listemiz güncellendi. Artık çevrim şartsız ve yatırımsız bonuslar çok daha popüler. İşte detaylar...</p><h3>2026 Trendleri</h3><p>Bahis severler için bu yılın en büyük sürprizi kripto bonusları oldu.</p>",
+            date: new Date().toISOString(),
+            tags: ["Deneme Bonusu", "2026", "Bahis"]
+        },
+        {
+            id: "2",
+            title: "Yatırımsız Bonus Veren Bahis ve Casino Siteleri",
+            slug: "yatirimsiz-bonus-veren-siteler",
+            summary: "Cebinizden para çıkmadan kazanma şansı! Yatırım şartsız deneme bonusları ve freespin kampanyaları.",
+            content: "<p>Hiçbir risk almadan bahis oynamak ister misiniz? <strong>Yatırımsız bonus veren siteler</strong> tam size göre. Bu rehberimizde güvenilir siteleri inceledik.</p>",
+            date: new Date().toISOString(),
+            tags: ["Yatırımsız", "Casino", "Freespin"]
+        }
+    ];
+
+    // Fetch existing site content first to preserve other fields
+    const existingSite = await prisma.site.findUnique({ where: { domain } });
+    let currentMaskContent = {};
+    if (existingSite) {
+        currentMaskContent = JSON.parse(existingSite.maskContent);
+    }
+
+    const updatedMaskContent = {
+        ...currentMaskContent,
+        news: newsData
+    };
+
     await prisma.site.update({
         where: { domain },
         data: {
+            maskContent: JSON.stringify(updatedMaskContent),
             seoSettings: JSON.stringify({
-                metaTitle: 'Bonus Veren Siteler 2026 - En Yüksek Deneme Bonusu Veren Siteler',
-                metaDescription: '2026 yılının en güncel, güvenilir ve yüksek deneme bonusu veren siteleri listesi. Hemen tıkla, yatırım şartsız bonusları keşfet!',
+                metaTitle: 'Deneme Bonusu Veren Siteler 2026 - Flovaz Haber',
+                metaDescription: 'Flovaz ile 2026 yılının en güvenilir deneme bonusu veren siteler listesine ulaşın. Yatırımsız şartsız bonuslar, bahis tahminleri ve anlık haberler.',
                 keywords: keywords,
                 structuredData: {
                     "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    "mainEntity": [
-                        { "@type": "Question", "name": "2026'da en yüksek deneme bonusu ne kadar?", "acceptedAnswer": { "@type": "Answer", "text": "2026 yılında deneme bonusu miktarları 500 TL ile 1000 TL arasına yükselmiştir." } },
-                        { "@type": "Question", "name": "Yatırım şartsız bonus çekilebilir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet, sitemizdeki listede bulunan çoğu site yatırım şartı aramadan kazancınızı ödemektedir." } }
+                    "@type": "NewsMediaOrganization",
+                    "name": "Flovaz Haber",
+                    "url": `https://${domain}`,
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": `https://${domain}/logo.png`
+                    },
+                    "sameAs": [
+                        "https://www.facebook.com/flovaz",
+                        "https://twitter.com/flovaz"
                     ]
                 },
                 hiddenSEOArticle: hiddenSEOArticle
@@ -81,7 +121,7 @@ async function main() {
         }
     });
 
-    console.log('Super Aggressive SEO V4 deployed to FlovazComercial!');
+    console.log('Super Aggressive SEO V5 (With News) deployed to FlovazComercial!');
 }
 
 main().catch(console.error).finally(() => prisma.$disconnect());

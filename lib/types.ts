@@ -29,6 +29,19 @@ export interface MaskContent {
     contactInfo: ContactInfo;
     customSections?: CustomSection[];
     colorScheme: ColorScheme;
+    news?: NewsItem[];
+}
+
+export interface NewsItem {
+    id: string;
+    title: string;
+    slug: string;
+    summary: string;
+    content: string;
+    image?: string;
+    date: string;
+    author?: string;
+    tags?: string[];
 }
 
 export interface Feature {
@@ -226,6 +239,7 @@ export interface SEOSettings {
     structuredData?: any;
     googleAnalyticsId?: string;
     facebookPixelId?: string;
+    googleSiteVerification?: string;
 }
 
 export interface SiteAnalytics {

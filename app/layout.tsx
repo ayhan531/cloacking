@@ -42,6 +42,9 @@ export async function generateMetadata(): Promise<Metadata> {
         alternates: {
           canonical: `https://${domain}`,
         },
+        verification: {
+          google: seo.googleSiteVerification,
+        },
         openGraph: {
           title: seo.metaTitle || site.name,
           description: seo.metaDescription,
