@@ -23,8 +23,8 @@ async function testBotView() {
         console.log('--- USER VIEW TITLE ---');
         const titleMatchUser = dataUser.match(/<title>(.*?)<\/title>/);
         console.log(titleMatchUser ? titleMatchUser[1] : 'No title found');
-    } catch (e) {
-        console.error('Error fetching site:', e.message);
+    } catch (e: any) {
+        console.error('Error fetching site:', e?.message || e);
     }
 }
 
