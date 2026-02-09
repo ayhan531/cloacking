@@ -85,8 +85,10 @@ export default async function RootLayout({
     const site = await prisma.site.findUnique({
       where: { domain },
     });
+
     if (site) {
-      const seo = JSON.parse(site.seoSettings);
+      const seo = site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {};
+
       structuredData = seo.structuredData;
 
       breadcrumbData = {
@@ -108,7 +110,7 @@ export default async function RootLayout({
       const ratingData = {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": seo.metaTitle,
+        "name": seo.metaTitle || site.name,
         "operatingSystem": "iOS, Android, Windows",
         "applicationCategory": "FinanceApplication",
         "aggregateRating": {
@@ -147,7 +149,9 @@ export default async function RootLayout({
 
       structuredData = [structuredData, breadcrumbData, ratingData, orgData].filter(Boolean);
     }
-  } catch (e) { }
+  } catch (e) {
+    console.error("Layout Structured Data Error:", e);
+  }
 
   return (
     <html lang="tr" suppressHydrationWarning>
