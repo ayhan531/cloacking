@@ -110,6 +110,70 @@ async function main() {
         }
     });
     console.log("✅ News Site updated/created.");
+
+    // 3. VIZYONTEK YAZILIM -> TECH (Corporate)
+    const techDomain = 'vizyontekyazilim.com';
+    const techMaskContent = {
+        siteName: 'VizyonTek Yazılım Çözümleri',
+        heroTitle: 'Yapay Zeka Destekli Kurumsal Sistemler',
+        heroSubtitle: '2026 dijital dönüşüm yolculuğunda yanınızdayız. Özel yazılım geliştirme, bulut altyapısı ve siber güvenlik analizleri ile işletmenizi geleceğe hazırlıyoruz.',
+        features: [
+            { id: '1', icon: 'Shield', title: 'Siber Güvenlik', description: 'Uluslararası standartlarda veri koruma ve penetrasyon testleri.' },
+            { id: '2', icon: 'Shield', title: 'Yapay Zeka', description: 'İş süreçlerini optimize eden makine öğrenmesi algoritmaları.' },
+            { id: '3', icon: 'Shield', title: 'Bulut Çözümleri', description: '%99.9 uptime garantili ölçeklenebilir altyapı.' },
+        ],
+        services: [
+            { id: '1', name: 'Altyapı Güvenlik Analizi', description: '2026 yılı güncel dijital platform güvenlik incelemeleri.', price: 'Rapor' },
+            { id: '2', name: 'Web Veri Madenciliği', description: 'Büyük veri analizi ve pazar trendi raporları.', price: 'Özel Plan' },
+            { id: '3', name: 'Sistem Entegrasyonu', description: 'API ve üçüncü taraf yazılım güvenli bağlantıları.', price: 'Kurumsal' }
+        ],
+        colorScheme: { primary: '#6366f1', secondary: '#4f46e5', accent: '#a5b4fc', background: '#FFFFFF', text: '#1e293b' },
+        type: 'corporate'
+    };
+
+    const techSeo = {
+        metaTitle: '2026 Yazılım ve Güvenlik Trendleri | VizyonTek Yazılım Çözümleri',
+        metaDescription: 'VizyonTek Yazılım, 2026 yılı dijital platform güvenlik rehberini sunar. En güvenilir teknik altyapılar ve bonus veren sitelerin güvenlik incelemeleri.',
+        keywords: 'yazılım, siber güvenlik, vizyontek, 2026 teknoloji, deneme bonusu veren siteler siber analiz',
+        hiddenSEOArticle: `
+            <article>
+                <h1>VizyonTek Yazılım: 2026 Teknik Analiz ve Platform Güvenlik Raporu</h1>
+                <p><strong>VizyonTek Yazılım Çözümleri</strong> olarak, 2026 dijital dünyasında yazılım katmanlarının güvenliğini inceliyoruz. Özellikle yüksek trafikli platformlarda kullanılan <em>deneme bonusu veren siteler 2026</em> altyapıları, siber saldırılara karşı nasıl korunuyor ve kullanıcı verileri nasıl şifreleniyor, bu konuda uzman ekibimizle teknik bir rehber hazırladık.</p>
+                
+                <h2>Yazılım Mimarisinde Güvenlik Standartları</h2>
+                <p>2026 yılına gelindiğinde, platformların güvenilirliği artık sadece lisanslarla değil, kod yapısındaki sağlamlıkla ölçülmektedir. Yapay zeka destekli siber savunma sistemlerimiz, Türkiye'de hizmet veren platformların güvenlik puanlarını saptadı.</p>
+                
+                <ul>
+                    <li><strong>Algoritma Güvenliği:</strong> Rastgele sayı üreticilerinin (RNG) yazılımsal doğruluğu.</li>
+                    <li><strong>Bağlantı Katmanları:</strong> API üzerinden yapılan veri transferlerinin şifreleme hızı.</li>
+                    <li><strong>2FA ve Kimlik Doğrulama:</strong> 2026 yılının en güvenilir kullanıcı giriş sistemleri.</li>
+                </ul>
+
+                <p>Sonuç olarak, yazılım dünyasındaki gelişmeleri VizyonTek ekibi olarak takip etmeye devam ediyoruz. 2026 boyunca en teknolojik platformları sizin için inceleyeceğiz.</p>
+            </article>
+        `.trim()
+    };
+
+    await prisma.site.upsert({
+        where: { domain: techDomain },
+        update: {
+            name: 'VizyonTek Yazılım',
+            maskType: 'corporate',
+            maskContent: JSON.stringify(techMaskContent),
+            seoSettings: JSON.stringify(techSeo)
+        },
+        create: {
+            name: 'VizyonTek Yazılım',
+            domain: techDomain,
+            maskType: 'corporate',
+            maskContent: JSON.stringify(techMaskContent),
+            seoSettings: JSON.stringify(techSeo),
+            bettingContent: JSON.stringify({ bonuses: [] }),
+            cloakingRules: JSON.stringify({ showMaskTo: { bots: true, desktop: true }, showBettingTo: { mobile: true } }),
+            isActive: true
+        }
+    });
+    console.log("✅ VizyonTek Yazılım updated/created.");
 }
 
 main().catch(console.error).finally(() => prisma.$disconnect());
