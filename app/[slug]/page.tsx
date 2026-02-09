@@ -20,10 +20,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         if (site) {
             const seo = JSON.parse(site.seoSettings);
             // Use specific keyword title if available, otherwise fallback
-            const title = `${slug.replace(/-/g, ' ')} - ${site.name} 2026`;
+            let title = `${slug.replace(/-/g, ' ')} | ${site.name} 2026`;
+            if (slug === 'deneme-bonusu') {
+                title = `2026 Deneme Bonusu Veren Siteler - ${site.name} İncelemesi`;
+            }
 
             return {
-                title: title.replace(/\b\w/g, c => c.toUpperCase()), // Capitalize
+                title: title,
                 description: seo.metaDescription,
                 alternates: {
                     canonical: `https://${domain}/${slug}`,

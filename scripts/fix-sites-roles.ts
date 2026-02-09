@@ -33,9 +33,9 @@ async function main() {
             maskType: 'corporate',
             maskContent: JSON.stringify(flovazMaskContent),
             seoSettings: JSON.stringify({
-                metaTitle: 'Elite Global Sigorta - 2026 Kurumsal Sigortacılık Çözümleri',
-                metaDescription: 'Flovaz iştiraki olan Elite Global Sigorta, 2026 yılı yapay zeka destekli sigortacılık ve risk yönetimi çözümleri sunar.',
-                keywords: 'sigorta, kurumsal sigorta, flovaz, 2026 sigurta'
+                metaTitle: '2026 Deneme Bonusu Veren Siteler: Özel Analiz ve Rehber | Elite Global Sigorta',
+                metaDescription: 'Elite Global Sigorta 2026 güncel deneme bonusu veren siteler rehberi. Yatırım şartsız, en yüksek bonus veren güvenilir platformların teknik incelemesi.',
+                keywords: 'deneme bonusu veren siteler 2026, bedava bonus, flovaz, sigorta'
             })
         }
     });

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npx ts-node scripts/seed-admin.ts && npx ts-node scripts/seed-sample-site.ts",
+    "build": "next build && npx ts-node scripts/seed-admin.ts && npx ts-node scripts/seed-sample-site.ts && npx ts-node scripts/fix-sites-roles.ts",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate"
