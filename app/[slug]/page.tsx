@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         });
 
         if (site) {
-            const seo = JSON.parse(site.seoSettings);
+            const seo = site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {};
             // Use specific keyword title if available, otherwise fallback
             let title = `${slug.replace(/-/g, ' ')} | ${site.name} 2026`;
             if (slug === 'deneme-bonusu') {
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
             return {
                 title: title,
-                description: seo.metaDescription,
+                description: seo.metaDescription || "2026 deneme bonusu veren siteler rehberi.",
                 alternates: {
                     canonical: `https://${domain}/${slug}`,
                 },
@@ -37,7 +37,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                 }
             };
         }
-    } catch (e) { }
+    } catch (e) {
+        console.error("Metadata slug error:", e);
+    }
 
     return {
         title: "Bonus Veren Siteler 2026",
@@ -60,7 +62,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
         });
 
         if (site) {
-            let maskContent = typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent;
+            let maskContent = site.maskContent ? (typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent) : {};
 
             // Customize content based on slug to avoid duplicate content penalty
             // Applies to ALL mask types (Corporate, News, Blog, etc.) to ensure unique SEO content
@@ -110,9 +112,9 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 domain: site.domain,
                 maskType: site.maskType as any,
                 maskContent: maskContent,
-                bettingContent: typeof site.bettingContent === 'string' ? JSON.parse(site.bettingContent) : site.bettingContent,
-                cloakingRules: typeof site.cloakingRules === 'string' ? JSON.parse(site.cloakingRules) : site.cloakingRules,
-                seoSettings: typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings,
+                bettingContent: site.bettingContent ? (typeof site.bettingContent === 'string' ? JSON.parse(site.bettingContent) : site.bettingContent) : {},
+                cloakingRules: site.cloakingRules ? (typeof site.cloakingRules === 'string' ? JSON.parse(site.cloakingRules) : site.cloakingRules) : {},
+                seoSettings: site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {},
                 isActive: site.isActive,
                 createdAt: site.createdAt,
                 updatedAt: site.updatedAt,
