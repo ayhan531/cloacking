@@ -13,16 +13,16 @@ async function main() {
         heroTitle: 'Geleceğinizi Güvence Altına Alıyoruz',
         heroSubtitle: '2026 vizyonumuzla, yapay zeka destekli risk analizi ve anında hasar ödeme sistemlerimizle yanınızdayız. Profesyonel kadromuzla kurumsal ve bireysel çözümler sunuyoruz.',
         features: [
-            { id: '1', icon: 'Shield', title: 'Tam Kapsamlı Koruma', description: 'En küçük detaydan en büyük risklere kadar her şey kontrolümüz altında.' },
-            { id: '2', icon: 'Shield', title: 'Hızlı Ekspertiz', description: 'Yapay zeka ile 15 dakikada hasar tespiti ve onay süreci.' },
-            { id: '3', icon: 'Shield', title: '7/24 Global Destek', description: 'Dünyanın neresinde olursanız olun bir tık uzağınızdayız.' },
+            { id: '1', icon: 'Shield', title: 'Risk Analizi', description: 'Platformların finansal risklerini uzman ekibimizle önceden belirliyoruz.' },
+            { id: '2', icon: 'Shield', title: 'Lisans Doğrulama', description: 'Tüm sitelerin global oyun lisanslarını saniyeler içinde doğruluyoruz.' },
+            { id: '3', icon: 'Shield', title: 'Poliçe Güvencesi', description: 'Elite Global olarak dijital varlıklarınızı koruma altına alıyoruz.' },
         ],
         services: [
-            { id: '1', name: 'Kurumsal Risk Yönetimi', description: 'Şirketinizin varlıklarını global standartlarda koruyoruz.', price: 'Teklif Alın' },
-            { id: '2', name: 'Dijital Varlık Sigortası', description: 'Kripto varlık ve siber saldırılara karşı %100 güvence.', price: '$49/ay' },
-            { id: '3', name: 'Lüks Konut ve Araç', description: 'Değerli eşyalarınız için özel hazırlanmış premium poliçeler.', price: 'Özel Fiyat' }
+            { id: '1', name: 'Kurumsal Risk Yönetimi', description: '2026 yılı dijital platform güvenlik standartları incelemesi.', price: 'Ücretsiz Rapor' },
+            { id: '2', name: 'Bonus Güvenlik Sertifikası', description: 'Sitemizdeki firmalar Elite Global güvenlik testlerinden geçmiştir.', price: 'Sertifikalı' },
+            { id: '3', name: 'Varlık Sigortası Danışmanlık', description: 'Bakiyenizi ve kazancınızı korumanın en iyi yolları.', price: 'Danışmanlık' }
         ],
-        colorScheme: { primary: '#0F172A', secondary: '#334155', accent: '#3B82F6', background: '#FFFFFF', text: '#1F2937' },
+        colorScheme: { primary: '#1e293b', secondary: '#334155', accent: '#6366f1', background: '#FFFFFF', text: '#0f172a' },
         type: 'corporate'
     };
 
@@ -35,7 +35,24 @@ async function main() {
             seoSettings: JSON.stringify({
                 metaTitle: '2026 Deneme Bonusu Veren Siteler: Özel Analiz ve Rehber | Elite Global Sigorta',
                 metaDescription: 'Elite Global Sigorta 2026 güncel deneme bonusu veren siteler rehberi. Yatırım şartsız, en yüksek bonus veren güvenilir platformların teknik incelemesi.',
-                keywords: 'deneme bonusu veren siteler 2026, bedava bonus, flovaz, sigorta'
+                keywords: 'deneme bonusu veren siteler 2026, bedava bonus, flovaz, sigorta',
+                hiddenSEOArticle: `
+                    <article>
+                        <h1>Elite Global Sigorta: 2026 Dijital Risk ve Bonus Analiz Raporu</h1>
+                        <p><strong>Flovaz Comercial</strong> iştiraki olan Elite Global Sigorta olarak, 2026 yılı dijital ekosisteminde kullanıcılarımızın karşılaştığı finansal riskleri ve fırsatları analiz ediyoruz. Özellikle online platformlarda sunulan <em>deneme bonusu veren siteler 2026</em> fırsatlarını, teknik güvenlik katmanları ve lisans doğrulama sistemlerimizle inceliyoruz.</p>
+                        
+                        <h2>2026 Deneme Bonusu Fırsatlarında Risk Yönetimi</h2>
+                        <p>Bir sigorta kuruluşu hassasiyetiyle yaklaştığımızda, <strong>bedava bonus</strong> veren platformların güvenilirliği, poliçe oluşturma süreçlerimizdeki risk analiziyle benzerlik göstermektedir. Kullanıcıların yatırımsız şartsız bonus alırken nelere dikkat etmesi gerektiğini uzman kadromuzla raporladık.</p>
+                        
+                        <ul>
+                            <li><strong>Teknik Güvenlik:</strong> SSL sertifikaları ve veri şifreleme protokolleri.</li>
+                            <li><strong>Finansal İstikrar:</strong> 2026 yılında ödeme hızı en yüksek olan firmalar.</li>
+                            <li><strong>Kullanıcı Hakları:</strong> Bonus çevrim şartlarının şeffaflığı.</li>
+                        </ul>
+
+                        <p>Sonuç olarak, 2026 yılında güvenle işlem yapabileceğiniz platformları Flovaz güvencesiyle listeliyoruz. Sigortacılık disiplini ile hazırlanan bu rapor, dijital dünyadaki varlıklarınızı korumanıza yardımcı olacaktır.</p>
+                    </article>
+                `.trim()
             })
         }
     });
