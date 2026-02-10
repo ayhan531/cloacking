@@ -114,12 +114,18 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                     {
                         "@type": "Question",
                         "name": "2026 deneme bonusu veren siteler hangileridir?",
-                        "content": "2026 yılında en güvenilir deneme bonusu veren siteler arasında yatırım şartsız fırsat sunan lisanslı platformlar öne çıkmaktadır."
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "2026 yılında en güvenilir deneme bonusu veren siteler arasında yatırım şartsız fırsat sunan lisanslı platformlar öne çıkmaktadır."
+                        }
                     },
                     {
                         "@type": "Question",
                         "name": "Yatırımsız bonus nasıl alınır?",
-                        "content": "Sisteme üye olduktan sonra canlı destek hattına bağlanarak veya bonuslar sekmesinden anında talep edebilirsiniz."
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sisteme üye olduktan sonra canlı destek hattına bağlanarak veya bonuslar sekmesinden anında talep edebilirsiniz."
+                        }
                     }
                 ]
             } : null;
