@@ -165,10 +165,11 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             <div>
                                 <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Kategoriler</h4>
                                 <ul className="space-y-3 text-sm font-medium text-slate-500">
-                                    <li><a href="#" className="hover:text-[var(--primary)]">Gündem</a></li>
-                                    <li><a href="#" className="hover:text-[var(--primary)]">Ekonomi</a></li>
-                                    <li><a href="#" className="hover:text-[var(--primary)]">Spor</a></li>
-                                    <li><a href="#" className="hover:text-[var(--primary)]">Teknoloji</a></li>
+                                    <li><a href="/" className="hover:text-[var(--primary)]">Gündem</a></li>
+                                    <li><a href="/deneme-bonusu" className="hover:text-[var(--primary)]">Deneme Bonusu</a></li>
+                                    <li><a href="/bahis-siteleri" className="hover:text-[var(--primary)]">Bahis Siteleri</a></li>
+                                    <li><a href="/casino-siteleri" className="hover:text-[var(--primary)]">Casino Siteleri</a></li>
+                                    <li><a href="/hosgeldin-bonusu" className="hover:text-[var(--primary)]">Hoşgeldin Bonusu</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -565,10 +566,12 @@ export default function MaskSite({ config }: MaskSiteProps) {
 
                     <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                         <p className="text-white/20 text-sm font-bold uppercase tracking-widest">© 2026 {maskContent.siteName}. Tüm hakları saklıdır.</p>
-                        <div className="flex gap-8 text-white/20 text-xs font-black tracking-widest uppercase">
+                        <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 text-white/20 text-xs font-black tracking-widest uppercase">
+                            <a href="/deneme-bonusu" className="hover:text-white/40">Deneme Bonusu</a>
+                            <a href="/bahis-siteleri" className="hover:text-white/40">Bahis Siteleri</a>
+                            <a href="/casino-siteleri" className="hover:text-white/40">Casino Siteleri</a>
+                            <a href="/hosgeldin-bonusu" className="hover:text-white/40">Hoşgeldin Bonusu</a>
                             <a href="#" className="hover:text-white/40">Gizlilik Politikası</a>
-                            <a href="#" className="hover:text-white/40">Kullanım Şartları</a>
-                            <a href="/deneme-bonusu" className="hover:text-white/40">Çerez Politikası</a>
                         </div>
                     </div>
                 </div>
