@@ -26,10 +26,10 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-[var(--primary)] text-white flex items-center justify-center font-black text-xl rounded-lg">
-                                {maskContent.siteName.charAt(0)}
+                                {maskContent?.siteName?.charAt(0) || 'V'}
                             </div>
                             <span className="text-2xl font-black text-slate-900 tracking-tight uppercase">
-                                {maskContent.siteName}
+                                {maskContent?.siteName || 'VizyonTek'}
                             </span>
                         </div>
                         <nav className="hidden md:flex gap-8">
@@ -131,7 +131,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                 <p className="text-slate-500 text-lg">Uzman ekibimiz tarafından hazırlanan detaylı incelemeler.</p>
                             </div>
                             <div className="grid md:grid-cols-4 gap-6">
-                                {maskContent.services.map((service) => (
+                                {maskContent?.services?.map((service: any) => (
                                     <div key={service.id} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                                         <div className="w-12 h-12 bg-blue-50 text-[var(--primary)] rounded-xl flex items-center justify-center mb-4">
                                             <Award className="w-6 h-6" />
@@ -139,7 +139,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                         <h4 className="font-bold text-slate-900 mb-2">{service.name}</h4>
                                         <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-2">{service.description}</p>
                                     </div>
-                                ))}
+                                )) || <div className="col-span-4 text-center text-slate-400">Hizmet bilgisi bulunamadı.</div>}
                             </div>
                         </div>
                     </section>
@@ -148,8 +148,6 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
                         <div className="grid md:grid-cols-4 gap-12 mb-12">
                             <div className="col-span-2">
-                                <h3 className="text-2xl font-black text-slate-900 mb-6 uppercase tracking-tight">{maskContent.siteName}</h3>
-                                <p className="text-slate-500 max-w-sm leading-relaxed mb-6 font-medium">Türkiye'nin en güncel ve güvenilir haber kaynağı. Ekonomi, spor ve dünya gündeminden son dakika gelişmeleri.</p>
                                 <div className="flex gap-4">
                                     <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-[var(--primary)] hover:text-white transition-colors cursor-pointer"><Mail className="w-5 h-5" /></div>
                                     <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-[var(--primary)] hover:text-white transition-colors cursor-pointer"><Phone className="w-5 h-5" /></div>
@@ -220,7 +218,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             )}
                         </div>
                         <span className="text-xl font-bold tracking-tight text-slate-800">
-                            {maskContent.siteName}
+                            {maskContent?.siteName || 'VizyonTek'}
                         </span>
                     </div>
 
@@ -267,9 +265,9 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         </div>
 
                         <h2 className="text-6xl lg:text-8xl font-black tracking-tight leading-[0.9] font-outfit">
-                            <span className="block text-slate-900">{maskContent.heroTitle.split(' ').slice(0, -1).join(' ')}</span>
+                            <span className="block text-slate-900">{(maskContent?.heroTitle || 'Dijital Dönüşüm Yolculuğu').split(' ').slice(0, -1).join(' ')}</span>
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)]">
-                                {maskContent.heroTitle.split(' ').slice(-1)}
+                                {(maskContent?.heroTitle || 'Yolculuğu').split(' ').slice(-1)}
                             </span>
                         </h2>
 
@@ -356,8 +354,8 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {maskContent.services.map((service, idx) => (
-                            <Card key={service.id} className="border-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 group overflow-hidden rounded-[32px] bg-white">
+                        {maskContent?.services?.map((service: any, idx: number) => (
+                            <Card key={service.id || idx} className="border-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 group overflow-hidden rounded-[32px] bg-white">
                                 {service.image && (
                                     <div className="h-64 overflow-hidden">
                                         <img src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -392,8 +390,8 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="relative">
                             <div className="grid grid-cols-2 gap-6">
-                                {maskContent.features.map((feature, idx) => (
-                                    <div key={feature.id}
+                                {maskContent?.features?.map((feature: any, idx: number) => (
+                                    <div key={feature.id || idx}
                                         className={`p-8 rounded-[32px] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 bg-white ${idx % 2 === 1 ? 'mt-8' : ''}`}>
                                         <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-white"
                                             style={{ backgroundImage: `linear-gradient(135deg, var(--primary), var(--secondary))` }}>
@@ -443,10 +441,10 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {maskContent.testimonials.map((t) => (
+                        {maskContent?.testimonials?.map((t: any) => (
                             <div key={t.id} className="p-10 rounded-[40px] bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-colors group">
                                 <div className="flex gap-1 mb-8">
-                                    {Array.from({ length: t.rating }).map((_, i) => (
+                                    {Array.from({ length: t.rating || 5 }).map((_, i) => (
                                         <TrendingUp key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                                     ))}
                                 </div>
@@ -458,7 +456,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                         <img src={t.avatar} className="w-14 h-14 rounded-full border-2 border-[var(--primary)] object-cover" />
                                     ) : (
                                         <div className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center font-bold text-white text-xl">
-                                            {t.name[0]}
+                                            {t.name?.[0] || 'U'}
                                         </div>
                                     )}
                                     <div>
@@ -483,9 +481,9 @@ export default function MaskSite({ config }: MaskSiteProps) {
 
                         <div className="space-y-8">
                             {[
-                                { icon: Mail, label: 'E-posta', value: maskContent.contactInfo.email },
-                                { icon: Phone, label: 'Telefon', value: maskContent.contactInfo.phone },
-                                { icon: MapPin, label: 'Ofis', value: maskContent.contactInfo.address }
+                                { icon: Mail, label: 'E-posta', value: maskContent?.contactInfo?.email || 'info@' + (config?.domain || 'site.com') },
+                                { icon: Phone, label: 'Telefon', value: maskContent?.contactInfo?.phone || '+90 (212) --- ----' },
+                                { icon: MapPin, label: 'Ofis', value: maskContent?.contactInfo?.address || 'Levent, İstanbul' }
                             ].map((item) => (
                                 <div key={item.label} className="flex items-center gap-6 group cursor-pointer">
                                     <div className="w-14 h-14 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[var(--primary)] group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-sm shadow-black/5">
@@ -541,8 +539,8 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         <div>
                             <h4 className="text-white font-black uppercase tracking-widest text-xs mb-8">Bize Ulaşın</h4>
                             <ul className="space-y-4">
-                                <li className="text-white/60 font-bold hover:text-white transition-colors cursor-pointer">{maskContent.contactInfo.email}</li>
-                                <li className="text-white/60 font-bold hover:text-white transition-colors cursor-pointer">{maskContent.contactInfo.phone}</li>
+                                <li className="text-white/60 font-bold hover:text-white transition-colors cursor-pointer">{maskContent?.contactInfo?.email || 'info@' + (config?.domain || 'site.com')}</li>
+                                <li className="text-white/60 font-bold hover:text-white transition-colors cursor-pointer">{maskContent?.contactInfo?.phone || '+90 (212) --- ----'}</li>
                             </ul>
                         </div>
 

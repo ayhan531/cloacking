@@ -16,12 +16,20 @@ export async function GET(
             return NextResponse.json({ error: 'Site bulunamadı veya aktif değil' }, { status: 404 });
         }
 
+        const safeParse = (str: any) => {
+            try {
+                return typeof str === 'string' ? JSON.parse(str) : (str || {});
+            } catch (e) {
+                return {};
+            }
+        };
+
         return NextResponse.json({
             ...site,
-            maskContent: JSON.parse(site.maskContent),
-            bettingContent: JSON.parse(site.bettingContent),
-            cloakingRules: JSON.parse(site.cloakingRules),
-            seoSettings: JSON.parse(site.seoSettings),
+            maskContent: safeParse(site.maskContent),
+            bettingContent: safeParse(site.bettingContent),
+            cloakingRules: safeParse(site.cloakingRules),
+            seoSettings: safeParse(site.seoSettings),
         });
     } catch (error) {
         return NextResponse.json({ error: 'Site getirilemedi' }, { status: 500 });

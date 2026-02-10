@@ -34,16 +34,16 @@ export default function BettingSite({ config }: BettingSiteProps) {
 
         const activePopups = bettingContent.popups?.filter(p => p.isActive) || [];
         if (activePopups.length > 0) {
-            const shouldImmediate = isMobile && bettingContent.mobileImmediatePopup;
+            const shouldImmediate = isMobile && bettingContent?.mobileImmediatePopup;
 
             if (shouldImmediate) {
                 setShowPopup(true);
             } else {
                 // Pick the minimum delay among active popups for immediate engagement
-                const minDelay = Math.min(...activePopups.map(p => p.showDelay || 2000));
+                const minDelay = Math.min(...activePopups.map((p: any) => p.showDelay || 2000));
                 const timer = setTimeout(() => {
                     setShowPopup(true);
-                }, minDelay);
+                }, isFinite(minDelay) ? minDelay : 2000);
                 return () => clearTimeout(timer);
             }
         }
@@ -51,13 +51,13 @@ export default function BettingSite({ config }: BettingSiteProps) {
 
     // Auto-slide logic
     useEffect(() => {
-        if (bettingContent.heroSlides && bettingContent.heroSlides.length > 1) {
+        if (bettingContent?.heroSlides && bettingContent.heroSlides.length > 1) {
             const timer = setInterval(() => {
-                setActiveSlide(prev => (prev + 1) % bettingContent.heroSlides.length);
+                setActiveSlide(prev => (prev + 1) % (bettingContent?.heroSlides?.length || 1));
             }, 5000);
             return () => clearInterval(timer);
         }
-    }, [bettingContent.heroSlides]);
+    }, [bettingContent?.heroSlides]);
     const spinWheel = () => {
         if (isSpinning) return;
         setIsSpinning(true);
@@ -71,7 +71,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
             {/* Brand Carousel */}
             <div className="relative overflow-hidden py-4 -mx-4">
                 <div className="flex gap-4 px-4 overflow-x-auto no-scrollbar scroll-smooth">
-                    {bettingContent.brandCarousel.map((brand) => (
+                    {bettingContent?.brandCarousel?.map((brand: any) => (
                         <a key={brand.id} href={brand.link} className="flex-shrink-0 w-36 h-20 bg-slate-800/50 backdrop-blur-md rounded-xl border border-white/10 flex items-center justify-center p-4 hover:border-purple-500/50 transition-colors">
                             <img src={brand.logo || `https://via.placeholder.com/150x80/222/fff?text=${brand.name}`} alt={brand.name} className="max-w-full max-h-full object-contain filter brightness-125" />
                         </a>
@@ -82,8 +82,8 @@ export default function BettingSite({ config }: BettingSiteProps) {
             {/* Hero Ad Slider */}
             {bettingContent.heroSlides && bettingContent.heroSlides.length > 0 && (
                 <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-3xl group">
-                    {bettingContent.heroSlides.map((slide, idx) => (
-                        <div key={slide.id}
+                    {bettingContent?.heroSlides?.map((slide: any, idx: number) => (
+                        <div key={slide.id || idx}
                             className={`absolute inset-0 transition-all duration-700 ease-in-out ${idx === activeSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'}`}>
 
                             {/* Media Background */}
@@ -153,7 +153,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                     <h2 className="text-xl font-bold">Bonus Fırsatları</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                    {bettingContent.bonuses.filter(b => b.isActive).map((bonus) => (
+                    {bettingContent?.bonuses?.filter(b => b.isActive).map((bonus: any) => (
                         <div key={bonus.id} className="bg-slate-800/60 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 relative group overflow-hidden">
                             <div className="absolute top-0 right-0 p-1">
                                 <div className="bg-purple-600 text-[8px] font-black px-1.5 py-0.5 rounded text-white italic">DENEME BONUSU</div>
@@ -179,9 +179,9 @@ export default function BettingSite({ config }: BettingSiteProps) {
                     </h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                    {(activeFilter === 'Trend' ? (bettingContent.trendSites || []) :
-                        activeFilter === 'Popüler' ? bettingContent.brandCarousel :
-                            [...(bettingContent.trendSites || []), ...bettingContent.brandCarousel]).map((site, idx) => (
+                    {(activeFilter === 'Trend' ? (bettingContent?.trendSites || []) :
+                        activeFilter === 'Popüler' ? (bettingContent?.brandCarousel || []) :
+                            [...(bettingContent?.trendSites || []), ...(bettingContent?.brandCarousel || [])]).map((site: any, idx: number) => (
                                 <div key={`${site.id}-${idx}`} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-2 group">
                                     <div className="h-12 flex items-center justify-center">
                                         <img src={site.logo || 'https://via.placeholder.com/80x40'} className="max-h-full max-w-full object-contain brightness-125" />
@@ -208,7 +208,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-20">
-                {bettingContent.giveaways.map((giveaway) => (
+                {bettingContent?.giveaways?.map((giveaway: any) => (
                     <div key={giveaway.id} className="bg-slate-800/80 backdrop-blur-lg border border-white/5 rounded-3xl p-6 space-y-6 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 blur-3xl -z-10" />
                         <div className="flex flex-col items-center text-center space-y-4">
@@ -264,7 +264,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
             </div>
 
             <div className="space-y-3 pb-20">
-                {bettingContent.liveWinners.map((winner) => (
+                {bettingContent?.liveWinners?.map((winner: any) => (
                     <div key={winner.id} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:bg-slate-800/60 transition-all shadow-lg hover:border-emerald-500/30">
                         <div className="flex items-center gap-4">
                             <div className="w-14 h-14 bg-black/40 rounded-xl flex items-center justify-center p-2 border border-white/5 shadow-inner">
@@ -305,10 +305,10 @@ export default function BettingSite({ config }: BettingSiteProps) {
                 {/* Wheel Container */}
                 <div className={`w-full h-full relative transition-transform duration-[5s] ${isSpinning ? 'ease-out' : ''}`}
                     style={{ transform: `rotate(${wheelRotation}deg)` }}>
-                    {bettingContent.wheelItems.map((item, idx) => (
-                        <div key={item.id}
+                    {bettingContent?.wheelItems?.map((item: any, idx: number) => (
+                        <div key={item.id || idx}
                             className="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-1/2 origin-bottom flex flex-col items-center"
-                            style={{ transform: `rotate(${idx * (360 / bettingContent.wheelItems.length)}deg)` }}>
+                            style={{ transform: `rotate(${idx * (360 / (bettingContent?.wheelItems?.length || 8))}deg)` }}>
                             <div className="rotate-[45deg] bg-white/20 p-1.5 rounded-full text-[9px] font-black mt-6 shadow-lg border border-white/20" style={{ backgroundColor: item.color }}>
                                 {item.label}
                             </div>
@@ -355,7 +355,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-                {bettingContent.brandCarousel.concat(bettingContent.brandCarousel).slice(0, 10).map((site, idx) => (
+                {(bettingContent?.brandCarousel || []).concat(bettingContent?.brandCarousel || []).slice(0, 10).map((site: any, idx: number) => (
                     <div key={idx} className="bg-slate-800/60 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 relative group">
                         <div className="absolute top-2 left-2 bg-yellow-500 text-[8px] font-black px-2 py-0.5 rounded text-black italic">
                             {idx % 3 === 0 ? 'BONUS KRALI' : idx % 2 === 0 ? 'YENİ SİTE' : 'POPÜLER'}
@@ -429,7 +429,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
 
             {/* Bottom Floating Menu */}
             <nav className="fixed bottom-0 left-0 right-0 z-[110] h-20 bg-slate-900/95 backdrop-blur-2xl border-t border-white/10 px-4 flex items-center justify-between pb-2">
-                {bettingContent.navigation.map((item) => {
+                {(bettingContent?.navigation || []).map((item: any) => {
                     const isActive = activeView === item.label;
                     return (
                         <button
