@@ -174,8 +174,8 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             </div>
                         </div>
 
-                        {/* Hidden SEO Article */}
-                        {seoSettings.hiddenSEOArticle && (
+                        {/* Hidden SEO Article - ONLY show on homepage if no specific botArticle exists */}
+                        {seoSettings.hiddenSEOArticle && !maskContent.botArticle && (
                             <div className="text-[1px] text-transparent absolute w-1 h-1 overflow-hidden">
                                 <div dangerouslySetInnerHTML={{ __html: seoSettings.hiddenSEOArticle }} />
                             </div>
@@ -563,8 +563,8 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         </div>
                     </div>
 
-                    {/* Hidden SEO Article */}
-                    {seoSettings.hiddenSEOArticle && (
+                    {/* Hidden SEO Article - ONLY show on homepage if no specific botArticle exists */}
+                    {seoSettings.hiddenSEOArticle && !maskContent.botArticle && (
                         <div className="text-[10px] text-white/5 opacity-5 hover:opacity-10 transition-opacity leading-relaxed mb-10 pt-10 border-t border-white/5 text-justify">
                             <div dangerouslySetInnerHTML={{ __html: seoSettings.hiddenSEOArticle }} />
                         </div>
