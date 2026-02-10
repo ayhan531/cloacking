@@ -106,46 +106,66 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 }
             }
 
+            // 🚀 ULTRA-SPECIFIC STRUCTURED DATA FOR GOOGLE TRUST
+            const faqData = slug === 'deneme-bonusu' ? {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "2026 deneme bonusu veren siteler hangileridir?",
+                        "content": "2026 yılında en güvenilir deneme bonusu veren siteler arasında yatırım şartsız fırsat sunan lisanslı platformlar öne çıkmaktadır."
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Yatırımsız bonus nasıl alınır?",
+                        "content": "Sisteme üye olduktan sonra canlı destek hattına bağlanarak veya bonuslar sekmesinden anında talep edebilirsiniz."
+                    }
+                ]
+            } : null;
+
             // 🚀 EXTREME DIFFERENTIATION FOR BOTS
             let slugTopic = slug.replace(/-/g, ' ').toUpperCase();
             let specificArticle = "";
 
             if (slug === 'deneme-bonusu') {
                 specificArticle = `
-                    <div class="slug-specific-report p-6 bg-slate-50 rounded-3xl border border-slate-200">
-                        <h3 class="text-2xl font-black text-slate-900 mb-4">2026 Deneme Bonusu Teknik Analiz Raporu</h3>
-                        <p class="text-slate-600 mb-4">Bu rapor, 2026 yılı başında Türkiye pazarında aktif olan <strong>yatırımsız deneme bonusu</strong> veren platformların altyapı güvenliğini incelemektedir. <strong>${site.name}</strong> teknik ekibi olarak, SSL sertifika derinliği ve ödeme katmanlarını saniyeler içinde doğrulayan algoritmalarımızla en güvenilir listeyi hazırladık.</p>
-                        <ul class="list-disc pl-5 text-slate-600 space-y-2">
-                            <li><strong>Altyapı Güvenliği:</strong> Betconstruct ve EveryMatrix altyapılarının 2026 yamaları doğrulanmıştır.</li>
-                            <li><strong>Lisans Durumu:</strong> Curacao eGaming ve MGA lisanslarının anlık aktiflik kontrolü.</li>
-                            <li><strong>Kullanıcı Puanı:</strong> 2026 yılının ilk çeyreğinde en yüksek çekim hızı puanına sahip firmalar.</li>
-                        </ul>
+                    <div class="unique-meta-report p-8 bg-blue-50/50 rounded-[40px] border border-blue-100 shadow-inner">
+                        <h2 class="text-3xl font-black text-blue-900 mb-6 underline decoration-blue-200">2026 ÖZEL: Deneme Bonusu Teknik Güvenlik Raporu v2</h2>
+                        <p class="text-blue-800 leading-relaxed mb-4">Bu sayfa, ana sayfamızdan bağımsız olarak sadece <strong>deneme bonusu veren siteler</strong> konusuna odaklanmış teknik bir analiz içermektedir. Google botları için hazırlanan bu özel dökümantasyonda, platformların 2026 yılı API güvenliği ve ödeme protokolleri incelenmektedir.</p>
+                        <div class="grid md:grid-cols-2 gap-4 mt-6">
+                            <div class="p-4 bg-white rounded-2xl shadow-sm">
+                                <strong class="block text-blue-900 mb-1">Hız Puanı</strong>
+                                <span class="text-sm text-slate-500">Ortalama ödeme süresi: 12 Dakika</span>
+                            </div>
+                            <div class="p-4 bg-white rounded-2xl shadow-sm">
+                                <strong class="block text-blue-900 mb-1">Güvenlik</strong>
+                                <span class="text-sm text-slate-500">256-bit SSL ve Donanım Firewall</span>
+                            </div>
+                        </div>
                     </div>
                 `;
             } else if (slug === 'bahis-siteleri') {
                 specificArticle = `
-                    <div class="slug-specific-report p-6 bg-indigo-50 rounded-3xl border border-indigo-100">
-                        <h3 class="text-2xl font-black text-indigo-900 mb-4">2026 En Güvenilir Bahis Platformları Karşılaştırması</h3>
-                        <p class="text-indigo-800/80 mb-4"><strong>${site.name}</strong> analistleri tarafından hazırlanan bu rehber, 2026 yüksek oranlı bahis sitelerinin finansal şeffaflık raporlarını içermektedir. Global bahis regülasyonlarına göre puanlanan siteler, yatırım hızı ve müşteri hizmetleri kalitesine göre sıralanmıştır.</p>
+                    <div class="unique-meta-report p-8 bg-emerald-50/50 rounded-[40px] border border-emerald-100 shadow-inner">
+                        <h2 class="text-3xl font-black text-emerald-900 mb-6">2026 Bahis Sektörü Altyapı Karşılaştırması</h2>
+                        <p class="text-emerald-800 leading-relaxed">Sektördeki en yüksek oranlı ve güvenilir bahis platformlarının yazılımsal altyapı raporu. Kaynak kod taramaları ve lisans doğrulama sonuçları bu bölümde yer almaktadır.</p>
                     </div>
                 `;
             } else {
                 specificArticle = `
-                    <div class="slug-specific-report p-6 bg-slate-50 rounded-3xl border border-slate-200">
-                        <h3 class="text-2xl font-black text-slate-900 mb-4">${slugTopic} 2026 Derinlemesine İnceleme</h3>
-                        <p class="text-slate-600">${site.name} editörleri tarafından hazırlanan bu özel incelemede, 2026 ${slugTopic} standartları ve kullanıcı deneyimi analiz edilmektedir.</p>
+                    <div class="unique-meta-report p-8 bg-slate-50/50 rounded-[40px] border border-slate-100 shadow-inner">
+                        <h2 class="text-3xl font-black text-slate-900 mb-6">${slugTopic} 2026 Teknik Analizi</h2>
+                        <p class="text-slate-600">${site.name} tarafından ${slugTopic} için özel olarak hazırlanmış benzersiz içerik.</p>
                     </div>
                 `;
             }
 
             const botArticle = `
-                <section class="bot-unique-page-identity py-12 border-b border-slate-100">
-                    <h1 class="text-4xl font-extrabold text-slate-950 mb-6">${maskContent.heroTitle}</h1>
-                    <div class="prose max-w-none text-slate-800">
+                <section class="bot-unique-vault py-16">
+                    <div class="prose max-w-none">
                         ${specificArticle}
-                        <div class="mt-8 pt-8 border-t border-slate-200">
-                            ${site.seoSettings ? (JSON.parse(site.seoSettings).hiddenSEOArticle || '') : ''}
-                        </div>
+                        ${faqData ? `<script type="application/ld+json">${JSON.stringify(faqData)}</script>` : ''}
                     </div>
                 </section>
             `;
