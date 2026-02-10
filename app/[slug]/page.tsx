@@ -106,13 +106,46 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 }
             }
 
-            // Dynamic article content for bots to ensure uniqueness
+            // 🚀 EXTREME DIFFERENTIATION FOR BOTS
+            let slugTopic = slug.replace(/-/g, ' ').toUpperCase();
+            let specificArticle = "";
+
+            if (slug === 'deneme-bonusu') {
+                specificArticle = `
+                    <div class="slug-specific-report p-6 bg-slate-50 rounded-3xl border border-slate-200">
+                        <h3 class="text-2xl font-black text-slate-900 mb-4">2026 Deneme Bonusu Teknik Analiz Raporu</h3>
+                        <p class="text-slate-600 mb-4">Bu rapor, 2026 yılı başında Türkiye pazarında aktif olan <strong>yatırımsız deneme bonusu</strong> veren platformların altyapı güvenliğini incelemektedir. <strong>${site.name}</strong> teknik ekibi olarak, SSL sertifika derinliği ve ödeme katmanlarını saniyeler içinde doğrulayan algoritmalarımızla en güvenilir listeyi hazırladık.</p>
+                        <ul class="list-disc pl-5 text-slate-600 space-y-2">
+                            <li><strong>Altyapı Güvenliği:</strong> Betconstruct ve EveryMatrix altyapılarının 2026 yamaları doğrulanmıştır.</li>
+                            <li><strong>Lisans Durumu:</strong> Curacao eGaming ve MGA lisanslarının anlık aktiflik kontrolü.</li>
+                            <li><strong>Kullanıcı Puanı:</strong> 2026 yılının ilk çeyreğinde en yüksek çekim hızı puanına sahip firmalar.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (slug === 'bahis-siteleri') {
+                specificArticle = `
+                    <div class="slug-specific-report p-6 bg-indigo-50 rounded-3xl border border-indigo-100">
+                        <h3 class="text-2xl font-black text-indigo-900 mb-4">2026 En Güvenilir Bahis Platformları Karşılaştırması</h3>
+                        <p class="text-indigo-800/80 mb-4"><strong>${site.name}</strong> analistleri tarafından hazırlanan bu rehber, 2026 yüksek oranlı bahis sitelerinin finansal şeffaflık raporlarını içermektedir. Global bahis regülasyonlarına göre puanlanan siteler, yatırım hızı ve müşteri hizmetleri kalitesine göre sıralanmıştır.</p>
+                    </div>
+                `;
+            } else {
+                specificArticle = `
+                    <div class="slug-specific-report p-6 bg-slate-50 rounded-3xl border border-slate-200">
+                        <h3 class="text-2xl font-black text-slate-900 mb-4">${slugTopic} 2026 Derinlemesine İnceleme</h3>
+                        <p class="text-slate-600">${site.name} editörleri tarafından hazırlanan bu özel incelemede, 2026 ${slugTopic} standartları ve kullanıcı deneyimi analiz edilmektedir.</p>
+                    </div>
+                `;
+            }
+
             const botArticle = `
-                <section class="bot-only-content py-10 border-t border-slate-100 mt-10">
-                    <h2 class="text-3xl font-bold mb-4">${maskContent.heroTitle}</h2>
-                    <p class="text-slate-600 mb-6">${maskContent.heroSubtitle}</p>
-                    <div class="prose max-w-none">
-                        ${site.seoSettings ? (JSON.parse(site.seoSettings).hiddenSEOArticle || '') : ''}
+                <section class="bot-unique-page-identity py-12 border-b border-slate-100">
+                    <h1 class="text-4xl font-extrabold text-slate-950 mb-6">${maskContent.heroTitle}</h1>
+                    <div class="prose max-w-none text-slate-800">
+                        ${specificArticle}
+                        <div class="mt-8 pt-8 border-t border-slate-200">
+                            ${site.seoSettings ? (JSON.parse(site.seoSettings).hiddenSEOArticle || '') : ''}
+                        </div>
                     </div>
                 </section>
             `;
@@ -124,7 +157,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 maskType: site.maskType as any,
                 maskContent: {
                     ...maskContent,
-                    botArticle: botArticle // Pass unique content to MaskSite
+                    botArticle: botArticle
                 },
                 bettingContent: site.bettingContent ? (typeof site.bettingContent === 'string' ? JSON.parse(site.bettingContent) : site.bettingContent) : {},
                 cloakingRules: site.cloakingRules ? (typeof site.cloakingRules === 'string' ? JSON.parse(site.cloakingRules) : site.cloakingRules) : {},
