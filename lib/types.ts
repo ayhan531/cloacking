@@ -30,6 +30,7 @@ export interface MaskContent {
     customSections?: CustomSection[];
     colorScheme: ColorScheme;
     news?: NewsItem[];
+    botArticle?: string;
 }
 
 export interface NewsItem {

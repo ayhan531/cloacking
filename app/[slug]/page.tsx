@@ -106,12 +106,26 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 }
             }
 
+            // Dynamic article content for bots to ensure uniqueness
+            const botArticle = `
+                <section class="bot-only-content py-10 border-t border-slate-100 mt-10">
+                    <h2 class="text-3xl font-bold mb-4">${maskContent.heroTitle}</h2>
+                    <p class="text-slate-600 mb-6">${maskContent.heroSubtitle}</p>
+                    <div class="prose max-w-none">
+                        ${site.seoSettings ? (JSON.parse(site.seoSettings).hiddenSEOArticle || '') : ''}
+                    </div>
+                </section>
+            `;
+
             const config: SiteConfig = {
                 id: site.id,
                 name: site.name,
                 domain: site.domain,
                 maskType: site.maskType as any,
-                maskContent: maskContent,
+                maskContent: {
+                    ...maskContent,
+                    botArticle: botArticle // Pass unique content to MaskSite
+                },
                 bettingContent: site.bettingContent ? (typeof site.bettingContent === 'string' ? JSON.parse(site.bettingContent) : site.bettingContent) : {},
                 cloakingRules: site.cloakingRules ? (typeof site.cloakingRules === 'string' ? JSON.parse(site.cloakingRules) : site.cloakingRules) : {},
                 seoSettings: site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {},

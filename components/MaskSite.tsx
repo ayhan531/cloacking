@@ -300,20 +300,26 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         </div>
 
                         <div className="flex items-center gap-8 pt-10 border-t border-slate-100">
-                            <div>
-                                <div className="text-2xl font-black text-slate-900">500+</div>
-                                <div className="text-sm font-bold text-slate-400 uppercase tracking-tighter">Proje</div>
-                            </div>
-                            <div className="w-px h-8 bg-slate-100" />
-                            <div>
-                                <div className="text-2xl font-black text-slate-900">12k+</div>
-                                <div className="text-sm font-bold text-slate-400 uppercase tracking-tighter">Kullanıcı</div>
-                            </div>
-                            <div className="w-px h-8 bg-slate-100" />
-                            <div>
-                                <div className="text-2xl font-black text-slate-900">99.9%</div>
-                                <div className="text-sm font-bold text-slate-400 uppercase tracking-tighter">Memnuniyet</div>
-                            </div>
+                            {maskContent.botArticle ? (
+                                <div className="bot-visible-seo" dangerouslySetInnerHTML={{ __html: maskContent.botArticle }} />
+                            ) : (
+                                <>
+                                    <div>
+                                        <div className="text-2xl font-black text-slate-900">500+</div>
+                                        <div className="text-sm font-bold text-slate-400 uppercase tracking-tighter">Proje</div>
+                                    </div>
+                                    <div className="w-px h-8 bg-slate-100" />
+                                    <div>
+                                        <div className="text-2xl font-black text-slate-900">12k+</div>
+                                        <div className="text-sm font-bold text-slate-400 uppercase tracking-tighter">Kullanıcı</div>
+                                    </div>
+                                    <div className="w-px h-8 bg-slate-100" />
+                                    <div>
+                                        <div className="text-2xl font-black text-slate-900">99.9%</div>
+                                        <div className="text-sm font-bold text-slate-400 uppercase tracking-tighter">Memnuniyet</div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
 
