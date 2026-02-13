@@ -19,10 +19,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
         if (site) {
             const seo = site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {};
+            const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+            const currentMonth = monthNames[new Date().getMonth()];
+            const currentYear = new Date().getFullYear();
+
             // Use specific keyword title if available, otherwise fallback
-            let title = `${slug.replace(/-/g, ' ')} | ${site.name} 2026`;
+            let title = `${slug.replace(/-/g, ' ')} | ${site.name} ${currentYear}`;
             if (slug === 'deneme-bonusu') {
-                title = `2026 Deneme Bonusu Veren Siteler - ${site.name} İncelemesi`;
+                title = `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`;
             }
 
             return {
