@@ -159,7 +159,25 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 specificArticle = `
                     <div class="unique-meta-report p-8 bg-emerald-50/50 rounded-[40px] border border-emerald-100 shadow-inner">
                         <h2 class="text-3xl font-black text-emerald-900 mb-6">2026 Bahis Sektörü Altyapı Karşılaştırması - ${site.name}</h2>
-                        <p class="text-emerald-800 leading-relaxed">Sektördeki en yüksek oranlı ve güvenilir bahis platformlarının yazılımsal altyapı raporu. <strong>${site.name}</strong> tarafından doğrulanmış kaynak kod taramaları ve lisans sonuçları bu bölümde yer almaktadır.</p>
+                        <p class="text-emerald-800 leading-relaxed mb-6">Sektördeki en yüksek oranlı ve güvenilir bahis platformlarının yazılımsal altyapı raporu. <strong>${site.name}</strong> tarafından doğrulanmış kaynak kod taramaları ve lisans sonuçları bu bölümde yer almaktadır.</p>
+                        
+                        <div class="bg-white rounded-3xl p-6 shadow-sm border border-emerald-100">
+                            <h3 class="text-lg font-bold text-emerald-900 mb-4 uppercase tracking-wider">Teknik Veri Dosyası #2026-BS</h3>
+                            <table class="w-full text-sm text-left">
+                                <tr class="border-b border-emerald-50">
+                                    <td class="py-2 text-slate-500">Protokol:</td>
+                                    <td class="py-2 font-bold text-emerald-700">WSS-Secure v4</td>
+                                </tr>
+                                <tr class="border-b border-emerald-50">
+                                    <td class="py-2 text-slate-500">Lisans Sorgu:</td>
+                                    <td class="py-2 font-bold text-emerald-700">Aktif (Global E-Gaming)</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 text-slate-500">Gecikme (ms):</td>
+                                    <td class="py-2 font-bold text-emerald-700">&lt; 150ms Over-Fiber</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 `;
             } else {
