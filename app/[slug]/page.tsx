@@ -170,7 +170,21 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
             const botArticle = `
                 <section class="bot-unique-vault py-16">
                     <div class="prose max-w-none">
+                        <div class="live-status-badge mb-8 inline-flex items-center gap-2 px-6 py-3 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200 font-black text-sm animate-pulse">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            ANLIK DURUM: SİSTEM AKTİF - SON KONTROL: ${new Date().toLocaleDateString('tr-TR')} ${new Date().toLocaleTimeString('tr-TR')}
+                        </div>
                         ${specificArticle}
+                        
+                        <div class="bot-internal-links mt-10 p-6 bg-slate-50 rounded-3xl border border-slate-200">
+                            <h4 class="text-lg font-bold text-slate-900 mb-4">Mevcut Veri Katmanları:</h4>
+                            <div class="flex flex-wrap gap-4 text-sm font-bold">
+                                <a href="/deneme-bonusu" class="text-blue-600 hover:underline"># 2026 Deneme Bonusu Raporu</a>
+                                <a href="/bahis-siteleri" class="text-emerald-600 hover:underline"># Bahis Altyapı Analizi</a>
+                                <a href="/casino-siteleri" class="text-purple-600 hover:underline"># Slot Performans Verisi</a>
+                            </div>
+                        </div>
+
                         ${faqData ? `<script type="application/ld+json">${JSON.stringify(faqData)}</script>` : ''}
                     </div>
                 </section>
