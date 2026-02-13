@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 async function main() {
     const site = await prisma.site.findUnique({
-        where: { domain: 'haber-analiz2026.com' }
+        where: { domain: 'flovazcomercial.com' }
     });
     console.log(JSON.stringify(site, null, 2));
 }

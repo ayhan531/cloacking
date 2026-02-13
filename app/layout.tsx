@@ -34,9 +34,21 @@ export async function generateMetadata(): Promise<Metadata> {
 
     if (site) {
       const seo = JSON.parse(site.seoSettings);
+      const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+      const currentMonth = monthNames[new Date().getMonth()];
+      const currentYear = new Date().getFullYear();
+
+      // Dynamic Title Injections
+      let title = seo.metaTitle || site.name;
+      if (title.toLowerCase().includes('deneme bonusu')) {
+        title = `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`;
+      } else if (!title.includes(String(currentYear))) {
+        title = `${title} [${currentMonth} ${currentYear}]`;
+      }
+
       return {
-        title: seo.metaTitle || site.name,
-        description: seo.metaDescription || "Modern ve güvenilir çözümler.",
+        title: title,
+        description: seo.metaDescription || `${site.name} ile 2026 dijital risk ve fırsat analizleri.`,
         keywords: seo.keywords ? (Array.isArray(seo.keywords) ? seo.keywords.join(", ") : seo.keywords) : "",
         robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
         alternates: {
@@ -46,7 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
           google: seo.googleSiteVerification || undefined,
         },
         openGraph: {
-          title: seo.metaTitle || site.name,
+          title: title,
           description: seo.metaDescription,
           url: `https://${domain}`,
           siteName: site.name,
@@ -55,7 +67,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
         twitter: {
           card: "summary_large_image",
-          title: seo.metaTitle || site.name,
+          title: title,
           description: seo.metaDescription,
         },
       };
