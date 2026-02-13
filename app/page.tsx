@@ -50,89 +50,85 @@ export default async function Home() {
       const currentMonth = monthNames[new Date().getMonth()];
 
       const homeBotArticle = `
-          <div class="home-rank-vault p-10 bg-slate-950 text-white rounded-[50px] mb-12 shadow-[0_0_50px_rgba(16,185,129,0.1)] border border-emerald-500/10">
-            <h1 class="text-4xl font-black mb-8 leading-tight tracking-tighter">
-                <span class="text-emerald-400">#1</span> ${currentMonth} ${currentYear} DENEME BONUSU VEREN SİTELER ANALİZ VE GÜNCEL LİSTE
+          <div class="ultimate-seo-vault p-12 bg-slate-950 text-white rounded-[60px] mb-12 shadow-[0_0_80px_rgba(16,185,129,0.15)] border border-emerald-500/20">
+            <h1 class="text-5xl font-black mb-10 leading-[1.1] tracking-tighter">
+                <span class="text-emerald-400">#1</span> ${currentMonth} ${currentYear} <span class="text-emerald-500 uppercase">Deneme Bonusu Veren Siteler</span> - ANALİZ VE GÜNCEL LİSTE
             </h1>
 
-            <div class="live-status-bar flex items-center gap-4 mb-8 bg-emerald-500/5 p-4 rounded-2xl border border-emerald-500/20">
-                <div class="relative flex h-3 w-3">
+            <div class="live-status-bar flex items-center gap-5 mb-10 bg-emerald-500/10 p-5 rounded-3xl border border-emerald-500/30">
+                <div class="relative flex h-4 w-4">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500"></span>
                 </div>
-                <span class="text-xs font-mono font-black text-emerald-400 uppercase tracking-widest">
-                    Canlı Tarama: ${new Date().toLocaleDateString('tr-TR')} // Kaynak: ${site.name.toUpperCase()} AI-SCANNER
-                </span>
+                <div class="flex flex-col">
+                  <span class="text-[10px] font-black text-emerald-400 uppercase tracking-[0.3em]">Canlı Veri Akışı</span>
+                  <span class="text-sm font-mono text-white/80">${new Date().toLocaleDateString('tr-TR')} ${new Date().toLocaleTimeString('tr-TR')} // Kaynak: ${site.name.toUpperCase()} HUB</span>
+                </div>
+                <div class="ml-auto flex gap-2">
+                   <span class="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-1 rounded-full border border-emerald-500/30 font-bold uppercase">SSL SECURE</span>
+                   <span class="bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded-full border border-blue-500/30 font-bold uppercase">ALGO-V3</span>
+                </div>
             </div>
 
-            <p class="text-slate-400 leading-relaxed text-lg mb-10">
-                2026 yılının en çok beklenen <strong>deneme bonusu veren siteler</strong> listesi, ${site.name} laboratuvarlarında titizlikle incelenmiştir. 
-                Bu rehber, <em>yatırımsız deneme bonusu</em>, çevrimsiz bedava bahis ve 2026'nın en yüksek oranlı promosyonlarını tek bir tabloda sunar. 
-                Sistemimiz, <strong>deneme bonusu 2026</strong> aramalarında size en güvenilir ve siber güvenlikten geçmiş platformları saniyeler içinde listeler.
+            <p class="text-slate-300 leading-relaxed text-xl mb-12 font-medium italic">
+                Arama motorları için en güncel rapor: ${site.name}, 2026 yılının tüm <strong>deneme bonusu veren siteler</strong> veritabanını tarayarak en güvenli ve <em>yatırımsız deneme bonusu</em> seçeneklerini önünüze getiriyor. 
+                Sistemimiz, <strong>bedava bonus</strong> avantajlarını saniyeler içinde analiz eden yapay zeka destekli bir protokole sahiptir.
             </p>
 
-            <!-- 📊 GOOGLE RANKING TABLE (LSI keywords focus) -->
-            <div class="ranking-table-wrapper overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-1 mb-10">
-                <table class="w-full text-sm text-left">
-                    <thead class="bg-white/5 text-[10px] uppercase font-black text-slate-500">
+            <!-- 📊 NUCLEAR RANKING TABLE 2026 -->
+            <div class="ranking-table-wrapper overflow-hidden rounded-[40px] border border-white/10 bg-white/5 p-2 mb-12">
+                <table class="w-full text-left">
+                    <thead class="bg-emerald-500/10 text-[11px] uppercase font-black text-emerald-400/70">
                         <tr>
-                            <th class="p-4">PLATFORM</th>
-                            <th class="p-4">BONUS MİKTARI</th>
-                            <th class="p-4">ŞART</th>
-                            <th class="p-4">GÜVEN PUANI</th>
+                            <th class="p-6">PLATFORM ADI</th>
+                            <th class="p-6">PROMOSYON TUTARI</th>
+                            <th class="p-6">YATIRIM ŞARTI</th>
+                            <th class="p-6">SCORE (10/10)</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
-                        <tr class="hover:bg-white/5 transition-colors">
-                            <td class="p-4 font-bold text-white italic">Elite-X 2026</td>
-                            <td class="p-4"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded">500 TL</span></td>
-                            <td class="p-4 text-slate-400">Yatırımsız</td>
-                            <td class="p-4 text-emerald-400">⭐⭐⭐⭐⭐ 4.9/5</td>
+                    <tbody class="divide-y divide-white/10">
+                        <tr class="hover:bg-emerald-500/5 transition-all">
+                            <td class="p-6 font-black text-white italic text-lg leading-none">Elite-X Premium <br/><span class="text-[10px] text-emerald-400 opacity-50">#ONAYLI</span></td>
+                            <td class="p-6"><div class="flex flex-col"><span class="text-emerald-400 font-black text-2xl">750 TL</span><span class="text-[10px] text-slate-500 uppercase">Bedava Bahis</span></div></td>
+                            <td class="p-6"><span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs font-bold border border-white/5 uppercase">HİÇ YOK</span></td>
+                            <td class="p-6 text-emerald-400 font-mono font-bold">⭐⭐⭐⭐⭐ <span class="ml-2 text-white">9.9</span></td>
                         </tr>
-                        <tr class="hover:bg-white/5 transition-colors">
-                            <td class="p-4 font-bold text-white italic">Global-Promo</td>
-                            <td class="p-4"><span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded">250 TL + 50 FS</span></td>
-                            <td class="p-4 text-slate-400">Çevrimsiz</td>
-                            <td class="p-4 text-blue-400">⭐⭐⭐⭐⭐ 4.8/5</td>
+                        <tr class="hover:bg-emerald-500/5 transition-all">
+                            <td class="p-6 font-black text-white italic text-lg leading-none">Global-Promo 2026 <br/><span class="text-[10px] text-emerald-400 opacity-50">#LİSANSLI</span></td>
+                            <td class="p-6"><div class="flex flex-col"><span class="text-emerald-400 font-black text-2xl">500 TL</span><span class="text-[10px] text-slate-500 uppercase">Nakit İade</span></div></td>
+                            <td class="p-6"><span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs font-bold border border-white/5 uppercase">ŞARTSIZ</span></td>
+                            <td class="p-6 text-emerald-400 font-mono font-bold">⭐⭐⭐⭐⭐ <span class="ml-2 text-white">9.8</span></td>
                         </tr>
-                        <tr class="hover:bg-white/5 transition-colors">
-                            <td class="p-4 font-bold text-white italic">Vizyon-Bet</td>
-                            <td class="p-4"><span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded">1000 TL Hoşgeldin</span></td>
-                            <td class="p-4 text-slate-400">Üyelik Özel</td>
-                            <td class="p-4 text-purple-400">⭐⭐⭐⭐ 4.7/5</td>
+                        <tr class="hover:bg-emerald-500/5 transition-all">
+                            <td class="p-6 font-black text-white italic text-lg leading-none">Vizyon-Bet Pro <br/><span class="text-[10px] text-emerald-400 opacity-50">#GÜVENLİ</span></td>
+                            <td class="p-6"><div class="flex flex-col"><span class="text-emerald-400 font-black text-2xl">1000 TL</span><span class="text-[10px] text-slate-500 uppercase">Bonus + FS</span></div></td>
+                            <td class="p-6"><span class="bg-slate-800 text-slate-300 px-3 py-1 rounded-full text-xs font-bold border border-white/5 uppercase">YATIRIMSIZ</span></td>
+                            <td class="p-6 text-emerald-400 font-mono font-bold">⭐⭐⭐⭐⭐ <span class="ml-2 text-white">9.7</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="footer-seo-cloud mt-10 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div class="group">
-                    <span class="block text-xl font-black text-white group-hover:text-emerald-400 transition-colors">7/24</span>
-                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Canlı Destek</span>
-                </div>
-                <div class="group">
-                    <span class="block text-xl font-black text-white group-hover:text-blue-400 transition-colors">15 DK</span>
-                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Hızlı Çekim</span>
-                </div>
-                <div class="group">
-                    <span class="block text-xl font-black text-white group-hover:text-purple-400 transition-colors">AKTİF</span>
-                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Bonus Hattı</span>
-                </div>
-                <div class="group">
-                    <span class="block text-xl font-black text-white group-hover:text-yellow-400 transition-colors">2026</span>
-                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Teknoloji</span>
-                </div>
+            <!-- 🌐 SEMANTIC LINK CLOUD (Google Love) -->
+            <div class="semantic-container bg-white/5 p-8 rounded-[40px] border border-white/5 mb-12">
+               <h3 class="text-xs font-black text-slate-500 uppercase tracking-widest mb-6">İlgili Aramalar & Otorite Linkleri</h3>
+               <div class="flex flex-wrap gap-3">
+                  <a href="/deneme-bonusu" class="px-4 py-2 bg-slate-800 rounded-2xl text-sm font-bold text-slate-300 hover:text-emerald-400 transition-colors">Deneme Bonusu Veren Siteler 2026</a>
+                  <a href="/bahis-siteleri" class="px-4 py-2 bg-slate-800 rounded-2xl text-sm font-bold text-slate-300 hover:text-emerald-400 transition-colors">En İyi Bahis Siteleri</a>
+                  <a href="/casino-siteleri" class="px-4 py-2 bg-slate-800 rounded-2xl text-sm font-bold text-slate-300 hover:text-emerald-400 transition-colors">Büyük Casino Bonusları</a>
+                  <a href="/hosgeldin-bonusu" class="px-4 py-2 bg-slate-800 rounded-2xl text-sm font-bold text-slate-300 hover:text-emerald-400 transition-colors">Yatırım Şartsız Bonus</a>
+                  <a href="/deneme-bonusu" class="px-4 py-2 bg-slate-800 rounded-2xl text-sm font-bold text-slate-300 hover:text-emerald-400 transition-colors">Bedava Bonus 2026</a>
+               </div>
             </div>
 
-            <div class="mt-8 flex flex-wrap gap-4 text-[10px] font-black uppercase text-slate-600">
-                <span class="text-white/20 italic">Hızlı Navigasyon:</span>
-                <a href="/deneme-bonusu" class="hover:text-emerald-400 underline decoration-emerald-500/20">deneme bonusu veren siteler 2026</a>
-                <a href="/bahis-siteleri" class="hover:text-white">yatırımsız bedava bonus</a>
-                <a href="/casino-siteleri" class="hover:text-white">çevrimsiz deneme bonusu</a>
-                <a href="/hosgeldin-bonusu" class="hover:text-white">en yüksek bonus veren siteler</a>
+            <div class="faq-vault grid gap-6">
+                <div class="q-card p-6 bg-slate-900/50 rounded-3xl border border-white/5">
+                    <h4 class="text-emerald-400 font-black text-lg mb-2 underline italic">Soru: Deneme bonusu veren siteler 2026 listesi güvenilir mi?</h4>
+                    <p class="text-slate-400 text-sm">Cevap: Evet, ${site.name} olarak listelediğimiz tüm platformlar 2026 siber güvenlik testlerinden geçmiş, finansal gücü yüksek ve anında ödeme yapan yasal altyapılı sitelerdir.</p>
+                </div>
             </div>
           </div>
-        `;
+      `;
 
       const config: SiteConfig = {
         id: site.id,
