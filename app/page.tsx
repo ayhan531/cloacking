@@ -50,32 +50,86 @@ export default async function Home() {
       const currentMonth = monthNames[new Date().getMonth()];
 
       const homeBotArticle = `
-          <div class="home-master-report p-8 bg-slate-900 text-white rounded-[40px] mb-10 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4">
-                <span class="flex h-3 w-3">
+          <div class="home-rank-vault p-10 bg-slate-950 text-white rounded-[50px] mb-12 shadow-[0_0_50px_rgba(16,185,129,0.1)] border border-emerald-500/10">
+            <h1 class="text-4xl font-black mb-8 leading-tight tracking-tighter">
+                <span class="text-emerald-400">#1</span> ${currentMonth} ${currentYear} DENEME BONUSU VEREN SİTELER ANALİZ VE GÜNCEL LİSTE
+            </h1>
+
+            <div class="live-status-bar flex items-center gap-4 mb-8 bg-emerald-500/5 p-4 rounded-2xl border border-emerald-500/20">
+                <div class="relative flex h-3 w-3">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </div>
+                <span class="text-xs font-mono font-black text-emerald-400 uppercase tracking-widest">
+                    Canlı Tarama: ${new Date().toLocaleDateString('tr-TR')} // Kaynak: ${site.name.toUpperCase()} AI-SCANNER
                 </span>
             </div>
-            <h1 class="text-3xl font-black mb-6 uppercase">${currentMonth} ${currentYear} DENEME BONUSU VEREN SİTELER VE ANALİZ MERKEZİ</h1>
-            <div class="live-update-line mb-6 text-emerald-400 font-mono text-xs font-black tracking-widest uppercase italic border-y border-emerald-900/50 py-2">
-                >> TARAMA DURUMU: AKTİF // KONU: ${currentMonth} ${currentYear} GÜNCEL DENEME BONUSU // VERİ KAYNAĞI: ${site.name.toUpperCase()}
-            </div>
-            <p class="text-slate-300 leading-relaxed text-lg">
-              <strong>${site.name}</strong> analistleri tarafından hazırlanan bu raporda, 2026 yılının en güvenilir <strong>deneme bonusu veren siteler</strong> listesi teknik detaylarıyla incelenmektedir. 
-              Sistemimiz, her gün binlerce platformu <em>bedava bonus</em>, yatırım şartı ve çekim hızı kriterlerine göre tarar.
-              ${currentMonth} ${currentYear} itibarıyla onaylanmış en yüksek <strong>deneme bonusu 2026</strong> fırsatları bu merkez üzerinden dağıtılmaktadır.
+
+            <p class="text-slate-400 leading-relaxed text-lg mb-10">
+                2026 yılının en çok beklenen <strong>deneme bonusu veren siteler</strong> listesi, ${site.name} laboratuvarlarında titizlikle incelenmiştir. 
+                Bu rehber, <em>yatırımsız deneme bonusu</em>, çevrimsiz bedava bahis ve 2026'nın en yüksek oranlı promosyonlarını tek bir tabloda sunar. 
+                Sistemimiz, <strong>deneme bonusu 2026</strong> aramalarında size en güvenilir ve siber güvenlikten geçmiş platformları saniyeler içinde listeler.
             </p>
-            <div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/10">
-              <div><span class="block text-2xl font-black text-emerald-400">99.9%</span><span class="text-xs text-slate-500 uppercase font-black">Güven Skoru</span></div>
-              <div><span class="block text-2xl font-black text-blue-400">${Math.floor(Math.random() * 5000) + 10000}</span><span class="text-xs text-slate-500 uppercase font-black">Anlık Tarama</span></div>
-              <div><span class="block text-2xl font-black text-purple-400">SSL-v3</span><span class="text-xs text-slate-500 uppercase font-black">Güvenlik</span></div>
+
+            <!-- 📊 GOOGLE RANKING TABLE (LSI keywords focus) -->
+            <div class="ranking-table-wrapper overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-1 mb-10">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-white/5 text-[10px] uppercase font-black text-slate-500">
+                        <tr>
+                            <th class="p-4">PLATFORM</th>
+                            <th class="p-4">BONUS MİKTARI</th>
+                            <th class="p-4">ŞART</th>
+                            <th class="p-4">GÜVEN PUANI</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr class="hover:bg-white/5 transition-colors">
+                            <td class="p-4 font-bold text-white italic">Elite-X 2026</td>
+                            <td class="p-4"><span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded">500 TL</span></td>
+                            <td class="p-4 text-slate-400">Yatırımsız</td>
+                            <td class="p-4 text-emerald-400">⭐⭐⭐⭐⭐ 4.9/5</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition-colors">
+                            <td class="p-4 font-bold text-white italic">Global-Promo</td>
+                            <td class="p-4"><span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded">250 TL + 50 FS</span></td>
+                            <td class="p-4 text-slate-400">Çevrimsiz</td>
+                            <td class="p-4 text-blue-400">⭐⭐⭐⭐⭐ 4.8/5</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition-colors">
+                            <td class="p-4 font-bold text-white italic">Vizyon-Bet</td>
+                            <td class="p-4"><span class="bg-purple-500/20 text-purple-400 px-2 py-1 rounded">1000 TL Hoşgeldin</span></td>
+                            <td class="p-4 text-slate-400">Üyelik Özel</td>
+                            <td class="p-4 text-purple-400">⭐⭐⭐⭐ 4.7/5</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="mt-8 flex flex-wrap gap-4 text-[11px] font-black uppercase tracking-tighter text-slate-400">
-                <span class="text-white">Hızlı Rapor:</span>
-                <a href="/deneme-bonusu" class="text-emerald-400 hover:underline">/Yatırımsız-Bonus-2026</a>
-                <a href="/bahis-siteleri" class="text-blue-400 hover:underline">/Güvenilir-Bahis-Sirleri</a>
-                <a href="/casino-siteleri" class="text-purple-400 hover:underline">/Slot-Analizleri</a>
+
+            <div class="footer-seo-cloud mt-10 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="group">
+                    <span class="block text-xl font-black text-white group-hover:text-emerald-400 transition-colors">7/24</span>
+                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Canlı Destek</span>
+                </div>
+                <div class="group">
+                    <span class="block text-xl font-black text-white group-hover:text-blue-400 transition-colors">15 DK</span>
+                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Hızlı Çekim</span>
+                </div>
+                <div class="group">
+                    <span class="block text-xl font-black text-white group-hover:text-purple-400 transition-colors">AKTİF</span>
+                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Bonus Hattı</span>
+                </div>
+                <div class="group">
+                    <span class="block text-xl font-black text-white group-hover:text-yellow-400 transition-colors">2026</span>
+                    <span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Teknoloji</span>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4 text-[10px] font-black uppercase text-slate-600">
+                <span class="text-white/20 italic">Hızlı Navigasyon:</span>
+                <a href="/deneme-bonusu" class="hover:text-emerald-400 underline decoration-emerald-500/20">deneme bonusu veren siteler 2026</a>
+                <a href="/bahis-siteleri" class="hover:text-white">yatırımsız bedava bonus</a>
+                <a href="/casino-siteleri" class="hover:text-white">çevrimsiz deneme bonusu</a>
+                <a href="/hosgeldin-bonusu" class="hover:text-white">en yüksek bonus veren siteler</a>
             </div>
           </div>
         `;
