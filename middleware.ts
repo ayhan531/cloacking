@@ -5,18 +5,22 @@ export function middleware(request: NextRequest) {
     const response = NextResponse.next();
 
     // Get the pathname
-    const pathname = request.nextUrl.pathname;
-    const host = request.headers.get('host') || 'flovazcomercial.com';
+    const url = request.nextUrl.clone();
+    const host = request.headers.get('host') || '';
 
-    // For all subpages, inject HTTP Header canonical
-    if (pathname !== '/' && !pathname.startsWith('/api') && !pathname.startsWith('/_next')) {
-        const canonicalUrl = `https://${host}${pathname}`;
-        response.headers.set('Link', `<${canonicalUrl}>; rel="canonical"`);
+    // 1. WWW -> Non-WWW Redirect (SEO Best Practice)
+    if (host.startsWith('www.')) {
+        const newHost = host.replace('www.', '');
+        const newUrl = `https://${newHost}${url.pathname}${url.search}`;
+        return NextResponse.redirect(newUrl, 301);
     }
 
-    // For homepage
-    if (pathname === '/') {
-        const canonicalUrl = `https://${host}`;
+    const domain = host.split(':')[0]; // Pure domain
+    const pathname = url.pathname;
+
+    // For all subpages/home, inject consistent HTTP Header canonical (Non-WWW)
+    if (!pathname.startsWith('/api') && !pathname.startsWith('/_next') && !pathname.includes('.')) {
+        const canonicalUrl = `https://${domain}${pathname === '/' ? '' : pathname}`;
         response.headers.set('Link', `<${canonicalUrl}>; rel="canonical"`);
     }
 

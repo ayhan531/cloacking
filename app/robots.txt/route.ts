@@ -2,7 +2,8 @@ import { headers } from "next/headers";
 
 export async function GET() {
     const headersList = await headers();
-    const host = headersList.get("host") || "flovazcomercial.com";
+    const host = headersList.get("host") || "";
+    const domain = host.split(':')[0].replace('www.', '');
 
     const robots = `User-agent: *
 Allow: /
@@ -13,7 +14,7 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-Sitemap: https://${host}/sitemap.xml`.trim();
+Sitemap: https://${domain}/sitemap.xml`.trim();
 
     return new Response(robots, {
         headers: {

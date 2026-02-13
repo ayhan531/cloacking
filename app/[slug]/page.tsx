@@ -167,6 +167,19 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 `;
             }
 
+            // 🚀 NEWS SPECIFIC STRUCTURED DATA
+            const newsSchema = site.maskType === 'blog' ? {
+                "@context": "https://schema.org",
+                "@type": "NewsArticle",
+                "headline": `${slugTopic} - 2026 Gündem ve Analiz Raporu`,
+                "datePublished": site.createdAt,
+                "dateModified": new Date().toISOString(),
+                "author": {
+                    "@type": "Organization",
+                    "name": site.name
+                }
+            } : null;
+
             const botArticle = `
                 <section class="bot-unique-vault py-16">
                     <div class="prose max-w-none">
@@ -182,10 +195,12 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                                 <a href="/deneme-bonusu" class="text-blue-600 hover:underline"># 2026 Deneme Bonusu Raporu</a>
                                 <a href="/bahis-siteleri" class="text-emerald-600 hover:underline"># Bahis Altyapı Analizi</a>
                                 <a href="/casino-siteleri" class="text-purple-600 hover:underline"># Slot Performans Verisi</a>
+                                <a href="/haberler" class="text-red-600 hover:underline"># Güncel Gündem</a>
                             </div>
                         </div>
 
                         ${faqData ? `<script type="application/ld+json">${JSON.stringify(faqData)}</script>` : ''}
+                        ${newsSchema ? `<script type="application/ld+json">${JSON.stringify(newsSchema)}</script>` : ''}
                     </div>
                 </section>
             `;
