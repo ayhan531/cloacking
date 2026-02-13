@@ -137,8 +137,8 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
             if (slug === 'deneme-bonusu') {
                 specificArticle = `
                     <div class="unique-meta-report p-8 bg-blue-50/50 rounded-[40px] border border-blue-100 shadow-inner">
-                        <h2 class="text-3xl font-black text-blue-900 mb-6 underline decoration-blue-200">2026 ÖZEL: Deneme Bonusu Teknik Güvenlik Raporu v2</h2>
-                        <p class="text-blue-800 leading-relaxed mb-4">Bu sayfa, ana sayfamızdan bağımsız olarak sadece <strong>deneme bonusu veren siteler</strong> konusuna odaklanmış teknik bir analiz içermektedir. Google botları için hazırlanan bu özel dökümantasyonda, platformların 2026 yılı API güvenliği ve ödeme protokolleri incelenmektedir.</p>
+                        <h2 class="text-3xl font-black text-blue-900 mb-6 underline decoration-blue-200">2026 ÖZEL: ${site.name} Deneme Bonusu Teknik Güvenlik Raporu v2</h2>
+                        <p class="text-blue-800 leading-relaxed mb-4">Bu sayfa, <strong>${site.name}</strong> ana sayfasından bağımsız olarak sadece <strong>deneme bonusu veren siteler</strong> konusuna odaklanmış teknik bir analiz içermektedir. Google botları için hazırlanan bu özel dökümantasyonda, platformların 2026 yılı API güvenliği ve ödeme protokolleri incelenmektedir.</p>
                         <div class="grid md:grid-cols-2 gap-4 mt-6">
                             <div class="p-4 bg-white rounded-2xl shadow-sm">
                                 <strong class="block text-blue-900 mb-1">Hız Puanı</strong>
@@ -154,8 +154,8 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
             } else if (slug === 'bahis-siteleri') {
                 specificArticle = `
                     <div class="unique-meta-report p-8 bg-emerald-50/50 rounded-[40px] border border-emerald-100 shadow-inner">
-                        <h2 class="text-3xl font-black text-emerald-900 mb-6">2026 Bahis Sektörü Altyapı Karşılaştırması</h2>
-                        <p class="text-emerald-800 leading-relaxed">Sektördeki en yüksek oranlı ve güvenilir bahis platformlarının yazılımsal altyapı raporu. Kaynak kod taramaları ve lisans doğrulama sonuçları bu bölümde yer almaktadır.</p>
+                        <h2 class="text-3xl font-black text-emerald-900 mb-6">2026 Bahis Sektörü Altyapı Karşılaştırması - ${site.name}</h2>
+                        <p class="text-emerald-800 leading-relaxed">Sektördeki en yüksek oranlı ve güvenilir bahis platformlarının yazılımsal altyapı raporu. <strong>${site.name}</strong> tarafından doğrulanmış kaynak kod taramaları ve lisans sonuçları bu bölümde yer almaktadır.</p>
                     </div>
                 `;
             } else {

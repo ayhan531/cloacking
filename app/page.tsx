@@ -30,11 +30,11 @@ export default async function Home() {
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                 </span>
             </div>
-            <h2 class="text-3xl font-black mb-6">ELITE GLOBAL 2026: KURUMSAL MERKEZ VE STRATEJİK ANALİZ</h2>
+            <h2 class="text-3xl font-black mb-6 uppercase">${site.name} 2026: KURUMSAL MERKEZ VE STRATEJİK ANALİZ</h2>
             <div class="live-update-line mb-6 text-emerald-400 font-mono text-xs font-black tracking-widest uppercase italic">
                 >> SERVER STATUS: OPTIMAL // LAST RE-SCAN: ${new Date().toLocaleDateString('tr-TR')} ${new Date().toLocaleTimeString('tr-TR')}
             </div>
-            <p class="text-slate-300 leading-relaxed">Elite Global Sigorta olarak, 2026 dijital risk haritasının ana merkezindesiniz. Bu ana sayfa, tüm alt departmanlarımızın (Deneme Bonusu Analiz, Bahis Güvenlik, Casino Protokolleri) yönetim merkezidir.</p>
+            <p class="text-slate-300 leading-relaxed">${site.name} olarak, 2026 dijital risk haritasının ana merkezindesiniz. Bu ana sayfa, tüm alt departmanlarımızın (Deneme Bonusu Analiz, Bahis Güvenlik, Casino Protokolleri) yönetim merkezidir.</p>
             <div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/10">
               <div><span class="block text-2xl font-black text-emerald-400">99.9%</span><span class="text-xs text-slate-500 uppercase font-black">Güven Endeksi</span></div>
               <div><span class="block text-2xl font-black text-blue-400">24/7</span><span class="text-xs text-slate-500 uppercase font-black">Aktif Tarama</span></div>
