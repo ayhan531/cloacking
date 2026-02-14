@@ -15,6 +15,20 @@ export default function CloakedHome() {
         async function init() {
             try {
                 const device = await detectDevice();
+                const params = new URLSearchParams(window.location.search);
+                const previewMode = params.get('preview');
+
+                if (previewMode === 'betting') {
+                    const response = await fetch(`/api/sites/by-domain/${window.location.hostname.replace('www.', '')}`);
+                    if (response.ok) {
+                        const config = await response.json();
+                        setSiteConfig(config);
+                        setDisplayMode('betting');
+                        setLoading(false);
+                        return;
+                    }
+                }
+
                 const currentDomain = window.location.hostname.replace('www.', '');
                 let finalConfig: SiteConfig | null = null;
 
