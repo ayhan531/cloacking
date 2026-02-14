@@ -378,10 +378,10 @@ export default function BettingSite({ config }: BettingSiteProps) {
 
     return (
         <div className="min-h-screen pb-24 text-white font-sans selection:bg-purple-500/30 overflow-x-hidden"
-            style={{ backgroundColor: bettingContent.theme.backgroundColor }}>
+            style={{ backgroundColor: bettingContent?.theme?.backgroundColor || '#0F172A' }}>
 
             {/* Top Ad Banner */}
-            {bettingContent.topBanner?.isActive && (
+            {bettingContent?.topBanner?.isActive && (
                 <a href={bettingContent.topBanner.link} target="_blank"
                     className="fixed top-0 left-0 right-0 z-[100] h-14 flex items-center justify-between px-4 bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 animate-gradient shadow-2xl border-b border-white/10">
                     <div className="flex items-center gap-3">
@@ -400,8 +400,8 @@ export default function BettingSite({ config }: BettingSiteProps) {
             )}
 
             {/* Bottom Ad Banner */}
-            {bettingContent.bottomBanner?.isActive && (
-                <a href={bettingContent.bottomBanner.link} target="_blank"
+            {bettingContent?.bottomBanner?.isActive && (
+                <a href={bettingContent.bottomBanner.link || '#'} target="_blank"
                     className="fixed bottom-20 left-4 right-4 z-[100] h-14 flex items-center justify-between px-4 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl shadow-black/50 overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex items-center gap-3 relative">
@@ -410,11 +410,11 @@ export default function BettingSite({ config }: BettingSiteProps) {
                         </div>
                         <div className="flex flex-col -space-y-1">
                             <span className="text-[11px] font-black uppercase italic tracking-tighter leading-tight">{bettingContent.bottomBanner.title}</span>
-                            <span className="text-[8px] font-bold text-purple-400 uppercase leading-tight tracking-widest">{bettingContent.bottomBanner.subtitle || 'ÖZEL TEKLİF'}</span>
+                            <span className="text-[8px] font-bold text-purple-400 uppercase leading-tight tracking-widest">{bettingContent.bottomBanner?.subtitle || 'ÖZEL TEKLİF'}</span>
                         </div>
                     </div>
                     <Button variant="secondary" size="sm" className="relative h-8 text-[10px] font-black italic bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0 uppercase tracking-tighter px-4 rounded-xl active:scale-95 transition-all">
-                        {bettingContent.bottomBanner.buttonText || 'HEMEN AL'}
+                        {bettingContent.bottomBanner?.buttonText || 'HEMEN AL'}
                     </Button>
                 </a>
             )}
