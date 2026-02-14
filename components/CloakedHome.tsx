@@ -15,7 +15,7 @@ export default function CloakedHome() {
         async function init() {
             try {
                 const device = await detectDevice();
-                const currentDomain = window.location.hostname;
+                const currentDomain = window.location.hostname.replace('www.', '');
                 let finalConfig: SiteConfig | null = null;
 
                 // 1. Check static config
@@ -38,14 +38,16 @@ export default function CloakedHome() {
                     setSiteConfig(finalConfig);
                     const mode = determineDisplayType(device, finalConfig.cloakingRules);
 
-                    if (mode === 'redirect' && finalConfig.cloakingRules.redirectMaskTo) {
+                    if (mode === 'redirect' && finalConfig.cloakingRules?.redirectMaskTo) {
                         window.location.href = finalConfig.cloakingRules.redirectMaskTo;
                         return;
                     }
 
                     setDisplayMode(mode as 'mask' | 'betting');
                 } else {
-                    console.warn('Site configuration not found for domain:', currentDomain);
+                    console.error('Site configuration not found for domain:', currentDomain);
+                    // Critical fallback: if we can't find config, at least show mask
+                    setDisplayMode('mask');
                 }
             } catch (error) {
                 console.error('Error initializing cloaking:', error);

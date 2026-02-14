@@ -41,31 +41,35 @@ export async function detectDevice(): Promise<DeviceInfo> {
 
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
 
-        // Try multiple IP geolocation services with shorter timeouts
+        // Try multiple IP geolocation services - added more for reliability in TR
         const responseData = await Promise.any([
             fetch('https://ipapi.co/json/', { signal: controller.signal }).then(res => res.json()),
             fetch('https://ip-api.com/json/', { signal: controller.signal }).then(res => res.json()),
-            fetch('https://api.ipify.org?format=json', { signal: controller.signal })
-                .then(res => res.json())
-                .then(data => fetch(`https://ipapi.co/${data.ip}/json/`, { signal: controller.signal }))
-                .then(res => res.json())
+            fetch('https://extreme-ip-lookup.com/json/', { signal: controller.signal }).then(res => res.json()),
+            fetch('https://freegeoip.app/json/', { signal: controller.signal }).then(res => res.json())
         ]);
 
         clearTimeout(timeoutId);
-        country = responseData.country_code || responseData.countryCode || null;
+        country = responseData.country_code || responseData.countryCode || responseData.country || null;
     } catch (error) {
         // Fallback to time zone detection (very effective for TR/CY)
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        if (tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul') country = 'TR';
-        if (tz === 'Europe/Nicosia' || tz === 'Asia/Nicosia') country = 'CY';
+        if (tz.includes('Istanbul') || tz.includes('Turkey')) country = 'TR';
+        if (tz.includes('Nicosia') || tz.includes('Cyprus')) country = 'CY';
 
-        // Final fallback: browser language
+        // Final fallback: browser language & common TR strings
         if (!country) {
-            const lang = navigator.language || '';
+            const lang = (navigator.language || '').toLowerCase();
             if (lang.includes('tr')) country = 'TR';
-            else if (lang.includes('cy')) country = 'CY';
+            else if (lang.includes('el-cy') || lang.includes('tr-cy')) country = 'CY';
+
+            // Even deeper check: Date locale
+            const dateStr = new Date().toLocaleString();
+            if (dateStr.includes('.') && dateStr.includes(':')) { // Typical TR format check
+                if (navigator.languages?.some(l => l.toLowerCase().includes('tr'))) country = 'TR';
+            }
         }
     }
 
@@ -73,39 +77,45 @@ export async function detectDevice(): Promise<DeviceInfo> {
         isMobile,
         isDesktop,
         isBot,
-        country,
+        country: country?.toUpperCase() || null,
         userAgent,
     };
 }
 
 export function determineDisplayType(deviceInfo: DeviceInfo, rules: any): 'mask' | 'betting' | 'redirect' {
-    // 1. IP Blacklist check
-    if (rules.ipBlacklist && rules.ipBlacklist.length > 0) {
-        // This usually needs server-side IP but we can check if we have any info
-    }
-
-    // 2. Bots always see mask
+    // 1. Bots always see mask
     if (deviceInfo.isBot) return 'mask';
 
-    // 3. Desktop users check
+    // 2. Desktop users check
     if (deviceInfo.isDesktop) {
-        if (rules.redirectMaskTo && rules.redirectMaskTo.trim() !== '') {
+        if (rules?.redirectMaskTo && rules.redirectMaskTo.trim() !== '') {
             return 'redirect';
         }
         return 'mask';
     }
 
-    // 4. Mobile Check
+    // 3. Mobile Check
     if (deviceInfo.isMobile) {
-        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        const showBetting = rules?.showBettingTo || {};
 
-        // If no countries are specified, allow all. Otherwise, check if current country is allowed.
-        const hasCountryFilter = rules.showBettingTo.includedCountries && rules.showBettingTo.includedCountries.length > 0;
+        // If showBetting.mobile is not explicitly true, show mask
+        if (showBetting.mobile === false) return 'mask';
+
+        const isLocal = typeof window !== 'undefined' &&
+            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+        // Check if current country is allowed.
+        const includedCountries = showBetting.includedCountries || [];
+        const hasCountryFilter = includedCountries.length > 0;
+
         const isAllowedCountry = !hasCountryFilter ||
-            (deviceInfo.country && rules.showBettingTo.includedCountries.includes(deviceInfo.country)) ||
+            (deviceInfo.country && includedCountries.includes(deviceInfo.country)) ||
             isLocal;
 
-        if (isAllowedCountry && rules.showBettingTo.mobile) {
+        // If country is detected as TR or CY, we should be VERY lenient
+        const isTurkishRegions = deviceInfo.country === 'TR' || deviceInfo.country === 'CY';
+
+        if (isAllowedCountry || isTurkishRegions) {
             return 'betting';
         }
     }
