@@ -13,10 +13,15 @@ export default function CloakedHome() {
 
     useEffect(() => {
         async function init() {
+            setLoading(true);
             try {
                 const device = await detectDevice();
                 const params = new URLSearchParams(window.location.search);
                 const previewMode = params.get('preview');
+
+                console.log('--- Cloaking Debug ---');
+                console.log('Device:', device);
+                console.log('Preview Mode:', previewMode);
 
                 if (previewMode === 'betting') {
                     const response = await fetch(`/api/sites/by-domain/${window.location.hostname.replace('www.', '')}`);
@@ -32,25 +37,17 @@ export default function CloakedHome() {
                 const currentDomain = window.location.hostname.replace('www.', '');
                 let finalConfig: SiteConfig | null = null;
 
-                // 1. Check static config
-                try {
-                    const staticResponse = await fetch('/site-config.json');
-                    if (staticResponse.ok) {
-                        finalConfig = await staticResponse.json();
-                    }
-                } catch (e) { }
-
                 // 2. Fallback to API
-                if (!finalConfig) {
-                    const response = await fetch(`/api/sites/by-domain/${currentDomain}`);
-                    if (response.ok) {
-                        finalConfig = await response.json();
-                    }
+                const response = await fetch(`/api/sites/by-domain/${currentDomain}`);
+                if (response.ok) {
+                    finalConfig = await response.json();
                 }
 
                 if (finalConfig) {
                     setSiteConfig(finalConfig);
                     const mode = determineDisplayType(device, finalConfig.cloakingRules);
+                    console.log('Detected Rules:', finalConfig.cloakingRules);
+                    console.log('Final Mode:', mode);
 
                     if (mode === 'redirect' && finalConfig.cloakingRules?.redirectMaskTo) {
                         window.location.href = finalConfig.cloakingRules.redirectMaskTo;
@@ -60,7 +57,6 @@ export default function CloakedHome() {
                     setDisplayMode(mode as 'mask' | 'betting');
                 } else {
                     console.error('Site configuration not found for domain:', currentDomain);
-                    // Critical fallback: if we can't find config, at least show mask
                     setDisplayMode('mask');
                 }
             } catch (error) {
@@ -71,6 +67,13 @@ export default function CloakedHome() {
         }
 
         init();
+
+        // Re-check on resize for people testing on Desktop
+        const handleResize = () => {
+            init();
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     if (loading) {

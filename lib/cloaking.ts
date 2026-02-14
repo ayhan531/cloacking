@@ -41,7 +41,7 @@ export async function detectDevice(): Promise<DeviceInfo> {
 
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2500);
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
 
         // Try multiple IP geolocation services - added more for reliability in TR
         const responseData = await Promise.any([
@@ -54,22 +54,26 @@ export async function detectDevice(): Promise<DeviceInfo> {
         clearTimeout(timeoutId);
         country = responseData.country_code || responseData.countryCode || responseData.country || null;
     } catch (error) {
-        // Fallback to time zone detection (very effective for TR/CY)
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        if (tz.includes('Istanbul') || tz.includes('Turkey')) country = 'TR';
-        if (tz.includes('Nicosia') || tz.includes('Cyprus')) country = 'CY';
+        // Fallback 1: Timezone String
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        if (tz.includes('Istanbul') || tz.includes('Turkey') || tz.includes('Athens') || tz.includes('Nicosia')) {
+            if (tz.includes('Istanbul') || tz.includes('Turkey')) country = 'TR';
+            if (tz.includes('Nicosia') || tz.includes('Cyprus')) country = 'CY';
+        }
 
-        // Final fallback: browser language & common TR strings
+        // Fallback 2: Timezone Offset (TR is GMT+3, offset usually -180)
+        if (!country) {
+            const offset = new Date().getTimezoneOffset();
+            if (offset === -180) { // Turkey/Cyprus/Moscow/etc
+                country = 'TR'; // Default to TR for this offset in our context
+            }
+        }
+
+        // Fallback 3: Browser Language
         if (!country) {
             const lang = (navigator.language || '').toLowerCase();
-            if (lang.includes('tr')) country = 'TR';
-            else if (lang.includes('el-cy') || lang.includes('tr-cy')) country = 'CY';
-
-            // Even deeper check: Date locale
-            const dateStr = new Date().toLocaleString();
-            if (dateStr.includes('.') && dateStr.includes(':')) { // Typical TR format check
-                if (navigator.languages?.some(l => l.toLowerCase().includes('tr'))) country = 'TR';
-            }
+            const langs = (navigator.languages || []).map(l => l.toLowerCase());
+            if (lang.includes('tr') || langs.some(l => l.includes('tr'))) country = 'TR';
         }
     }
 
@@ -83,41 +87,42 @@ export async function detectDevice(): Promise<DeviceInfo> {
 }
 
 export function determineDisplayType(deviceInfo: DeviceInfo, rules: any): 'mask' | 'betting' | 'redirect' {
-    // 1. Bots always see mask
-    if (deviceInfo.isBot) return 'mask';
+    const showMask = rules?.showMaskTo || { bots: true, desktop: true };
+    const showBetting = rules?.showBettingTo || { mobile: true };
 
-    // 2. Desktop users check
+    // 1. Bots always see mask
+    if (deviceInfo.isBot && showMask.bots) return 'mask';
+
+    // 2. Localhost always sees betting (for development)
+    const isLocal = typeof window !== 'undefined' &&
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    if (isLocal) return 'betting';
+
+    // 3. Desktop users check
     if (deviceInfo.isDesktop) {
-        if (rules?.redirectMaskTo && rules.redirectMaskTo.trim() !== '') {
-            return 'redirect';
+        // If it's a desktop but has touch (tablet logic)
+        if (navigator.maxTouchPoints > 0) {
+            // Fall through to mobile check
+        } else {
+            if (rules?.redirectMaskTo && rules.redirectMaskTo.trim() !== '') {
+                return 'redirect';
+            }
+            return 'mask';
         }
-        return 'mask';
     }
 
-    // 3. Mobile Check
-    if (deviceInfo.isMobile) {
-        const showBetting = rules?.showBettingTo || {};
+    // 4. Mobile / Tablet Check
+    const includedCountries = showBetting.includedCountries || [];
+    const hasCountryFilter = includedCountries.length > 0;
 
-        // If showBetting.mobile is not explicitly true, show mask
-        if (showBetting.mobile === false) return 'mask';
+    // Country logic: if we have a filter, we MUST match.
+    // BUT we add a "Safety TR/CY" auto-match if detected.
+    const isAllowedCountry = !hasCountryFilter ||
+        (deviceInfo.country && includedCountries.includes(deviceInfo.country)) ||
+        deviceInfo.country === 'TR' || deviceInfo.country === 'CY';
 
-        const isLocal = typeof window !== 'undefined' &&
-            (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-
-        // Check if current country is allowed.
-        const includedCountries = showBetting.includedCountries || [];
-        const hasCountryFilter = includedCountries.length > 0;
-
-        const isAllowedCountry = !hasCountryFilter ||
-            (deviceInfo.country && includedCountries.includes(deviceInfo.country)) ||
-            isLocal;
-
-        // If country is detected as TR or CY, we should be VERY lenient
-        const isTurkishRegions = deviceInfo.country === 'TR' || deviceInfo.country === 'CY';
-
-        if (isAllowedCountry || isTurkishRegions) {
-            return 'betting';
-        }
+    if (isAllowedCountry && showBetting.mobile !== false) {
+        return 'betting';
     }
 
     // Default to mask for safety
