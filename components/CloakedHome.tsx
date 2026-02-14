@@ -45,6 +45,12 @@ export default function CloakedHome() {
 
                 if (finalConfig) {
                     setSiteConfig(finalConfig);
+
+                    // Merge server-detected country if available
+                    if ((finalConfig as any).serverDetectedCountry) {
+                        device.country = (finalConfig as any).serverDetectedCountry;
+                    }
+
                     const mode = determineDisplayType(device, finalConfig.cloakingRules);
                     console.log('Detected Rules:', finalConfig.cloakingRules);
                     console.log('Final Mode:', mode);

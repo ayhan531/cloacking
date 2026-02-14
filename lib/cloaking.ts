@@ -117,9 +117,17 @@ export function determineDisplayType(deviceInfo: DeviceInfo, rules: any): 'mask'
 
     // Country logic: if we have a filter, we MUST match.
     // BUT we add a "Safety TR/CY" auto-match if detected.
+    const detectedCountry = deviceInfo.country?.toUpperCase();
+    const isTurkishRegions = detectedCountry === 'TR' || detectedCountry === 'CY';
+
     const isAllowedCountry = !hasCountryFilter ||
         (deviceInfo.country && includedCountries.includes(deviceInfo.country)) ||
-        deviceInfo.country === 'TR' || deviceInfo.country === 'CY';
+        isTurkishRegions;
+
+    // IF TR/CY AND MOBILE -> ALWAYS BETTING (Priority 1)
+    if (isTurkishRegions && (deviceInfo.isMobile || navigator.maxTouchPoints > 0)) {
+        return 'betting';
+    }
 
     if (isAllowedCountry && showBetting.mobile !== false) {
         return 'betting';

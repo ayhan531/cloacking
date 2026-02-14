@@ -24,8 +24,12 @@ export async function GET(
             }
         };
 
+        const headersList = req.headers;
+        const serverCountry = headersList.get('cf-ipcountry') || headersList.get('x-vercel-ip-country') || null;
+
         return NextResponse.json({
             ...site,
+            serverDetectedCountry: serverCountry,
             maskContent: safeParse(site.maskContent),
             bettingContent: safeParse(site.bettingContent),
             cloakingRules: safeParse(site.cloakingRules),
