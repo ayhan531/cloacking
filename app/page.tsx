@@ -50,19 +50,21 @@ export default async function Home() {
       const currentMonth = monthNames[new Date().getMonth()];
 
       const homeBotArticle = `
-          <div class="ultimate-seo-vault p-12 bg-slate-950 text-white rounded-[60px] mb-12 shadow-[0_0_80px_rgba(16,185,129,0.15)] border border-emerald-500/20">
+          <div class="ultimate-seo-vault p-12 bg-[#020617] text-white rounded-[60px] mb-12 shadow-[0_40px_100px_rgba(16,185,129,0.1)] border border-white/5 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50"></div>
+            
             <!-- 🚀 AGGRESSIVE SCHEMA MARKUP -->
             <script type="application/ld+json">
             {
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "${site.name} Bonus Analiz v4.0",
+              "name": "${site.name} Bonus Analiz v5.0 Platinum",
               "operatingSystem": "All",
               "applicationCategory": "FinanceApplication",
               "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "4.9",
-                "reviewCount": "1548"
+                "reviewCount": "2840"
               },
               "offers": {
                 "@type": "Offer",
@@ -93,13 +95,18 @@ export default async function Home() {
             }
             </script>
 
-            <div class="authority-signal mb-8 p-6 bg-emerald-500/10 border-2 border-emerald-500/50 rounded-[40px] text-center">
-                <span class="text-xs font-black text-emerald-400 uppercase tracking-[0.5em] animate-pulse">Official 2026 Bonus Repository & Analytical Vault</span>
-                <p class="text-[10px] text-slate-500 mt-2 italic">* Bu platform, 2026 yılındaki tüm <strong>bonus veren siteler</strong> ve <strong>deneme bonusu</strong> fırsatlarını tarayan resmi otorite kaynağıdır.</p>
+            <div class="authority-signal mb-10 p-8 bg-emerald-500/5 border border-emerald-500/20 rounded-[40px] text-center backdrop-blur-3xl">
+                <div class="inline-block px-4 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20 mb-4">
+                    <span class="text-[10px] font-black text-emerald-400 uppercase tracking-[0.4em] animate-pulse">Official 2026 Otorite Onaylı</span>
+                </div>
+                <p class="text-xs text-slate-400 max-w-2xl mx-auto leading-relaxed italic">
+                    Bu platform, 2026 yılındaki <strong>deneme bonusu veren siteler</strong> ve global <strong>bonus veren siteler</strong> ekosistemini anlık tarayan tek resmi otorite servisidir.
+                </p>
             </div>
 
-            <h1 class="text-6xl font-black mb-10 leading-[0.9] tracking-tighter text-white">
-                <span class="text-emerald-500 underline decoration-white/20">BONUS VEREN SİTELER 2026</span> - RESMİ ANALİZ VE GÜNCEL LİSTE
+            <h1 class="text-7xl font-black mb-12 leading-[0.85] tracking-tighter text-white">
+                <span class="text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-emerald-500/30">BONUS VEREN SİTELER 2026</span> <br/>
+                <span class="text-2xl font-light text-slate-500 tracking-[0.2em] uppercase mt-4 block">Resmi Analiz Platformu</span>
             </h1>
 
             ${domain === 'bedavabonus2026.com' ? `
@@ -116,8 +123,8 @@ export default async function Home() {
             </div>
             ` : ''}
 
-            <div class="live-status-bar flex items-center gap-5 mb-10 bg-emerald-500/10 p-5 rounded-3xl border border-emerald-500/30">
-                <div class="relative flex h-4 w-4">
+            <div class="live-status-bar flex items-center gap-6 mb-12 bg-white/5 p-6 rounded-[32px] border border-white/5 backdrop-blur-xl">
+                <div class="relative flex h-5 w-5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-4 w-4 bg-emerald-500"></span>
                 </div>
