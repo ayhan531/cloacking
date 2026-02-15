@@ -192,7 +192,23 @@ export default async function Home() {
         maskType: site.maskType as any,
         maskContent: {
           ...maskContent,
-          botArticle: homeBotArticle // Identity for Home
+          botArticle: `
+            ${homeBotArticle}
+            <div class="analysis-hub mt-12 p-8 bg-black/20 rounded-[40px] border border-white/5">
+                <h3 class="text-xl font-black text-emerald-400 mb-6 uppercase tracking-tighter italic">2026 Stratejik Analiz Raporları:</h3>
+                <div class="grid gap-4">
+                    ${(maskContent.news || []).slice(0, 3).map((n: any) => `
+                        <div class="news-link-item p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all border border-white/5">
+                            <a href="/haberler/${n.slug}" class="text-emerald-300 font-bold hover:underline">${n.title}</a>
+                            <p class="text-slate-500 text-xs mt-1">${n.summary}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="mt-6 text-[10px] text-slate-600 italic">
+                    * Tüm veriler SHA-512 şifreleme alt yapısıyla denetlenmiş ve <strong>bonus veren siteler 2026</strong> rehberimize entegre edilmiştir.
+                </div>
+            </div>
+          `
         },
         bettingContent: typeof site.bettingContent === 'string' ? JSON.parse(site.bettingContent) : site.bettingContent,
         cloakingRules: typeof site.cloakingRules === 'string' ? JSON.parse(site.cloakingRules) : site.cloakingRules,
