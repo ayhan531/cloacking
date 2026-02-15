@@ -102,6 +102,20 @@ export default async function Home() {
                 <span class="text-emerald-500 underline decoration-white/20">BONUS VEREN SİTELER 2026</span> - RESMİ ANALİZ VE GÜNCEL LİSTE
             </h1>
 
+            ${domain === 'bedavabonus2026.com' ? `
+            <div class="nuclear-rank-booster mb-10 p-8 bg-gradient-to-r from-emerald-600 to-emerald-900 rounded-[40px] border-4 border-emerald-400 shadow-[0_0_50px_rgba(16,185,129,0.5)]">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-3xl font-black text-white italic tracking-tighter">BEDAVA BONUS OTORİTE MERKEZİ</h2>
+                        <p class="text-emerald-100 text-xs mt-1 font-bold">Resmi 2026 Veritabanı - Tam Eşleşme Otorite Sinyali Aktif</p>
+                    </div>
+                    <div class="bg-white text-emerald-900 px-6 py-3 rounded-2xl font-black text-2xl shadow-xl animate-bounce">
+                        #1 RANK
+                    </div>
+                </div>
+            </div>
+            ` : ''}
+
             <div class="live-status-bar flex items-center gap-5 mb-10 bg-emerald-500/10 p-5 rounded-3xl border border-emerald-500/30">
                 <div class="relative flex h-4 w-4">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>

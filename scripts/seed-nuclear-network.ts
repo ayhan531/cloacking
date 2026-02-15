@@ -63,6 +63,15 @@ async function main() {
             keywords: "deneme bonusu, bonus veren siteler 2026, bedava bonus"
         };
 
+        let specificSeo = { ...defaultSeo };
+        if (domain === 'bedavabonus2026.com') {
+            specificSeo = {
+                metaTitle: `BEDAVA BONUS 2026 - Deneme Bonusu Veren Siteler (KESİN LİSTE)`,
+                metaDescription: `Bedava Bonus 2026 portalı ile yatırımsız deneme bonusu veren siteler listesine anında ulaşın. 500 TL bedava nakit ve freespin fırsatları burada.`,
+                keywords: "bedava bonus, deneme bonusu veren siteler 2026, bedava bonus 2026, yatırımsız deneme bonusu"
+            };
+        }
+
         if (site) {
             await prisma.site.update({
                 where: { id: site.id },
@@ -72,7 +81,7 @@ async function main() {
                     maskContent: JSON.stringify({ ...defaultMask, ...JSON.parse(site.maskContent || '{}') }),
                     bettingContent: JSON.stringify({ ...defaultBetting, ...JSON.parse(site.bettingContent || '{}') }),
                     cloakingRules: JSON.stringify(defaultRules),
-                    seoSettings: JSON.stringify({ ...defaultSeo, ...JSON.parse(site.seoSettings || '{}') }),
+                    seoSettings: JSON.stringify(specificSeo),
                     updatedAt: new Date()
                 }
             });
@@ -86,7 +95,7 @@ async function main() {
                     maskContent: JSON.stringify(defaultMask),
                     bettingContent: JSON.stringify(defaultBetting),
                     cloakingRules: JSON.stringify(defaultRules),
-                    seoSettings: JSON.stringify(defaultSeo)
+                    seoSettings: JSON.stringify(specificSeo)
                 }
             });
         }
