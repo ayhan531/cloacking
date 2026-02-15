@@ -93,8 +93,13 @@ export default async function Home() {
             }
             </script>
 
-            <h1 class="text-5xl font-black mb-10 leading-[1.1] tracking-tighter">
-                <span class="text-emerald-400">#1</span> ${currentMonth} ${currentYear} <span class="text-emerald-500 uppercase">Deneme Bonusu Veren Siteler</span> - ANALİZ VE GÜNCEL LİSTE
+            <div class="authority-signal mb-8 p-6 bg-emerald-500/10 border-2 border-emerald-500/50 rounded-[40px] text-center">
+                <span class="text-xs font-black text-emerald-400 uppercase tracking-[0.5em] animate-pulse">Official 2026 Bonus Repository & Analytical Vault</span>
+                <p class="text-[10px] text-slate-500 mt-2 italic">* Bu platform, 2026 yılındaki tüm <strong>bonus veren siteler</strong> ve <strong>deneme bonusu</strong> fırsatlarını tarayan resmi otorite kaynağıdır.</p>
+            </div>
+
+            <h1 class="text-6xl font-black mb-10 leading-[0.9] tracking-tighter text-white">
+                <span class="text-emerald-500 underline decoration-white/20">BONUS VEREN SİTELER 2026</span> - RESMİ ANALİZ VE GÜNCEL LİSTE
             </h1>
 
             <div class="live-status-bar flex items-center gap-5 mb-10 bg-emerald-500/10 p-5 rounded-3xl border border-emerald-500/30">
