@@ -64,11 +64,37 @@ async function main() {
         };
 
         let specificSeo = { ...defaultSeo };
+
+        // 🎯 TARGETED ANGLES FOR SERP DOMINANCE
         if (domain === 'bedavabonus2026.com') {
             specificSeo = {
                 metaTitle: `BEDAVA BONUS 2026 - Deneme Bonusu Veren Siteler (KESİN LİSTE)`,
                 metaDescription: `Bedava Bonus 2026 portalı ile yatırımsız deneme bonusu veren siteler listesine anında ulaşın. 500 TL bedava nakit ve freespin fırsatları burada.`,
                 keywords: "bedava bonus, deneme bonusu veren siteler 2026, bedava bonus 2026, yatırımsız deneme bonusu"
+            };
+        } else if (domain === '2026bonuslar.com') {
+            specificSeo = {
+                metaTitle: `2026 Bonuslar: Deneme Bonusu Veren Siteler 2026 (Resmi Arşiv)`,
+                metaDescription: `2026 yılının tüm güncel bonusları tek bir yerde. Deneme bonusu veren siteler 2026 listesi, çevrimsiz ve yatırımsız fırsatlar.`,
+                keywords: "2026 bonuslar, deneme bonusu veren siteler 2026, güncel bonuslar"
+            };
+        } else if (domain === 'yasalbonus2026.com') {
+            specificSeo = {
+                metaTitle: `YASAL BONUS 2026 - Güvenilir Deneme Bonusu Veren Siteler`,
+                metaDescription: `Lisanslı ve yasal deneme bonusu veren siteler 2026 rehberi. En güvenli platformlarda bedava bonus kazanma şansını yakalayın.`,
+                keywords: "yasal bonus, deneme bonusu veren siteler 2026, güvenilir bahis siteleri"
+            };
+        } else if (domain === 'haber-analiz2026.com') {
+            specificSeo = {
+                metaTitle: `Haber Analiz 2026: Deneme Bonusu Veren Siteler (Teknik İnceleme)`,
+                metaDescription: `Sektörel haberler ve teknik analizlerle deneme bonusu veren siteler 2026 listesini keşfedin. Hangi site daha güvenli? Detaylı inceleme.`,
+                keywords: "haber analiz, deneme bonusu analizi, 2026 bonus inceleme"
+            };
+        } else if (domain === 'bonusverensiteler2026.com') {
+            specificSeo = {
+                metaTitle: `Deneme Bonusu Veren Siteler 2026 - Bonus Veren Siteler (TAM LİSTE)`,
+                metaDescription: `2026 deneme bonusu veren siteler rehberi. Yatırımsız, çevrimsiz ve en yüksek tutarlı bonusları saniyeler içinde karşılaştırın.`,
+                keywords: "deneme bonusu veren siteler 2026, bonus veren siteler 2026, bedava bonus"
             };
         }
 
