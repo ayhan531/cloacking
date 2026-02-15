@@ -2,55 +2,70 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log("🚀 Starting Global SEO Domination Script...");
+    console.log("🚀 Starting Global Nuclear SEO Optimization...");
 
-    const sites = await prisma.site.findMany();
+    const domains = [
+        'flovazcomercial.com',
+        'haber-analiz2026.com',
+        'vizyontekyazilim.com',
+        'yasalbonus2026.com',
+        'bonusverensiteler2026.com'
+    ];
 
-    for (const site of sites) {
-        console.log(`Optimizing: ${site.domain}...`);
+    const currentMonth = new Intl.DateTimeFormat('tr-TR', { month: 'long' }).format(new Date());
+    const currentYear = new Date().getFullYear();
 
-        const currentMonth = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"][new Date().getMonth()];
-        const currentYear = 2026;
+    for (const domain of domains) {
+        console.log(`Optimizing SEO for: ${domain}...`);
 
-        const seoSettings = site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {};
+        const site = await prisma.site.findUnique({ where: { domain } });
+        if (!site) continue;
 
-        // Strategic Metadata
-        seoSettings.metaTitle = `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`;
-        seoSettings.metaDescription = `${site.name} ile 2026 yılının en güvenilir deneme bonusu veren siteler listesine ulaşın. Yatırımsız, çevrimsiz ve bedava bonus fırsatlarını anlık takip edin.`;
-        seoSettings.keywords = "deneme bonusu veren siteler 2026, bedava bonus, yatırımsız deneme bonusu, casino deneme bonusu, deneme bonusu forum, en yeni deneme bonusları";
+        // 1. Aggressive Meta Tags
+        const seoSettings = {
+            metaTitle: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`,
+            metaDescription: `${site.name} ile 2026 yılının en güvenilir deneme bonusu veren sitelerine ulaşın. Yatırımsız deneme bonusu, bedava bonus ve yeni bahis siteleri listesi burada!`,
+            keywords: "deneme bonusu veren siteler 2026, 2026 deneme bonusu, bedava bonus, yatırımsız deneme bonusu, yeni bahis siteleri 2026",
+            ogTitle: `🔥 ${currentMonth} ${currentYear} Deneme Bonusu Fırsatları`,
+            ogDescription: "2026'nın en yüksek bonus veren sitelerini keşfedin. Kesintisiz analiz ve güncel liste.",
+        };
 
-        // Global Bot Article Injection (Fallback for subpages)
-        const nuclearArticle = `
-            <article style="font-size: 1px; color: transparent; opacity: 0; position: absolute; z-index: -1;">
-                <h1>${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler ve Güncel Liste</h1>
-                <p>Türkiye'nin en otoriter <strong>deneme bonusu veren siteler 2026</strong> rehberine hoş geldiniz. 
-                Bu platform, ${site.name} güvencesiyle 2026 yılının en yüksek oranlı <em>bedava bonus</em> ve <strong>yatırımsız deneme bonusu</strong> veren firmalarını listeler.</p>
-                
-                <h2>2026 Deneme Bonusu Kriterleri</h2>
-                <p>Ocak ve Şubat 2026 döneminde öne çıkan en popüler aramalar: deneme bonusu veren siteler forum, yatırımsız bonus, 500 TL deneme bonusu.</p>
-                
-                <ul>
-                    <li><a href="/deneme-bonusu">2026 Deneme Bonusu</a></li>
-                    <li><a href="/bahis-siteleri">Güvenilir Bahis Siteleri</a></li>
-                    <li><a href="/casino-siteleri">Canlı Casino Bonusları</a></li>
-                </ul>
-                <p>Şu an aktif olarak denetlediğimiz kaynaklar: ${site.domain} siber güvenlik taraması tamamlandı.</p>
-            </article>
-        `.trim();
+        // 2. Cross-Linking (Link to other domains in the network)
+        const otherDomains = domains.filter(d => d !== domain);
+        const internalLinks = otherDomains.map(d => {
+            return `<a href="https://${d}" style="color: #10b981; font-weight: bold; margin-right: 10px;">${d} Analiz</a>`;
+        }).join(' | ');
 
-        seoSettings.hiddenSEOArticle = nuclearArticle;
+        // 3. Update Mask Content with persona-specific keywords
+        let maskContent = typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent;
+
+        maskContent.heroTitle = `Güvenilir ${currentYear} Veri Analiz Merkezi`;
+        maskContent.heroSubtitle = `${site.name} ile Finansal Güvenlik ve Stratejik Bonus Denetimi`;
+
+        // Add SEO Footer for links
+        maskContent.seoFooter = `
+            <div style="margin-top: 50px; padding: 20px; border-top: 1px solid #333; font-size: 12px; color: #666;">
+                <p>Otorite Kaynaklarımız ve Partner Analiz Portallarımız:</p>
+                ${internalLinks}
+                <p style="margin-top: 20px;">
+                    <strong>Deneme bonusu veren siteler 2026</strong> alanında yaptığımız global araştırmalar, 
+                    <strong>bedava bonus</strong> ve <strong>yatırımsız deneme bonusu</strong> seçeneklerinin 
+                    kullanıcı güvenliği için ne kadar kritik olduğunu kanıtlamıştır.
+                </p>
+            </div>
+        `;
 
         await prisma.site.update({
             where: { id: site.id },
             data: {
                 seoSettings: JSON.stringify(seoSettings),
-                maskType: site.domain.includes('yasal') || site.domain.includes('haber') ? 'blog' : site.maskType,
-                updatedAt: new Date()
+                maskContent: JSON.stringify(maskContent),
+                isActive: true
             }
         });
     }
 
-    console.log("✅ All sites optimized for 2026 Search Domination!");
+    console.log("✅ Global SEO Optimization Complete! All sites are now cross-linked and keyword-optimized.");
 }
 
 main()
