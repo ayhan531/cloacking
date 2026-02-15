@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export async function GET(req: Request, { params }: { params: { domain: string } }) {
-    const domain = (await params).domain;
+export async function GET(req: Request, { params }: { params: Promise<{ domain: string }> }) {
+    const { domain } = await params;
     const cleanDomain = domain.toLowerCase().replace('www.', '');
 
     try {
