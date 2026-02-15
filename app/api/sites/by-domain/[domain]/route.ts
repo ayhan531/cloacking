@@ -10,27 +10,36 @@ export async function GET(req: Request, { params }: { params: Promise<{ domain: 
             where: { domain: cleanDomain }
         });
 
-        // 🛡️ SELF-HEALING: If it's our target domain and missing from DB, create it on-the-fly!
-        if (!site && (cleanDomain === '2026bonuslar.com' || cleanDomain === '2026bonuslar.com/')) {
+        const targetDomains = [
+            '2026bonuslar.com',
+            'bedavabonus2026.com',
+            'bonusverensiteler2026.com',
+            'yasalbonus2026.com',
+            'haber-analiz2026.com',
+            'vizyontekyazilim.com'
+        ];
+
+        // 🛡️ SELF-HEALING: If it's one of our target domains and missing from DB, create it on-the-fly!
+        if (!site && targetDomains.includes(cleanDomain)) {
             console.log("🛡️ Self-healing activated for:", cleanDomain);
             const defaultRules = {
                 showMaskTo: { bots: true, desktop: true },
                 showBettingTo: { mobile: true, includedCountries: ["TR", "CY"] }
             };
             const defaultSeo = {
-                metaTitle: `Şubat 2026 Deneme Bonusu Veren Siteler - 2026 Bonuslar`,
-                metaDescription: `2026 Bonuslar giriş adresi ile 2026 yılının en güncel deneme bonusu veren siteleri ve yatırımsız karşılıksız bonusları keşfedin. Günlük güncellenen analiz listesi.`,
-                keywords: "deneme bonusu veren siteler 2026, bedava bonus, yatırımsız deneme bonusu, 500 tl deneme bonusu, çevrimsiz bonus"
+                metaTitle: `Şubat 2026 Deneme Bonusu Veren Siteler - ${cleanDomain.split('.')[0].toUpperCase()}`,
+                metaDescription: `${cleanDomain} ile 2026'nın en güncel deneme bonusu veren sitelerini ve yatırımsız karşılıksız bonusları keşfedin.`,
+                keywords: "deneme bonusu veren siteler 2026, bedava bonus, yatırımsız deneme bonusu, 500 tl deneme bonusu"
             };
 
             site = await prisma.site.create({
                 data: {
-                    domain: '2026bonuslar.com',
-                    name: '2026 Bonuslar',
+                    domain: cleanDomain,
+                    name: cleanDomain.split('.')[0].toUpperCase(),
                     isActive: true,
                     maskType: 'blog',
                     maskContent: JSON.stringify({
-                        siteName: '2026 BONUSLAR',
+                        siteName: cleanDomain.split('.')[0].toUpperCase(),
                         heroTitle: '2026 En İyi Bonuslar',
                         heroSubtitle: 'Profesyonel Analiz ve Güvenilir Bahis Rehberiniz',
                         news: []

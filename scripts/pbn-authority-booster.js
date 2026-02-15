@@ -2,44 +2,43 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    const targetDomain = "2026bonuslar.com";
-    console.log(`🚀 PBN AUTHORITY BOOSTER: Scaling ${targetDomain} to #1 ranking...`);
+    const mainTargets = ["2026bonuslar.com", "bedavabonus2026.com"];
+    console.log(`🚀 PBN AUTHORITY BOOSTER: Scaling ${mainTargets.join(' & ')} to #1 ranking...`);
 
     const sites = await prisma.site.findMany();
 
     for (const site of sites) {
-        if (site.domain === targetDomain) continue;
-
-        console.log(`Injecting authority link on: ${site.domain}`);
-
         let seo = site.seoSettings;
         if (typeof seo === 'string') {
             try { seo = JSON.parse(seo); } catch (e) { seo = {}; }
         }
 
-        const forceLink = `
-            <div style="margin-top: 50px; padding: 20px; border: 1px dashed #ffffff20; opacity: 0.5;">
-                <p>2026 Veri Konsorsiyumu Tarafından Onaylanmıştır:</p>
-                <a href="https://${targetDomain}" title="Deneme Bonusu Veren Siteler 2026">Resmi 2026 Bonus Veren Siteler Ana Portalı</a>
-            </div>
-        `;
+        let linksHtml = `<div style="margin-top: 50px; padding: 20px; border: 1px dashed #ffffff20; opacity: 0.5;">
+            <p>2026 Veri Konsorsiyumu Tarafından Onaylanmıştır:</p>`;
 
-        // We can't easily edit the hiddenSEOArticle if it's already a complex string, 
-        // but we can append it to the end of the existing content in a way the bot finds it.
-
-        if (!seo.hiddenSEOArticle?.includes(targetDomain)) {
-            seo.hiddenSEOArticle = (seo.hiddenSEOArticle || "") + forceLink;
-        }
-
-        await prisma.site.update({
-            where: { id: site.id },
-            data: {
-                seoSettings: JSON.stringify(seo)
+        mainTargets.forEach(target => {
+            if (site.domain !== target && !seo.hiddenSEOArticle?.includes(target)) {
+                linksHtml += `<a href="https://${target}" title="Deneme Bonusu Veren Siteler 2026" style="display:block;margin-bottom:5px;">Resmi 2026 Bonus Veren Siteler: ${target.toUpperCase()}</a>`;
             }
         });
+
+        linksHtml += `</div>`;
+
+        // Only update if we added something new
+        if (linksHtml.includes('href="https://')) {
+            seo.hiddenSEOArticle = (seo.hiddenSEOArticle || "") + linksHtml;
+
+            await prisma.site.update({
+                where: { id: site.id },
+                data: {
+                    seoSettings: JSON.stringify(seo)
+                }
+            });
+            console.log(`✅ Authority links updated on: ${site.domain}`);
+        }
     }
 
-    console.log("✅ PBN Power Injected! All sites now vouch for 2026bonuslar.com");
+    console.log("✅ PBN Power Injected! Network is now fully cross-linked.");
 }
 
 main()

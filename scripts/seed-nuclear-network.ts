@@ -11,7 +11,8 @@ async function main() {
         'vizyontekyazilim.com',
         'yasalbonus2026.com',
         'bonusverensiteler2026.com',
-        '2026bonuslar.com'
+        '2026bonuslar.com',
+        'bedavabonus2026.com'
     ];
 
     const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
