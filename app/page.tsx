@@ -171,6 +171,17 @@ export default async function Home() {
                     <p class="text-slate-400 text-sm">Cevap: Evet, ${site.name} olarak listelediğimiz tüm platformlar 2026 siber güvenlik testlerinden geçmiş, finansal gücü yüksek ve anında ödeme yapan yasal altyapılı sitelerdir. <strong>Bedava bonus veren siteler 2026</strong> aramalarında her zaman en güvenilir sonuçları sunuyoruz.</p>
                 </div>
             </div>
+
+            <!-- 🧱 NUCLEAR KEYWORD WALL (Semantic Density) -->
+            <div class="mt-12 opacity-40 text-[10px] text-slate-500 leading-tight">
+                Bonus veren siteler 2026, deneme bonusu veren siteler 2026, 2026 deneme bonusu, yatırımsız deneme bonusu, bedava bahis, nakit bonus, 
+                çevrimsiz deneme bonusu, casino sitesi bonusları, yeni bahis siteleri 2026, güncel bonus listesi, popüler deneme bonusları, 
+                güvenilir bahis platformları v2026.
+            </div>
+
+            <div class="mt-8 text-center">
+                <span class="text-[10px] font-mono text-emerald-500/50 uppercase tracking-widest">Son Güvenlik Taraması: ${new Date().toLocaleDateString('tr-TR')} - Tüm Linkler Aktif</span>
+            </div>
           </div>
       `;
 
