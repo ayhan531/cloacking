@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { getSiteByDomain } from "@/lib/site-service";
 import { headers } from "next/headers";
 
 export async function GET() {
@@ -10,10 +10,9 @@ export async function GET() {
     let pages = ['', 'deneme-bonusu', 'bahis-siteleri', 'casino-siteleri', 'hosgeldin-bonusu', 'hakkimizda', 'haberler'];
 
     try {
-        // Veritabanını kontrol et, ama bulamazsan bile patlama!
-        const site = await prisma.site.findUnique({ where: { domain } });
+        const site = await getSiteByDomain(domain);
         if (site) {
-            const maskContent = typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent;
+            const maskContent = site.maskContent;
             if (maskContent.news && Array.isArray(maskContent.news)) {
                 const newsPages = maskContent.news.map((item: any) => `haberler/${item.slug}`);
                 pages = [...pages, ...newsPages];

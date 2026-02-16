@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 import { headers } from "next/headers";
-import { prisma } from "@/lib/prisma";
+import { getSiteByDomain } from "@/lib/site-service";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,12 +28,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const domain = host.split(':')[0].replace('www.', '');
 
   try {
-    const site = await prisma.site.findUnique({
-      where: { domain },
-    });
+    const site = await getSiteByDomain(domain);
 
     if (site) {
-      const seo = JSON.parse(site.seoSettings);
+      const seo = site.seoSettings;
       const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
       const currentMonth = monthNames[new Date().getMonth()];
       const currentYear = new Date().getFullYear();
@@ -94,12 +92,10 @@ export default async function RootLayout({
   let structuredData: any = null;
   let breadcrumbData: any = null;
   try {
-    const site = await prisma.site.findUnique({
-      where: { domain },
-    });
+    const site = await getSiteByDomain(domain);
 
     if (site) {
-      const seo = site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {};
+      const seo = site.seoSettings;
 
       structuredData = seo.structuredData;
 

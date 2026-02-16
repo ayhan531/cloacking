@@ -2,8 +2,7 @@ import CloakedHome from "@/components/CloakedHome";
 import MaskSite from "@/components/MaskSite";
 import { detectBotServer } from "@/lib/server-cloaking";
 import { headers } from "next/headers";
-import { prisma } from "@/lib/prisma";
-import type { SiteConfig } from "@/lib/types";
+import { getSiteByDomain } from "@/lib/site-service";
 import type { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -13,12 +12,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const domain = host.split(':')[0].replace('www.', '');
 
     try {
-        const site = await prisma.site.findUnique({
-            where: { domain },
-        });
+        const site = await getSiteByDomain(domain);
 
         if (site) {
-            const seo = site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {};
             const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
             const currentMonth = monthNames[new Date().getMonth()];
             const currentYear = new Date().getFullYear();
@@ -31,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
             return {
                 title: title,
-                description: seo.metaDescription || "2026 deneme bonusu veren siteler rehberi.",
+                description: site.seoSettings?.metaDescription || "2026 deneme bonusu veren siteler rehberi.",
                 alternates: {
                     canonical: `https://${domain}/${slug}`,
                 },
@@ -47,9 +43,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     return {
         title: "Bonus Veren Siteler 2026",
-        alternates: {
-            canonical: `https://${domain}/${slug}`,
-        }
     };
 }
 export default async function SlugPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -61,15 +54,12 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
         domain = host.split(':')[0].replace('www.', '');
         const isBot = await detectBotServer();
 
-        const site = await prisma.site.findUnique({
-            where: { domain },
-        });
+        const site = await getSiteByDomain(domain);
 
         if (site) {
-            let maskContent = site.maskContent ? (typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent) : {};
+            let maskContent = site.maskContent;
 
             // Customize content based on slug to avoid duplicate content penalty
-            // Applies to ALL mask types (Corporate, News, Blog, etc.) to ensure unique SEO content
             if (slug) {
                 if (slug === 'deneme-bonusu') {
                     maskContent = {
@@ -100,7 +90,6 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                         heroSubtitle: "İlk üyelik ve yatırıma özel yüksek oranlı bonuslar. Çevrim şartsız hoşgeldin paketleri.",
                     };
                 } else {
-                    // Default dynamic customization for unknown slugs
                     const formattedSlug = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
                     maskContent = {
                         ...maskContent,
@@ -110,7 +99,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 }
             }
 
-            // 🚀 ULTRA-SPECIFIC STRUCTURED DATA FOR GOOGLE TRUST
+            // ... Structured Data Logic ...
             const faqData = slug === 'deneme-bonusu' ? {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
@@ -134,7 +123,6 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 ]
             } : null;
 
-            // 🚀 EXTREME DIFFERENTIATION FOR BOTS
             let slugTopic = slug.replace(/-/g, ' ').toUpperCase();
             let specificArticle = "";
 
@@ -189,7 +177,6 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 `;
             }
 
-            // 🚀 NEWS SPECIFIC STRUCTURED DATA
             const newsSchema = site.maskType === 'blog' ? {
                 "@context": "https://schema.org",
                 "@type": "NewsArticle",
@@ -227,21 +214,12 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 </section>
             `;
 
-            const config: SiteConfig = {
-                id: site.id,
-                name: site.name,
-                domain: site.domain,
-                maskType: site.maskType as any,
+            const config: any = {
+                ...site,
                 maskContent: {
                     ...maskContent,
                     botArticle: botArticle
-                },
-                bettingContent: site.bettingContent ? (typeof site.bettingContent === 'string' ? JSON.parse(site.bettingContent) : site.bettingContent) : {},
-                cloakingRules: site.cloakingRules ? (typeof site.cloakingRules === 'string' ? JSON.parse(site.cloakingRules) : site.cloakingRules) : {},
-                seoSettings: site.seoSettings ? (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings) : {},
-                isActive: site.isActive,
-                createdAt: site.createdAt,
-                updatedAt: site.updatedAt,
+                }
             };
 
             if (isBot) {
