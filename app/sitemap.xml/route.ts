@@ -4,40 +4,52 @@ import { headers } from "next/headers";
 export async function GET() {
     const headersList = await headers();
     const host = headersList.get("host") || "";
+    // Clean domain for DB lookup
     const domain = host.split(':')[0].replace('www.', '');
 
-    // Temel sayfalar her zaman olmalı
-    let pages = ['', 'deneme-bonusu', 'bahis-siteleri', 'casino-siteleri', 'hosgeldin-bonusu', 'hakkimizda', 'haberler'];
+    let urls = [
+        { loc: `https://${domain}`, lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'always' },
+        { loc: `https://${domain}/hakkimizda`, lastmod: new Date().toISOString(), priority: '0.8', changefreq: 'monthly' },
+        { loc: `https://${domain}/iletisim`, lastmod: new Date().toISOString(), priority: '0.8', changefreq: 'monthly' },
+        // Add critical SEO pages
+        { loc: `https://${domain}/deneme-bonusu`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
+        { loc: `https://${domain}/bahis-siteleri`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
+        { loc: `https://${domain}/casino-siteleri`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
+        { loc: `https://${domain}/hosgeldin-bonusu`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
+    ];
 
     try {
         const site = await getSiteByDomain(domain);
-        if (site) {
-            const maskContent = site.maskContent;
-            if (maskContent.news && Array.isArray(maskContent.news)) {
-                const newsPages = maskContent.news.map((item: any) => `haberler/${item.slug}`);
-                pages = [...pages, ...newsPages];
-            }
+        if (site && site.maskContent && site.maskContent.news) {
+            // 🚀 NUCLEAR CONTENT INJECTION
+            const newsUrls = site.maskContent.news.map((item: any) => ({
+                loc: `https://${domain}/haberler/${item.slug}`,
+                lastmod: item.date || new Date().toISOString(),
+                priority: '0.9', // High priority for fresh news
+                changefreq: 'daily'
+            }));
+            urls = [...urls, ...newsUrls];
         }
     } catch (e) {
-        console.error("Sitemap DB fallback activated for:", domain);
+        console.error("Sitemap DB Error:", e);
     }
 
-    // Google'ı sevindirecek kusursuz XML
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${pages.map(page => `
+  ${urls.map((url) => `
   <url>
-    <loc>https://${domain}${page ? `/${page}` : ''}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>${page === '' ? '1.0' : '0.8'}</priority>
-  </url>`).join('')}
-</urlset>`.trim();
+    <loc>${url.loc}</loc>
+    <lastmod>${url.lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
+    <priority>${url.priority}</priority>
+  </url>
+  `).join("")}
+</urlset>`;
 
-    return new Response(xml, {
+    return new Response(sitemap, {
         headers: {
-            "Content-Type": "application/xml; charset=utf-8",
-            "Cache-Control": "public, s-maxage=86400"
+            "Content-Type": "application/xml",
+            "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=59"
         },
     });
 }
