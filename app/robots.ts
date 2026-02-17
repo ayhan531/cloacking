@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/private/', '/admin/'],
         },
-        sitemap: 'https://yasalbonus2026.com/sitemap.xml', // Dynamic host handling in production often better, but this is a safe default or can be made dynamic
+        sitemap: 'https://yasalbonus2026.com/sitemap.xml',
     };
 }

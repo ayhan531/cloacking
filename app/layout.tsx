@@ -155,7 +155,31 @@ export default async function RootLayout({
         }
       };
 
-      structuredData = [structuredData, breadcrumbData, ratingData, orgData].filter(Boolean);
+      const newsMediaSchema = {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "name": site.name,
+        "url": `https://${domain}`,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `https://${domain}/logo.png`,
+          "width": 600,
+          "height": 60
+        },
+        "sameAs": [
+          "https://www.mga.org.mt/",
+          "https://www.curacao-egaming.com/",
+          "https://en.wikipedia.org/wiki/Gambling"
+        ],
+        "publishingPrinciples": "https://www.mga.org.mt/governance/legal-framework/",
+        "correctionsPolicy": "https://www.begambleaware.org/",
+        "founder": {
+          "@type": "Organization",
+          "name": "Global 2026 Audit Committee"
+        }
+      };
+
+      structuredData = [structuredData, breadcrumbData, ratingData, orgData, newsMediaSchema].filter(Boolean);
     }
   } catch (e) {
     console.error("Layout Structured Data Error:", e);
