@@ -5,46 +5,49 @@ import { headers } from "next/headers";
 import { getSiteByDomain, type SiteConfig } from "@/lib/site-service";
 import type { Metadata } from "next";
 
+export const dynamic = 'force-dynamic'; // 🔥 FORCE LIVE UPDATES (HEARTBEAT)
+export const revalidate = 0; // ⚡ NO CACHE
+
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const host = headersList.get("host") || "";
-  const domain = host.split(':')[0].replace('www.', '');
+    const headersList = await headers();
+    const host = headersList.get("host") || "";
+    const domain = host.split(':')[0].replace('www.', '');
 
-  try {
-    const site = await getSiteByDomain(domain);
-    if (site) {
-      const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
-      const currentMonth = monthNames[new Date().getMonth()];
-      const currentYear = new Date().getFullYear();
+    try {
+        const site = await getSiteByDomain(domain);
+        if (site) {
+            const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+            const currentMonth = monthNames[new Date().getMonth()];
+            const currentYear = new Date().getFullYear();
 
-      return {
-        title: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`,
-        description: site.seoSettings?.metaDescription || `${site.name} ile 2026 yılının en güncel deneme bonusu veren siteler listesine ulaşın.`,
-      };
-    }
-  } catch (e) { }
-  return { title: "2026 Deneme Bonusu Veren Siteler" };
+            return {
+                title: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`,
+                description: site.seoSettings?.metaDescription || `${site.name} ile 2026 yılının en güncel deneme bonusu veren siteler listesine ulaşın.`,
+            };
+        }
+    } catch (e) { }
+    return { title: "2026 Deneme Bonusu Veren Siteler" };
 }
 
 export default async function Home() {
-  let domain = "";
-  try {
-    const headersList = await headers();
-    const host = headersList.get("host") || "";
-    // Clean port and handle www
-    domain = host.split(':')[0].replace('www.', '');
-    const isBot = await detectBotServer();
+    let domain = "";
+    try {
+        const headersList = await headers();
+        const host = headersList.get("host") || "";
+        // Clean port and handle www
+        domain = host.split(':')[0].replace('www.', '');
+        const isBot = await detectBotServer();
 
-    const site = await getSiteByDomain(domain);
+        const site = await getSiteByDomain(domain);
 
-    if (site) {
-      const maskContent = typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent;
+        if (site) {
+            const maskContent = typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent;
 
-      // 🏠 UNIQUE HOME BOT IDENTITY
-      const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
-      const currentMonth = monthNames[new Date().getMonth()];
+            // 🏠 UNIQUE HOME BOT IDENTITY
+            const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+            const currentMonth = monthNames[new Date().getMonth()];
 
-      const homeBotArticle = `
+            const homeBotArticle = `
           <div class="ultimate-seo-vault p-12 bg-[#020617] text-white rounded-[60px] mb-12 shadow-[0_40px_100px_rgba(16,185,129,0.1)] border border-white/5 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50"></div>
             
@@ -262,11 +265,11 @@ export default async function Home() {
           </div>
       `;
 
-      const config: any = {
-        ...site,
-        maskContent: {
-          ...site.maskContent,
-          botArticle: `
+            const config: any = {
+                ...site,
+                maskContent: {
+                    ...site.maskContent,
+                    botArticle: `
             ${homeBotArticle}
             <div class="analysis-hub mt-12 p-8 bg-black/20 rounded-[40px] border border-white/5">
                 <h3 class="text-xl font-black text-emerald-400 mb-6 uppercase tracking-tighter italic">2026 Stratejik Analiz Raporları:</h3>
@@ -284,18 +287,18 @@ export default async function Home() {
                 </div>
             </div>
           `
+                }
+            };
+
+            if (isBot) {
+                return <MaskSite config={config} />;
+            }
         }
-      };
-
-      if (isBot) {
-        return <MaskSite config={config} />;
-      }
+    } catch (error) {
+        console.error("Home Page Critical Error for domain " + domain + ":", error);
     }
-  } catch (error) {
-    console.error("Home Page Critical Error for domain " + domain + ":", error);
-  }
 
-  // Fallback to CloakedHome which will safely handle the UI on the client
-  return <CloakedHome />;
+    // Fallback to CloakedHome which will safely handle the UI on the client
+    return <CloakedHome />;
 }
 
