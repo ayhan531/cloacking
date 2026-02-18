@@ -6,6 +6,7 @@ async function main() {
     console.log("🔥 NUCLEAR CONTENT UPDATE v3.0: 1st Page Dominance Injection starting...");
 
     const domains = [
+        'independent-news.org',
         'flovazcomercial.com',
         'haber-analiz2026.com',
         'vizyontekyazilim.com',
