@@ -21,7 +21,8 @@ async function main() {
     const currentYear = new Date().getFullYear();
 
     // 15 adet, her biri stratejik anahtar kelimelerle dolu haber paketi
-    const extendedNews = [
+    // İlk 50 manuel stratejik makale
+    const baseNews = [
         { id: '1', title: `2026 Deneme Bonusu Veren Siteler: Tam Liste`, slug: 'deneme-bonusu-veren-siteler-2026', summary: 'Bu ayın en çok kazandıran platformlarını karşılaştırdık.', content: '2026 yılında deneme bonusu veren siteler arasında kıyasıya bir rekabet var. Özellikle 500 TL deneme bonusu veren siteler öne çıkıyor.', date: new Date().toISOString() },
         { id: '2', title: `Yatırımsız Bonus Analizi: Kimler Veriyor?`, slug: 'yatirim-sartsiz-bonus-2026', summary: 'Para yatırmadan kazanmanın en güvenli yolları.', content: 'Yatırım şartsız bonuslar 2026 yılında artık bir standart haline geldi. İşte güvenilir platformlar.', date: new Date().toISOString() },
         { id: '3', title: `En Güvenilir Bahis Altyapıları 2026`, slug: 'en-guvenilir-altyapilar', summary: 'Kapanmayan ve ödeme yapan siteleri nasıl anlarsınız?', content: 'Lisanslı altyapıların önemi 2026 yılında daha da arttı.', date: new Date().toISOString() },
@@ -73,6 +74,29 @@ async function main() {
         { id: '49', title: `Institutional Trust in Digital Journalism`, slug: 'institutional-trust-journalism', summary: 'Dijital gazetecilikte kurumsal güven inşası.', content: 'Bağımsız denetçilerin yayın ilkelerini tasdik etmesi süreci.', date: new Date().toISOString() },
         { id: '50', title: `The Great Semantic Reset: Search in 2026`, slug: 'semantic-reset-search-2026', summary: 'Arama motorlarında anlamsal sıfırlama ve yeni kurallar.', content: 'Google SGE sonrası içerik otoritesinin yeniden tanımlanması.', date: new Date().toISOString() }
     ];
+
+    // ALGORİTMİK İÇERİK FABRİKASI: 50 -> 200
+    const generatedNews = [];
+    const niches = ["Regulatory", "Audit", "Financial", "Technical", "Security", "AI", "Blockchain", "Compliance", "Ethical", "Global"];
+    const keywords = ["Verification", "Protocol", "Analysis", "Standards", "Framework", "Governance", "Transparency", "Safety", "Trust", "Infrastructure"];
+
+    for (let i = 51; i <= 200; i++) {
+        const niche = niches[i % niches.length];
+        const kw = keywords[i % keywords.length];
+        const title = `${niche} ${kw} Report v${(i / 10).toFixed(1)}: ${currentMonth} ${currentYear} Edition`;
+        const slug = `${niche.toLowerCase()}-${kw.toLowerCase()}-report-${i}`;
+
+        generatedNews.push({
+            id: i.toString(),
+            title: title,
+            slug: slug,
+            summary: `${niche} odaklı ${kw} süreçlerinin 2026 yılındaki derinlemesine analizi.`,
+            content: `${title} kapsamında, ${niche} regülasyonlarının ${kw} parametreleri üzerindeki etkisi incelenmektedir. 2026 yılındaki global değişimler bu raporun temelini oluşturur.`,
+            date: new Date().toISOString()
+        });
+    }
+
+    const extendedNews = [...baseNews, ...generatedNews];
 
     for (const domain of domains) {
         console.log(`🚀 Atomic Seeding: ${domain}...`);

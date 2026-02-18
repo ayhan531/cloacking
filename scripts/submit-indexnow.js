@@ -23,8 +23,8 @@ async function main() {
         'bedavabonus2026.com'
     ];
 
-    // Nuclear Slugs (Matching the seed script)
-    const slugs = [
+    // Nuclear Slugs (Matching the seed script - 200 Items)
+    const baseSlugs = [
         'deneme-bonusu-veren-siteler-2026', 'yatirim-sartsiz-bonus-2026', 'en-guvenilir-altyapilar',
         '500-tl-deneme-bonusu-2026', 'payfix-mefete-bahis-2026', 'cevrimsiz-freebet-2026',
         'hosgeldin-bonusu-300-liste', 'freespin-veren-siteler-2026', 'bahis-sitesi-guvenlik-protokolleri',
@@ -43,6 +43,16 @@ async function main() {
         'digital-literacy-awareness', 'adaptive-learning-risk', 'regtech-boom-2026',
         'institutional-trust-journalism', 'semantic-reset-search-2026'
     ];
+
+    const generatedSlugs = [];
+    const niches = ["regulatory", "audit", "financial", "technical", "security", "ai", "blockchain", "compliance", "ethical", "global"];
+    const keywords = ["verification", "protocol", "analysis", "standards", "framework", "governance", "transparency", "safety", "trust", "infrastructure"];
+
+    for (let i = 51; i <= 200; i++) {
+        generatedSlugs.push(`${niches[i % niches.length]}-${keywords[i % keywords.length]}-report-${i}`);
+    }
+
+    const slugs = [...baseSlugs, ...generatedSlugs];
 
     for (const domain of domains) {
         console.log(`\n📡 Submitting to IndexNow for: ${domain}`);
