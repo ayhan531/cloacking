@@ -180,8 +180,8 @@ export default async function RootLayout({
         "diversityPolicy": "https://www.mga.org.mt/about-us/",
         "founder": {
           "@type": "Organization",
-          "name": "Global 2026 Audit Committee",
-          "url": "https://yasalbonus2026.com"
+          "name": "Global Independent News Consortium",
+          "url": "https://independent-news.org"
         },
         "memberOf": consortiumSites.map((s: SiteConfig) => ({
           "@type": "Organization",

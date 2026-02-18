@@ -7,6 +7,12 @@ export interface ConsortiumPartner {
 
 export const CONSORTIUM_PARTNERS: ConsortiumPartner[] = [
     {
+        name: 'INDEPENDENT NEWS',
+        domain: 'independent-news.org',
+        description: 'Uluslararası Bağımsız Haber ve Regülasyon İzleme Örgütü',
+        niche: 'news'
+    },
+    {
         name: 'YASAL BONUS 2026',
         domain: 'yasalbonus2026.com',
         description: 'Global Bonus Regülasyon ve Lisans Denetim Merkezi',

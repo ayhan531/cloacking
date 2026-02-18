@@ -17,7 +17,8 @@ export async function GET() {
             encryption: "SSL/TLS 1.3 Active"
         },
         regulatoryStatus: "Compliance Monitored",
-        issuingAuthority: "Global 2026 iGaming Audit Consortium",
+        issuingAuthority: "Global Independent News & Audit Consortium",
+        monitoringAuthority: "https://independent-news.org",
         endpoint: `https://${domain}/api/verify-audit`
     };
 
