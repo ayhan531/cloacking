@@ -32,6 +32,7 @@ export async function getSiteByDomain(domain: string): Promise<SiteConfig | null
         });
 
         const targetDomains = [
+            'independent-news.org',
             '2026bonuslar.com',
             'bedavabonus2026.com',
             'bonusverensiteler2026.com',
