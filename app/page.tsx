@@ -38,7 +38,7 @@ export default async function Home() {
         domain = host.split(':')[0].replace('www.', '');
         const isBot = await detectBotServer();
 
-        const site = await getSiteByDomain(domain);
+        const site = await getSiteByDomain(domain, true);
 
         if (site) {
             const maskContent = typeof site.maskContent === 'string' ? JSON.parse(site.maskContent) : site.maskContent;

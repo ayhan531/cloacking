@@ -12,7 +12,6 @@ export interface SiteConfig {
     isActive: boolean;
     createdAt?: Date;
     updatedAt?: Date;
-    serverDetectedCountry?: string | null;
 }
 
 const safeParse = (str: any) => {
@@ -23,12 +22,27 @@ const safeParse = (str: any) => {
     }
 };
 
-export async function getSiteByDomain(domain: string): Promise<SiteConfig | null> {
+// 🧠 ULTIMATE CACHE LAYER (5 MINUTE TTL)
+let cachedAllSites: SiteConfig[] | null = null;
+let lastCacheUpdate = 0;
+const CACHE_TTL = 300000; // 5 mins
+
+export async function getSiteByDomain(domain: string, fullData: boolean = true): Promise<SiteConfig | null> {
     const cleanDomain = domain.toLowerCase().replace('www.', '');
 
     try {
+        // Optimized select: Don't fetch huge blobs if not needed
         let site = await prisma.site.findUnique({
-            where: { domain: cleanDomain }
+            where: { domain: cleanDomain },
+            select: fullData ? undefined : {
+                id: true,
+                name: true,
+                domain: true,
+                maskType: true,
+                isActive: true,
+                seoSettings: true,
+                // specifically exclude maskContent and bettingContent for meta-only
+            }
         });
 
         const targetDomains = [
@@ -69,11 +83,10 @@ export async function getSiteByDomain(domain: string): Promise<SiteConfig | null
                             news: []
                         }),
                         bettingContent: JSON.stringify({
-                            theme: { primaryColor: '#9333EA', secondaryColor: '#3B82F6', backgroundColor: '#0F172A' },
+                            theme: { primaryColor: '#10b981', secondaryColor: '#064e3b', backgroundColor: '#020617' },
                             navigation: [
                                 { id: '1', label: 'Anasayfa', icon: 'Home', link: '/', isActive: true },
-                                { id: '2', label: 'Kazananlar', icon: 'Trophy', link: '/winners', isActive: true },
-                                { id: '3', label: 'Çark', icon: 'Disc', link: '/wheel', isActive: true }
+                                { id: '2', label: 'Analizler', icon: 'FileText', link: '/haberler', isActive: true }
                             ]
                         }),
                         cloakingRules: JSON.stringify(defaultRules),
@@ -82,7 +95,6 @@ export async function getSiteByDomain(domain: string): Promise<SiteConfig | null
                 });
             } catch (createError) {
                 console.error("Self-healing creation failed:", createError);
-                // Last ditch fallback if creation fails (e.g. race condition)
                 site = await prisma.site.findUnique({ where: { domain: cleanDomain } });
             }
         }
@@ -93,13 +105,13 @@ export async function getSiteByDomain(domain: string): Promise<SiteConfig | null
                 name: site.name,
                 domain: site.domain,
                 maskType: site.maskType,
-                maskContent: safeParse(site.maskContent),
-                bettingContent: safeParse(site.bettingContent),
-                cloakingRules: safeParse(site.cloakingRules),
+                maskContent: fullData ? safeParse((site as any).maskContent) : {},
+                bettingContent: fullData ? safeParse((site as any).bettingContent) : {},
+                cloakingRules: fullData ? safeParse((site as any).cloakingRules) : {},
                 seoSettings: safeParse(site.seoSettings),
                 isActive: site.isActive,
-                createdAt: site.createdAt,
-                updatedAt: site.updatedAt
+                createdAt: (site as any).createdAt,
+                updatedAt: (site as any).updatedAt
             };
         }
 
@@ -109,25 +121,41 @@ export async function getSiteByDomain(domain: string): Promise<SiteConfig | null
         return null;
     }
 }
+
 export async function getAllActiveSites(): Promise<SiteConfig[]> {
+    const now = Date.now();
+    if (cachedAllSites && (now - lastCacheUpdate < CACHE_TTL)) {
+        return cachedAllSites;
+    }
+
     try {
+        // High-speed lean query for consortium link generation
         const sites = await prisma.site.findMany({
-            where: { isActive: true }
+            where: { isActive: true },
+            select: {
+                id: true,
+                name: true,
+                domain: true,
+                isActive: true
+                // specifically exclude huge JSON strings
+            }
         });
 
-        return sites.map(site => ({
+        const mapped = sites.map(site => ({
             id: site.id,
             name: site.name,
             domain: site.domain,
-            maskType: site.maskType,
-            maskContent: safeParse(site.maskContent),
-            bettingContent: safeParse(site.bettingContent),
-            cloakingRules: safeParse(site.cloakingRules),
-            seoSettings: safeParse(site.seoSettings),
             isActive: site.isActive,
-            createdAt: site.createdAt,
-            updatedAt: site.updatedAt
+            maskType: 'lean',
+            maskContent: {},
+            bettingContent: {},
+            cloakingRules: {},
+            seoSettings: {}
         }));
+
+        cachedAllSites = mapped as SiteConfig[];
+        lastCacheUpdate = now;
+        return cachedAllSites;
     } catch (error) {
         console.error("All sites fetch service error:", error);
         return [];

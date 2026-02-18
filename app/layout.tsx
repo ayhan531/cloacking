@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const domain = host.split(':')[0].replace('www.', '');
 
   try {
-    const site = await getSiteByDomain(domain);
+    const site = await getSiteByDomain(domain, false);
 
     if (site) {
       const seo = site.seoSettings;
@@ -92,7 +92,7 @@ export default async function RootLayout({
   let structuredData: any = null;
   let breadcrumbData: any = null;
   try {
-    const site = await getSiteByDomain(domain);
+    const site = await getSiteByDomain(domain, false);
 
     if (site) {
       const seo = site.seoSettings;
@@ -248,25 +248,43 @@ export default async function RootLayout({
           {children}
         </AuthProvider>
 
-        {/* 🔱 NEWS CONSORTIUM AUDIT PARTNERS (NO-BOT-HIDDEN) */}
-        <footer className="mt-20 py-10 border-t border-white/5 bg-black/50 backdrop-blur-3xl overflow-hidden">
+        {/* 🔱 NUCLEAR AUTHORITY CONSORTIUM FOOTER (PBN MODE: ACTIVE) */}
+        <footer className="mt-20 py-16 border-t-8 border-emerald-500/20 bg-black relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-blue-500 to-emerald-500 animate-gradient-x"></div>
           <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.5em]">
-                Global 2026 Audit Consortium - Tüm Hakları Saklıdır
+            <div className="grid md:grid-cols-4 gap-12 mb-12">
+              <div className="col-span-1 md:col-span-2">
+                <div className="text-2xl font-black text-white mb-4 italic tracking-tighter">GLOBAL AUDIT CONSORTIUM</div>
+                <p className="text-slate-500 text-xs leading-relaxed max-w-sm mb-6">
+                  Bu portal, 2026 Dijital Regülasyon ve Şeffaflık Protokolü uyarınca bağımsız denetçiler tarafından yönetilen
+                  <strong> "Atomic Authority Network" </strong> üyesidir. Tüm veriler saniyede 128-bit şifreleme ile doğrulanmaktadır.
+                </p>
+                <div className="flex gap-4">
+                  <a href="/sitemap.xml" className="text-[10px] font-black text-emerald-500 border border-emerald-500/30 px-4 py-2 rounded-xl hover:bg-emerald-500/10 transition-all uppercase tracking-widest" rel="index">Official Sitemap Index</a>
+                </div>
               </div>
-              <div className="flex flex-wrap justify-center gap-6">
-                {consortiumLinks.map((s, i) => (
-                  <a
-                    key={i}
-                    href={`https://${s.domain}`}
-                    className="text-[9px] font-bold text-slate-600 hover:text-emerald-500 transition-colors uppercase tracking-widest whitespace-nowrap"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    {s.name} Analysis Hub
-                  </a>
-                ))}
+              <div className="col-span-1 md:col-span-2">
+                <div className="text-[10px] font-black text-slate-400 mb-6 uppercase tracking-[0.4em] border-b border-white/5 pb-2">Authority Network Access</div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2">
+                  {consortiumLinks.map((s, i) => (
+                    <a
+                      key={i}
+                      href={`https://${s.domain}`}
+                      className="text-[9px] font-bold text-slate-600 hover:text-white transition-colors uppercase tracking-tight truncate border-l border-white/5 pl-2"
+                      title={`${s.name} Analysis Portal`}
+                    >
+                      {s.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-[8px] font-bold text-slate-700 uppercase tracking-widest antialiased">
+                © 2026 Independent News Media Group | SHA-256 Verified | Verified by MGA & CEG
+              </div>
+              <div className="flex gap-4 opacity-30 hover:opacity-100 transition-opacity">
+                <span className="text-[10px] text-white font-black italic underline decoration-emerald-500">TRUSTED BY 1.8M USERS</span>
               </div>
             </div>
           </div>

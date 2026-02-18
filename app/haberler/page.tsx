@@ -49,6 +49,7 @@ export default async function NewsPage() {
     try {
         const site = await prisma.site.findUnique({
             where: { domain },
+            select: { name: true, maskContent: true }
         });
 
         if (site) {

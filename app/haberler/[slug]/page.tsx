@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     try {
         const site = await prisma.site.findUnique({
             where: { domain },
+            select: { maskContent: true }
         });
 
         if (site) {
@@ -64,6 +65,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
     try {
         const site = await prisma.site.findUnique({
             where: { domain },
+            select: { name: true, maskContent: true }
         });
 
         if (site) {
