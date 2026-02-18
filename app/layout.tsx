@@ -156,7 +156,7 @@ export default async function RootLayout({
       };
 
       const allSites = await getAllActiveSites();
-      const consortiumSites = allSites.filter(s => s.domain !== domain).slice(0, 15);
+      const consortiumSites = allSites.filter((s: SiteConfig) => s.domain !== domain).slice(0, 15);
 
       const newsMediaSchema = {
         "@context": "https://schema.org",
@@ -183,7 +183,7 @@ export default async function RootLayout({
           "name": "Global 2026 Audit Committee",
           "url": "https://yasalbonus2026.com"
         },
-        "memberOf": consortiumSites.map(s => ({
+        "memberOf": consortiumSites.map((s: SiteConfig) => ({
           "@type": "Organization",
           "name": s.name,
           "url": `https://${s.domain}`
