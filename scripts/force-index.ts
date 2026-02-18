@@ -8,6 +8,7 @@ async function main() {
 
     // Hedef domainler
     const domains = [
+        'independent-news.org',
         'flovazcomercial.com',
         'haber-analiz2026.com',
         'vizyontekyazilim.com',
@@ -27,14 +28,14 @@ async function main() {
         try {
             await axios.get(googlePing);
             console.log(`✅ Google Ping Success: ${domain}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error(`❌ Google Ping Failed: ${domain} - ${error.message}`);
         }
 
         try {
             await axios.get(bingPing);
             console.log(`✅ Bing Ping Success: ${domain}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error(`❌ Bing Ping Failed: ${domain} - ${error.message}`);
         }
     }
