@@ -264,7 +264,7 @@ export default async function RootLayout({
                     target="_blank"
                     rel="noopener"
                   >
-                    {s.name} Partner
+                    {s.name} Analysis Hub
                   </a>
                 ))}
               </div>

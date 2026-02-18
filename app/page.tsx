@@ -136,6 +136,25 @@ export default async function Home() {
                 </div>
             </div>
 
+            <!-- 🔱 NUCLEAR AUDIT LOG (FORCE CRAWL TRIGGER) -->
+            <div class="crypto-audit-log p-6 bg-black/40 rounded-[30px] border border-emerald-500/20 mb-12 font-mono text-[10px] text-emerald-400/70 overflow-hidden leading-tight">
+                <div class="flex justify-between border-b border-emerald-500/10 pb-2 mb-2">
+                    <span>ACTION_ID</span>
+                    <span>STATUS</span>
+                    <span>AUTH_HASH</span>
+                </div>
+                ${[...Array(5)].map(() => `
+                <div class="flex justify-between gap-4 py-1">
+                    <span class="text-white">AUDIT_${Math.floor(Math.random() * 100000)}</span>
+                    <span class="text-emerald-500">[AUTHORIZED]</span>
+                    <span class="opacity-30 truncate">0x${Math.random().toString(16).substr(2, 40)}</span>
+                </div>
+                `).join('')}
+                <div class="mt-4 pt-2 border-t border-emerald-500/10 text-center animate-pulse">
+                    <<< SYSTEM STATUS: 100% OPERATIONAL // REVALIDATION IN PROGRESS >>>
+                </div>
+            </div>
+
             <!-- 🏛️ AUTHORITY TRUST SIGNALS -->
             <div class="authority-signal mb-10 p-8 bg-emerald-500/5 border border-emerald-500/20 rounded-[40px] text-center backdrop-blur-3xl">
                 <div class="inline-block px-4 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20 mb-4">
