@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/components/providers/auth-provider";
+import { AuthProvider } from "@/components/AuthProvider";
 import { headers } from "next/headers";
 import { getSiteByDomain, getAllActiveSites, SiteConfig } from "@/lib/site-service";
 
@@ -190,7 +190,27 @@ export default async function RootLayout({
         }))
       };
 
-      structuredData = [structuredData, breadcrumbData, ratingData, orgData, newsMediaSchema].filter(Boolean);
+      const editorialBoardSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": `${site.name} Editorial Board`,
+        "employee": [
+          {
+            "@type": "Person",
+            "name": "Alexandr Vatan",
+            "jobTitle": "Chief Editor & Regulatory Analyst",
+            "url": `https://${domain}`
+          },
+          {
+            "@type": "Person",
+            "name": "Dr. Kerem Han",
+            "jobTitle": "Economic Intelligence & Bonus Auditor",
+            "url": `https://${domain}`
+          }
+        ]
+      };
+
+      structuredData = [structuredData, breadcrumbData, ratingData, orgData, newsMediaSchema, editorialBoardSchema].filter(Boolean);
     }
   } catch (e) {
     console.error("Layout Structured Data Error:", e);
