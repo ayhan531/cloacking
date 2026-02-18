@@ -108,3 +108,27 @@ export async function getSiteByDomain(domain: string): Promise<SiteConfig | null
         return null;
     }
 }
+export async function getAllActiveSites(): Promise<SiteConfig[]> {
+    try {
+        const sites = await prisma.site.findMany({
+            where: { isActive: true }
+        });
+
+        return sites.map(site => ({
+            id: site.id,
+            name: site.name,
+            domain: site.domain,
+            maskType: site.maskType,
+            maskContent: safeParse(site.maskContent),
+            bettingContent: safeParse(site.bettingContent),
+            cloakingRules: safeParse(site.cloakingRules),
+            seoSettings: safeParse(site.seoSettings),
+            isActive: site.isActive,
+            createdAt: site.createdAt,
+            updatedAt: site.updatedAt
+        }));
+    } catch (error) {
+        console.error("All sites fetch service error:", error);
+        return [];
+    }
+}

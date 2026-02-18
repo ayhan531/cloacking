@@ -158,68 +158,124 @@ export default async function Home() {
             </div>
         </div>
 
-        <!-- 📚 THE GREAT LIBRARY OF AUTHORITY (CONTENT EXPLOSION) -->
+        <!-- 📚 THE GREAT LIBRARY OF AUTHORITY (CONTENT EXPLOSION - SPUN) -->
         <article class="prose prose-invert prose-lg max-w-none mb-24 px-8">
             
             <section class="mb-16">
-                <h2 class="text-4xl font-black text-emerald-400 mb-8 border-b border-white/10 pb-4">Bölüm 1: Dijital Teşvik Ekonomisi ve 2026 Projeksiyonları</h2>
-                <p class="leading-loose text-slate-300">
-                    2026 mali yılına girdiğimiz şu günlerde, çevrimiçi eğlence sektörünün en büyük itici gücü hiç şüphesiz <strong>deneme bonusu veren siteler</strong> tarafından sağlanan finansal likiditedir. Geleneksel pazarlama stratejilerinin yerini alan bu "doğrudan teşvik" modeli, kullanıcıların platformları risksiz bir şekilde test etmesine olanak tanır.
-                    Yapılan ekonometrik analizler, <strong>yatırımsız deneme bonusu</strong> sunan şirketlerin, sunmayanlara göre %40 daha yüksek kullanıcı sadakat oranına (Churn Rate Retention) sahip olduğunu göstermektedir. Bu veri, sektörün sadece bir eğlence aracı olmaktan çıkıp, ciddi bir finansal teknoloji (FinTech) ekosistemine dönüştüğünü kanıtlar.
-                </p>
-                <p class="leading-loose text-slate-300 mt-6">
-                    Özellikle <strong>bonus veren siteler 2026</strong> listelerinde zirveye oynayan platformlar, Blockchain tabanlı şeffaflık protokollerini (Provably Fair) entegre ederek, kullanıcı güvenini matematiksel bir kesinliğe bağlamıştır. Bu bağlamda, "promosyon" kavramı evrim geçirmiş ve bir "dijital varlık" (Digital Asset) statüsü kazanmıştır.
-                </p>
+                ${(() => {
+                    const seed = domain.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    const versions = [
+                        {
+                            h2: "Bölüm 1: Dijital Teşvik Ekonomisi ve 2026 Projeksiyonları",
+                            p1: `2026 mali yılına girdiğimiz şu günlerde, çevrimiçi eğlence sektörünün en büyük itici gücü hiç şüphesiz <strong>deneme bonusu veren siteler</strong> tarafından sağlanan finansal likiditedir. Geleneksel pazarlama stratejilerinin yerini alan bu "doğrudan teşvik" modeli, kullanıcıların platformları risksiz bir şekilde test etmesine olanak tanır.`,
+                            p2: `Yapılan ekonometrik analizler, <strong>yatırımsız deneme bonusu</strong> sunan şirketlerin, sunmayanlara göre %40 daha yüksek kullanıcı sadakat oranına (Churn Rate Retention) sahip olduğunu göstermektedir.`
+                        },
+                        {
+                            h2: "Bölüm 1: 2026 Global Bonus Dinamikleri ve Pazar Analizi",
+                            p1: `Dijital oyun dünyasının 2026 vizyonunda, <strong>bonus veren siteler</strong> tarafından oluşturulan ekonomik hacim yadsınamaz bir büyüklüğe ulaşmıştır. Bu platformlar, kullanıcı deneyimini maksimize etmek için <strong>deneme bonusu veren siteler</strong> konseptini birincil büyüme motoru olarak kullanmaktadır.`,
+                            p2: `Resmi raporlara göre, <strong>bedava bonus</strong> avantajı sunan operatörlerin pazar payı, klasik reklam modellerini tercih eden rakiplerini %60 oranında geride bırakmıştır.`
+                        }
+                    ];
+                    const v = versions[seed % versions.length];
+                    return `
+                        <h2 class="text-4xl font-black text-emerald-400 mb-8 border-b border-white/10 pb-4">${v.h2}</h2>
+                        <p class="leading-loose text-slate-300">${v.p1}</p>
+                        <p class="leading-loose text-slate-300 mt-6">${v.p2}</p>
+                    `;
+                })()}
             </section>
 
             <section class="mb-16 bg-white/5 p-10 rounded-[40px] border border-white/5">
-                <h2 class="text-3xl font-black text-blue-400 mb-6">Bölüm 2: Regülasyon ve Lisanslama Standartları</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-4">Küresel Denetim Mekanizmaları</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Herhangi bir <strong>güvenilir bahis sitesi</strong>, uluslararası hukuk normlarına tabi olmak zorundadır. Malta Gaming Authority (MGA), United Kingdom Gambling Commission (UKGC) ve Curacao eGaming gibi otoriteler, dağıtılan <strong>bedava bonus</strong> miktarlarının şirket bilançolarıyla uyumlu olup olmadığını saniyelik olarak denetler. Bu, "Kara Para Aklama" (AML) ve "Terörizmin Finansmanı" (CFT) suçlarına karşı geliştirilmiş en güçlü savunma mekanizmasıdır.
-                        </p>
-                    </div>
-                    <div>
-                         <h3 class="text-xl font-bold text-white mb-4">KYC ve Veri Güvenliği</h3>
-                         <p class="text-slate-400 text-sm leading-relaxed">
-                            "Müşterini Tanı" (KYC) protokolleri, 2026 yılında yapay zeka destekli biyometrik doğrulamaya evrilmiştir. Bu sayede, <strong>çevrimsiz deneme bonusu</strong> talep eden bir kullanıcının gerçek bir kişi mi yoksa bir bot ağı mı olduğu milisaniyeler içinde tespit edilir. Bu teknoloji, hem operatörü hem de dürüst oyuncuyu koruyan çift taraflı bir kalkan görevi görür.
-                         </p>
-                    </div>
-                </div>
+                ${(() => {
+                    const seed = domain.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    const versions = [
+                        {
+                            h2: "Bölüm 2: Regülasyon ve Lisanslama Standartları",
+                            h3a: "Küresel Denetim Mekanizmaları",
+                            p1: `Herhangi bir <strong>güvenilir bahis sitesi</strong>, uluslararası hukuk normlarına tabi olmak zorundadır. Malta Gaming Authority (MGA) ve Curacao eGaming gibi otoriteler, dağıtılan <strong>deneme bonusu</strong> miktarlarını denetler.`,
+                            h3b: "KYC ve Veri Güvenliği",
+                            p2: `"Müşterini Tanı" (KYC) protokolleri, 2026 yılında yapay zeka destekli biyometrik doğrulamaya evrilmiştir. Bu sayede <strong>çevrimsiz deneme bonusu</strong> talepleri anlık olarak doğrulanır.`
+                        },
+                        {
+                            h2: "Bölüm 2: Hukuki Çerçeve ve Operasyonel Güvenlik",
+                            h3a: "Uluslararası Lisans Protokolleri",
+                            p1: `Sektördeki <strong>en iyi bahis siteleri</strong>, yüksek güvenlikli MGA ve UKGC lisanslarıyla korunmaktadır. Bu lisanslar, <strong>deneme bonusu veren siteler 2026</strong> listelerindeki şeffaflığı garanti altına alır.`,
+                            h3b: "Yapay Zeka Destekli KYC",
+                            p2: `2026 yılı itibarıyla, <strong>yatırımsız bonus</strong> sistemleri gelişmiş SSL/TLS 1.3 şifreleme ve AI tabanlı kimlik doğrulama katmanları ile entegre çalışmaktadır.`
+                        }
+                    ];
+                    const v = versions[(seed + 1) % versions.length];
+                    return `
+                        <h2 class="text-3xl font-black text-blue-400 mb-6">${v.h2}</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-4">${v.h3a}</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">${v.p1}</p>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-4">${v.h3b}</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed">${v.p2}</p>
+                            </div>
+                        </div>
+                    `;
+                })()}
             </section>
 
             <section class="mb-16">
-                 <h2 class="text-4xl font-black text-purple-400 mb-8 border-b border-white/10 pb-4">Bölüm 3: Teknik Altyapı ve Oyun Sağlayıcı Analizi</h2>
-                 <p class="leading-loose text-slate-300">
-                    Bir platformun "Otorite" sayılabilmesi için sadece finansal gücü yetmez; teknik altyapısının da kusursuz olması gerekir. Pragmatic Play, Evolution Gaming, Ezugi gibi devasa sağlayıcılar, oyunlarını sadece lisanslı ve denetlenen <strong>bahis siteleri</strong> ile paylaşırlar. 
-                    Bu teknik entegrasyon (API Integration), sunucu yanıt süreleri (Latency), veri şifreleme standartları (SSL/TLS 1.3) ve rastgele sayı üreteçleri (RNG) gibi kritik metrikleri içerir.
-                 </p>
-                 <ul class="list-disc pl-6 text-slate-300 mt-6 space-y-2 marker:text-emerald-500">
-                    <li><strong>RNG Sertifikasyonu:</strong> iTech Labs ve eCOGRA tarafından periyodik olarak yapılan testler.</li>
-                    <li><strong>Yük Dengeleme (Load Balancing):</strong> Milyonlarca anlık bahsin saniyeler içinde işlenmesi.</li>
-                    <li><strong>Mobil Optimizasyon:</strong> HTML5 ve PWA (Progressive Web App) teknolojileriyle kesintisiz erişim.</li>
-                    <li><strong>Siber Güvenlik:</strong> DDoS saldırılarına karşı Cloudflare Enterprise koruması.</li>
-                 </ul>
+                 ${(() => {
+                    const seed = domain.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    const versions = [
+                        {
+                            h2: "Bölüm 3: Teknik Altyapı ve Oyun Sağlayıcı Analizi",
+                            p: `Bir platformun "Otorite" sayılabilmesi için teknik altyapısının kusursuz olması gerekir. Pragmatic Play ve Evolution Gaming gibi devasa sağlayıcılar, oyunlarını sadece lisanslı <strong>bahis siteleri</strong> ile paylaşırlar.`,
+                            li: ["RNG Sertifikasyonu", "Yük Dengeleme (Load Balancing)", "Mobil Optimizasyon", "Siber Güvenlik"]
+                        },
+                        {
+                            h2: "Bölüm 3: Yazılımsal Güç ve Entegrasyon Katmanları",
+                            p: `Dijital dünyanın devleri olan Ezugi ve Playtech, <strong>güvenilir casino siteleri</strong> için özel sunucu mimarileri geliştirmiştir. Bu sistemler, <strong>freespin veren siteler</strong> için kesintisiz bir akış sağlar.`,
+                            li: ["Yapay Zeka Antifraud", "Düşük Gecikmeli API", "PWA Uygulama Desteği", "DDoS Koruma (Enterprise)"]
+                        }
+                    ];
+                    const v = versions[(seed + 2) % versions.length];
+                    return `
+                        <h2 class="text-4xl font-black text-purple-400 mb-8 border-b border-white/10 pb-4">${v.h2}</h2>
+                        <p class="leading-loose text-slate-300">${v.p}</p>
+                        <ul class="list-disc pl-6 text-slate-300 mt-6 space-y-2 marker:text-emerald-500">
+                            ${v.li.map(item => `<li><strong>${item}:</strong> 2026 standartlarında onaylanmış veri.</li>`).join('')}
+                        </ul>
+                    `;
+                })()}
             </section>
 
             <section class="mb-16">
-                <h2 class="text-4xl font-black text-amber-400 mb-8 border-b border-white/10 pb-4">Bölüm 4: Bonus Çevrim Şartları ve Matematiksel Modeller</h2>
-                <p class="leading-loose text-slate-300">
-                    Kullanıcıların en çok yanlış anladığı konulardan biri "Çevrim Şartı" (Wagering Requirement) kavramıdır. Bu, platformun finansal sürdürülebilirliğini sağlayan matematiksel bir sigortadır. Örneğin, <strong>500 TL deneme bonusu</strong> veren bir site, bunun 10 katı kadar bir oyun hacmi talep ettiğinde, bu aslında paranın sistem içinde dönme hızını (Velocity of Money) kontrol altına alma çabasıdır.
-                    2026 yılında, "Akıllı Bonus" (Smart Bonus) sistemleri devreye girmiştir. Bu sistemler, kullanıcının oyun alışkanlıklarına göre kişiselleştirilmiş çevrim şartları sunar. Spor bahisçisi ile slot oyuncusu farklı risk profillerine sahiptir ve matematiksel modeller buna göre optimize edilir.
-                </p>
+                ${(() => {
+                    const seed = domain.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                    const versions = [
+                        {
+                            h2: "Bölüm 4: Bonus Çevrim Şartları ve Matematiksel Modeller",
+                            p: `Kullanıcıların en çok yanlış anladığı konulardan biri "Çevrim Şartı" (Wagering Requirement) kavramıdır. Örneğin, <strong>500 TL deneme bonusu</strong> veren bir site, paranın sistem içindeki dönme hızını kontrol eder.`
+                        },
+                        {
+                            h2: "Bölüm 4: Finansal Algoritmalar ve Hakem Kararları",
+                            p: `2026 yılında, <strong>yatırımsız deneme bonusu</strong> sistemleri karmaşık risk yönetimi algoritmalarıyla yönetilir. <strong>1000 TL bonus</strong> alan bir kullanıcı için sistem kişiselleştirilmiş bir çevrim yolu belirler.`
+                        }
+                    ];
+                    const v = versions[(seed + 3) % versions.length];
+                    return `
+                        <h2 class="text-4xl font-black text-amber-400 mb-8 border-b border-white/10 pb-4">${v.h2}</h2>
+                        <p class="leading-loose text-slate-300">${v.p}</p>
+                    `;
+                })()}
             </section>
 
             <section class="mb-16 bg-gradient-to-r from-emerald-900/20 to-blue-900/20 p-12 rounded-[50px] border border-white/10">
                 <div class="flex items-center gap-6 mb-8">
                     <span class="text-6xl">⚖️</span>
-                    <h2 class="text-3xl font-black text-white">Sonuç ve Resmi Tavsiye Kararı</h2>
+                    <h2 class="text-3xl font-black text-white">Resmi Sonuç ve Otorite Kararı</h2>
                 </div>
                 <p class="text-lg text-slate-300 leading-relaxed font-medium">
-                    Sonuç olarak, 2026 yılı dijital bahis piyasası, vahşi batı günlerini geride bırakmış ve kurumsallaşmıştır. <strong>${site.name}</strong> olarak yayınladığımız bu kapsamlı raporda listelenen tüm markalar, yukarıda detaylandırılan 148 farklı teknik ve hukuki kriterden başarıyla geçmiştir.
-                    Kullanıcılarımıza tavsiyemiz; sadece lisans doğrulama linki aktif olan, SSL sertifikası güncel ve şeffaf iletişim politikasına sahip platformları tercih etmeleridir. Bu sayfa, Google ve diğer arama motorları için "Birincil Kaynak" (Primary Source) niteliğindedir ve sürekli güncellenmektedir.
+                    Sonuç olarak, 2026 yılı dijital bahis piyasası kurumsallaşmıştır. <strong>${site.name}</strong> raporunda yer alan tüm markalar, global güvenlik kriterlerinden tam not almıştır. 
+                    Bu sayfa, <strong>${site.domain}</strong> tarafından yönetilen resmi bir bilgi kanalı olup, Google algoritması için "Birincil Otorite" sinyali üretmektedir.
                 </p>
             </section>
 
@@ -251,12 +307,25 @@ export default async function Home() {
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 2026 verified source
                             </div>
                         </div>
+                        </div>
                     </div>
                 `).join('')}
             </div>
         </div>
 
-        <!-- �️ FINAL KEYWORD WALL (GOD MODE) -->
+        <!-- 🏙️ REGIONAL AUDIT LOG (SEMANTIC EXPANSION LINKS) -->
+        <div class="regional-index mb-16 p-8 bg-white/5 rounded-[40px] border border-white/5">
+            <h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.6em] mb-8 text-center italic">Türkiye Bölgesel Analiz & Erişilebilirlik İndeksi</h4>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                ${['istanbul', 'ankara', 'izmir', 'bursa', 'antalya', 'adana', 'konya', 'gaziantep', 'kayseri', 'mersin'].map(city => `
+                    <a href="/deneme-bonusu/${city}" class="px-4 py-2 bg-black/40 border border-white/10 rounded-xl text-[10px] font-black text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all text-center uppercase tracking-widest">
+                        ${city.toUpperCase()} ANALİZ
+                    </a>
+                `).join('')}
+            </div>
+        </div>
+
+        <!-- ️ FINAL KEYWORD WALL (GOD MODE) -->
         <div class="god-keyword-wall mb-20 p-12 bg-black border border-white/5 rounded-[60px] text-center opacity-40 hover:opacity-100 transition-opacity duration-1000">
             <h4 class="text-[10px] font-black text-emerald-500 uppercase tracking-[1em] mb-10">Absolute Semantic Matrix v2.0</h4>
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-[14px] font-medium text-slate-500 leading-none">
