@@ -58,11 +58,19 @@ async function main() {
 
     const extendedNews = [...baseNews, ...generatedNews].slice(0, 200);
 
+    // Get niche mappings from consortium-engine for correct branding
+    const getDomainInfo = (domain: string) => {
+        const partner = CONSORTIUM_PARTNERS.find(p => p.domain === domain);
+        if (partner) return partner;
+        return { name: domain.split('.')[0].toUpperCase(), niche: 'news' as any };
+    };
+
     for (const domain of allDomains) {
         console.log(`🚀 Saturating Domain [${allDomains.indexOf(domain) + 1}/${allDomains.length}]: ${domain}...`);
 
         let site = await prisma.site.findUnique({ where: { domain } });
-        const siteName = domain.split('.')[0].toUpperCase();
+        const partnerInfo = getDomainInfo(domain);
+        const siteName = partnerInfo.name;
 
         const seoSettings = {
             metaTitle: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${siteName} Official`,
@@ -70,16 +78,31 @@ async function main() {
             keywords: "deneme bonusu veren siteler 2026, bonus veren siteler 2026, bedava bonus, yatırımsız deneme bonusu, casino bonusları, bahis analiz 2026"
         };
 
+        // Preserve niche identity while injecting 200 articles
+        let maskType: any = 'blog';
+        if (partnerInfo.niche === 'audit' || partnerInfo.niche === 'legal') maskType = 'corporate';
+        if (partnerInfo.niche === 'tech') maskType = 'corporate';
+        if (domain.includes('flovaz')) maskType = 'corporate';
+
         const maskContent = {
             siteName: siteName,
-            heroTitle: `${siteName} | 2026 Stratejik Analiz Akışı`,
+            heroTitle: partnerInfo.niche === 'news' ? `${siteName} | 2026 Stratejik Analiz Akışı` : `${siteName} | 2026 Güvenlik ve Denetim Portalı`,
             heroSubtitle: "Global Audit Consortium - Yapay Zeka Destekli Teknik Veri Analiz Portalı v7.0",
             news: extendedNews,
-            colorScheme: {
+            colorScheme: domain.includes('flovaz') ? { primary: '#1e293b', secondary: '#334155', accent: '#6366f1' } : {
                 primary: '#10b981',
                 secondary: '#064e3b',
                 accent: '#34d399'
-            }
+            },
+            features: [
+                { id: '1', icon: 'Shield', title: 'Risk Analizi', description: 'Platformların finansal risklerini uzman ekibimizle önceden belirliyoruz.' },
+                { id: '2', icon: 'Shield', title: 'Lisans Doğrulama', description: 'Tüm sitelerin global oyun lisanslarını saniyeler içinde doğruluyoruz.' },
+                { id: '3', icon: 'Shield', title: 'Poliçe Güvencesi', description: 'Geleceğinizi güvence altına alıyoruz.' },
+            ],
+            services: [
+                { id: '1', name: 'Analiz', description: '2026 yılı dijital platform güvenlik standartları incelemesi.' },
+                { id: '2', name: 'Sertifikasyon', description: 'Sitemizdeki firmalar güvenlik testlerinden geçmiştir.' }
+            ]
         };
 
         if (site) {
@@ -87,7 +110,7 @@ async function main() {
                 where: { id: site.id },
                 data: {
                     isActive: true,
-                    maskType: 'blog',
+                    maskType: maskType,
                     maskContent: JSON.stringify(maskContent),
                     seoSettings: JSON.stringify(seoSettings),
                     updatedAt: new Date()
@@ -99,7 +122,7 @@ async function main() {
                     domain: domain,
                     name: siteName,
                     isActive: true,
-                    maskType: 'blog',
+                    maskType: maskType,
                     maskContent: JSON.stringify(maskContent),
                     seoSettings: JSON.stringify(seoSettings),
                     bettingContent: JSON.stringify({
