@@ -403,8 +403,36 @@ export default async function Home() {
             };
 
             if (isBot) {
-                return <MaskSite config={config} />;
+                // 🕒 APEX HEARTBEAT SIGNAL: Inject live timestamp to show extreme freshness to Googlebot
+                const heartbeat = new Date().toISOString();
+                const freshBotArticle = homeBotArticle.replace(
+                    '<<< SYSTEM STATUS: 100% OPERATIONAL // REVALIDATION IN PROGRESS >>>',
+                    `<<< SYSTEM STATUS: 100% OPERATIONAL // APEX HEARTBEAT: ${heartbeat} // DIRECT SSR INJECTION >>>`
+                );
+
+                return (
+                    <div className="bot-optimized-ssr-view">
+                        <style dangerouslySetInnerHTML={{
+                            __html: `
+                            .bot-optimized-ssr-view { background: #020617; color: white; font-family: sans-serif; }
+                            .ultimate-seo-vault { max-width: 1200px; margin: 0 auto; padding: 3rem; }
+                            .analysis-hub { max-width: 1200px; margin: 0 auto; padding: 3rem; background: rgba(15, 23, 42, 0.8); border-radius: 40px; }
+                        `}} />
+                        <div dangerouslySetInnerHTML={{ __html: freshBotArticle }} />
+                        <div className="analysis-hub">
+                            <h3 style={{ color: '#10b981' }}>2026 Stratejik Analiz Raporları (Global Index):</h3>
+                            {(site.maskContent as any).news?.slice(0, 10).map((n: any) => (
+                                <div key={n.slug} style={{ marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1rem' }}>
+                                    <a href={`/haberler/${n.slug}`} style={{ color: '#6ee7b7', fontSize: '1.5rem', fontWeight: 'bold' }}>{n.title}</a>
+                                    <p style={{ color: '#94a3b8' }}>{n.summary}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
             }
+
+            return <MaskSite config={config} />;
         }
     } catch (error) {
         console.error("Home Page Critical Error for domain " + domain + ":", error);
