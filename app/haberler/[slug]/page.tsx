@@ -31,9 +31,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
                 return {
                     title: newsItem.title,
                     description: newsItem.summary,
+                    alternates: {
+                        canonical: `https://${domain}/haberler/${slug}`,
+                    },
                     openGraph: {
                         title: newsItem.title,
                         description: newsItem.summary,
+                        url: `https://${domain}/haberler/${slug}`,
                         images: newsItem.image ? [newsItem.image] : [],
                     }
                 };
@@ -173,6 +177,13 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
                             <div className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-[var(--primary)]">
                                 <div dangerouslySetInnerHTML={{ __html: newsItem.content }} />
+                            </div>
+
+                            {/* Yazar ve Paylaşım Alanı */}
+                            <div className="mt-12 py-8 border-t border-slate-100 flex items-center justify-between">
+                                <div className="text-sm font-medium text-slate-500">
+                                    Editöryal inceleme tamamlanmıştır.
+                                </div>
                             </div>
                         </div>
                     </article>

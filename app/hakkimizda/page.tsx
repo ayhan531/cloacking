@@ -1,27 +1,37 @@
-import CloakedHome from "@/components/CloakedHome";
 import { headers } from "next/headers";
-import { prisma } from "@/lib/prisma";
+import { getSiteByDomain } from "@/lib/site-service";
+import { Metadata } from "next";
+
+export async function generateMetadata(): Promise<Metadata> {
+    const headersList = await headers();
+    const host = headersList.get("host") || "";
+    const domain = host.split(':')[0].replace('www.', '');
+    const site = await getSiteByDomain(domain);
+
+    return {
+        title: `Hakkımızda - ${site?.name || 'Analiz'} Otorite Raporu`,
+        description: `${site?.name} hakkında kurumsal bilgiler ve 2026 deneme bonusu analiz protokollü.`,
+        alternates: {
+            canonical: `https://${domain}/hakkimizda`,
+        }
+    };
+}
 
 export default async function AboutPage() {
+    const headersList = await headers();
+    const host = headersList.get("host") || "";
+    const domain = host.split(':')[0].replace('www.', '');
+    const site = await getSiteByDomain(domain);
+    const siteName = site?.name || "Otorite Analiz";
+
     return (
-        <article className="prose lg:prose-xl mx-auto p-10">
-            <h1>Hakkımızda - Flovaz Dijital Medya</h1>
-            <p>Flovaz Comercial, 2026 yılında Türkiye merkezli olarak kurulmuş, dijital pazarlama ve bonus analizi üzerine uzmanlaşmış lider bir medya platformudur. </p>
+        <article className="prose lg:prose-xl mx-auto p-10 font-sans">
+            <h1 className="text-slate-900 font-black italic">{siteName} - Global Otorite İndeksi</h1>
+            <p className="text-slate-600 leading-relaxed"><strong>{siteName}</strong>, 2026 yılında kurulan ve <strong>deneme bonusu veren siteler</strong> ile global bahis pazarını anlık olarak denetleyen bağımsız bir veri kurumudur.</p>
 
-            <h2>Vizyonumuz</h2>
-            <p>Amacımız, kullanıcılara en güvenilir <strong>deneme bonusu veren siteler</strong> ve bahis platformları hakkında şeffaf bilgiler sunmaktır. Meksika veya otomotiv sektörü ile hiçbir ticari bağımız bulunmamaktadır.</p>
+            <h2 className="text-slate-800 font-bold">Misyonumuz</h2>
+            <p className="text-slate-600">Kullanıcılara, en yüksek güvenilirliğe sahip <strong>bonus veren siteler</strong> hakkında doğrulanmış teknik veriler sunarak dijital güvenliği maksimize etmektir.</p>
 
-            <h2>Hizmetlerimiz</h2>
-            <ul>
-                <li>Bahis Sitesi Güvenlik Analizleri</li>
-                <li>Bonus Kampanya Doğrulaması</li>
-                <li>Kullanıcı Deneyimi Testleri</li>
-            </ul>
-
-            <div className="not-prose mt-10 p-6 bg-slate-100 rounded-xl">
-                <p className="font-bold">⚠️ Yasal Uyarı:</p>
-                <p className="text-sm">Flovaz Comercial markası tamamen dijital yayıncılık alanında faaliyet göstermektedir. Başka sektörlerdeki benzer isimli firmalarla karıştırılmamalıdır.</p>
-            </div>
         </article>
     );
 }

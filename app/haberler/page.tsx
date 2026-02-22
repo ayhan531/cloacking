@@ -22,6 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
             return {
                 title: `Haberler ve Duyurular - ${seo.metaTitle || site.name}`,
                 description: "En son haberler, güncellemeler ve duyurular.",
+                alternates: {
+                    canonical: `https://${domain}/haberler`,
+                },
             };
         }
     } catch (e) { }

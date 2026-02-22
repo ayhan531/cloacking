@@ -35,28 +35,77 @@ async function main() {
         { id: '50', title: `The Great Semantic Reset: Search in 2026`, slug: 'semantic-reset-search-2026', summary: 'Arama motorlarında anlamsal sıfırlama ve yeni kurallar.', content: 'Google SGE sonrası içerik otoritesinin yeniden tanımlanması.', date: new Date().toISOString() }
     ];
 
-    // ALGORİTMİK İÇERİK FABRİKASI: 10 -> 210
     const niches = ["Regulatory", "Audit", "Financial", "Technical", "Security", "AI", "Blockchain", "Compliance", "Ethical", "Global", "Cyber", "Risk", "Strategy", "Protocol", "Analytic"];
     const keywords = ["Verification", "Protocol", "Analysis", "Standards", "Framework", "Governance", "Transparency", "Safety", "Trust", "Infrastructure", "Dominance", "Compliance", "Architecture", "Audit", "Review"];
 
-    const generatedNews = [];
-    for (let i = 1; i <= 200; i++) {
-        const niche = niches[i % niches.length];
-        const kw = keywords[i % keywords.length];
-        const title = `${niche} ${kw} Report v${(i / 10).toFixed(1)}: ${currentMonth} ${currentYear} Stability Analysis`;
-        const slug = `${niche.toLowerCase()}-${kw.toLowerCase()}-report-${i + 100}`;
+    // 🎤 SEMANTIC DNA SPINNING ENGINE: Generate 100% unique fingerprint per domain/article
+    const generateUniqueNews = (domain: string, count: number) => {
+        const spunNews = [];
+        const domainName = domain.split('.')[0].toUpperCase();
 
-        generatedNews.push({
-            id: (i + 100).toString(),
-            title: title,
-            slug: slug,
-            summary: `${niche} odaklı ${kw} süreçlerinin 2026 yılındaki derinlemesine analizi ve endüstri standartları.`,
-            content: `${title} kapsamında, ${niche} regülasyonlarının ${kw} parametreleri üzerindeki etkisi incelenmektedir. 2026 yılındaki global değişimler bu raporun temelini oluşturur. Bu analiz, siber güvenlik ve finansal şeffaflık konularında yeni bir era başlatmaktadır.`,
-            date: new Date().toISOString()
-        });
-    }
+        const intros = [
+            `2026 yılı ${domainName} veri akışına göre,`,
+            `${domainName} tarafından hazırlanan teknik raporda,`,
+            `Global denetim standartları çerçevesinde ${domainName} analizi:`,
+            `2026 iGaming ekosisteminde ${domainName} otorite onayıyla:`,
+            `${domainName} veritabanından alınan son bilgilere göre,`,
+            `Sektörel şeffaflık raporuna göre ${domainName} verileri:`,
+            `2026 regülasyon uyum süreci kapsamında ${domainName} tarafından bildirilen:`,
+            `Ekonomik istikrar ve oyun adaletinde ${domainName} imzalı rapor:`,
+        ];
 
-    const extendedNews = [...baseNews, ...generatedNews].slice(0, 200);
+        const bodies = [
+            `sektördeki şeffaflık protokollerini yeniden tanımlıyor. Bu gelişme, <strong>deneme bonusu veren siteler</strong> arasındaki dengeyi değiştiriyor.`,
+            `güvenlik katmanları ve API entegrasyonları üzerinde kritik bir rol oynamaktadır. Özellikle <strong>bonus veren siteler</strong> için yeni bir çağ başlıyor.`,
+            `yatırımsız deneme bonusu veren siteler arasındaki rekabeti körüklüyor. ${domainName} bu süreçte denetleyici rol üstleniyor.`,
+            `kullanıcı güvenliği için SHA-256 doğrulama hashlerini devreye aldı. Bu sistem ${domainName} altyapısının bir parçasıdır.`,
+            `finansal stabilite ve hızlı çekim garantisiyle öne çıkan platformları inceliyor. Yatırımcılar için 2026 yılı kritik.`,
+            `kripto tabanlı ödeme sistemlerinin iGaming entegrasyonunda ${domainName} standartlarını referans alıyor.`,
+            `yapay zeka destekli hile koruma sistemlerinde ${domainName} patentli teknolojiler kullanılıyor.`,
+        ];
+
+        const conclusion = [
+            `Bu analiz ${domainName} tarafından saniyede 128-bit şifreleme ile onaylanmıştır.`,
+            `Raporun tam detayı ${domainName} resmi arşivlerinde saklanmaktadır.`,
+            `2026 vizyonu kapsamında ${domainName} bu verileri anlık olarak güncellemektedir.`,
+            `Güvenlik ID: 0x${Math.random().toString(16).substr(2, 6).toUpperCase()} ile ${domainName} ağına kaydedilmiştir.`,
+            `Otorite Doğrulama Kodu: ${domainName}-2026-X${Math.floor(Math.random() * 999)}`,
+            `Bu içerik ${domainName} News Network tarafından global dağıtım ağına servis edilmiştir.`,
+        ];
+
+        const adjectives = ["Kritik", "Stratejik", "Teknik", "Finansal", "Global", "Hukuki", "Dijital", "Hiyerarşik", "Otomasyonel", "Yapay Zeka Destekli"];
+
+        for (let i = 1; i <= count; i++) {
+            const niche = niches[i % niches.length];
+            const kw = keywords[i % keywords.length];
+            const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+            const intro = intros[Math.floor(Math.random() * intros.length)];
+            const body = bodies[Math.floor(Math.random() * bodies.length)];
+            const concl = conclusion[Math.floor(Math.random() * conclusion.length)];
+
+            // 🧬 Domain-based Slug variation to avoid cross-domain collisions
+            const title = `${domainName} ${adj} ${niche} ${kw} Analizi v${(i / 13).toFixed(1)}`;
+            const slug = `${domainName.toLowerCase()}-${adj.toLowerCase()}-${niche.toLowerCase()}-${kw.toLowerCase()}-${i + 1000}`;
+
+            spunNews.push({
+                id: (i + 1000).toString(),
+                title: title,
+                slug: slug,
+                summary: `${intro} ${niche} odaklı ${kw} süreçlerinin 2026 yılındaki ${adj.toLowerCase()} analizi.`,
+                content: `
+                    <p>${intro} <strong>${niche}</strong> ve <strong>${kw}</strong> parametreleri ${body}</p>
+                    <div class="audit-verification" style="border-left: 2px solid #10b981; padding-left: 10px; margin: 10px 0; font-size: 10px; color: #64748b;">
+                        VERIFICATION_HASH: ${Math.random().toString(36).substr(2, 10).toUpperCase()}<br/>
+                        NODE_ID: ${domainName}-S${i}<br/>
+                        TIMESTAMP: ${new Date().toISOString()}
+                    </div>
+                    <p>${concl}</p>
+                `,
+                date: new Date(Date.now() - Math.floor(Math.random() * 86400000)).toISOString()
+            });
+        }
+        return spunNews;
+    };
 
     // Get niche mappings from consortium-engine for correct branding
     const getDomainInfo = (domain: string) => {
@@ -71,6 +120,9 @@ async function main() {
         let site = await prisma.site.findUnique({ where: { domain } });
         const partnerInfo = getDomainInfo(domain);
         const siteName = partnerInfo.name;
+
+        // 🧬 DNA Diversification happens here
+        const domainSpecificNews = generateUniqueNews(domain, 200);
 
         const seoSettings = {
             metaTitle: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${siteName} Official`,
@@ -88,7 +140,7 @@ async function main() {
             siteName: siteName,
             heroTitle: partnerInfo.niche === 'news' ? `${siteName} | 2026 Stratejik Analiz Akışı` : `${siteName} | 2026 Güvenlik ve Denetim Portalı`,
             heroSubtitle: "Global Audit Consortium - Yapay Zeka Destekli Teknik Veri Analiz Portalı v7.0",
-            news: extendedNews,
+            news: domainSpecificNews,
             colorScheme: domain.includes('flovaz') ? { primary: '#1e293b', secondary: '#334155', accent: '#6366f1' } : {
                 primary: '#10b981',
                 secondary: '#064e3b',

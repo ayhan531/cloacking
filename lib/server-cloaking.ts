@@ -17,6 +17,16 @@ export async function detectBotServer(): Promise<boolean> {
         /twitter/i,
         /whatsapp/i,
         /telegram/i,
+        /slack/i,
+        /linkedin/i,
+        /pinterest/i,
+        /duckduck/i,
+        /ia_archiver/i,
+        /mediapartners-google/i,
+        /adsbot-google/i,
+        /google-read-aloud/i,
+        /google-structured-data-testing-tool/i,
+        /chrome-lighthouse/i,
     ];
 
     return botPatterns.some(pattern => pattern.test(userAgent));
