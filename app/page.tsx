@@ -181,7 +181,7 @@ export default async function Home() {
                         <div style={{ padding: '1rem', background: '#10b981', color: '#000', textAlign: 'center', fontWeight: 'bold', fontSize: '10px' }}>
                             NUCLEAR_INDEX_SIGNAL: [${heartbeat}] // MODE: DIRECT_SSR_INJECTION // STATUS: AUTHENTICATED
                         </div>
-                        <div dangerouslySetInnerHTML={{ __html: homeBotArticle }} />
+                        <div dangerouslySetInnerHTML={{ __html: freshBotArticle }} />
                         <div className="analysis-hub">
                             <h3 style={{ color: '#10b981', marginBottom: '2rem', fontSize: '1.5rem', fontWeight: '900' }}>2026 STRATEJİK VERİ KATMANLARI (FULL_INDEX):</h3>
                             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>

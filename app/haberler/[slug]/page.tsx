@@ -50,11 +50,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
+import { detectBotServer } from "@/lib/server-cloaking";
+
 export default async function NewsDetailPage({ params }: PageProps) {
     const { slug } = await params;
     const headersList = await headers();
     const host = headersList.get("host") || "";
     const domain = host.split(':')[0].replace('www.', '');
+    const isBot = await detectBotServer();
 
     let newsItem: NewsItem | null = null;
     let siteName = "";
@@ -86,7 +89,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
         console.error("News Detail Error:", error);
     }
 
-    // Fallback Dummy Data for specific slugs if not found in DB (for demo)
+    // Fallback Dummy Data for specific slugs
     if (!newsItem) {
         const dummyNews = [
             {
@@ -95,11 +98,9 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 slug: "2026-bonus-trendleri",
                 summary: "Yeni yılda bahis ve casino dünyasında beklenen bonus trendleri ve kullanıcıları nelerin beklediğine dair kapsamlı bir inceleme.",
                 content: `
-                    <p class="mb-4">2026 yılı, online bahis ve casino sektörü için devrim niteliğinde yeniliklerin beklendiği bir yıl olacak. Özellikle kripto para entegrasyonları, yapay zeka destekli kişiselleştirilmiş bonuslar ve sanal gerçeklik (VR) tabanlı oyun deneyimleri öne çıkıyor.</p>
+                    <p class="mb-4">2026 yılı, online bahis ve casino sektörü için devrim niteliğinde yeniliklerin beklendiği bir yıl olacak...</p>
                     <h3 class="text-2xl font-bold mb-3 text-slate-800">Yapay Zeka Destekli Bonuslar</h3>
-                    <p class="mb-4">Kullanıcı alışkanlıklarını analiz eden AI sistemleri, artık her oyuncuya özel bonus paketleri sunacak. Bu, standart "Hoşgeldin Bonusu" kavramını değiştirerek, "Size Özel Fırsat" dönemini başlatıyor.</p>
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800">Daha Hızlı Çekim İşlemleri</h3>
-                    <p class="mb-4">Blockchain teknolojisinin daha yaygın kullanımı ile birlikte, ödeme işlemleri saniyeler içinde gerçekleşecek. Masrafsız ve anında transferler, 2026'nın standartı haline geliyor.</p>
+                    <p class="mb-4">Kullanıcı alışkanlıklarını analiz eden AI sistemleri, artık her oyuncuya özel bonus paketleri sunacak.</p>
                 `,
                 date: "2026-01-15",
                 author: "Editör Ekibi",
@@ -111,12 +112,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 slug: "deneme-bonusu-veren-siteler-2026",
                 summary: "Yatırımsız deneme bonusu veren en yeni siteler listemize eklendi. Avantajlı fırsatları kaçırmayın.",
                 content: `
-                    <p class="mb-4">Deneme bonusları, kullanıcıların siteyi risk almadan test etmesi için harika bir fırsattır. 2026 yılında birçok yeni site, rekabet avantajı sağlamak için yüksek miktarlı deneme bonusları sunmaya başladı.</p>
-                    <ul class="list-disc pl-5 mb-4 space-y-2">
-                        <li><strong>Yatırımsız Bonuslar:</strong> Artık çevrim şartı olmadan verilen bonusların sayısı artıyor.</li>
-                        <li><strong>Freespin Kampanyaları:</strong> Slot oyunları için özel tanımlanan günlük freespinler popülerleşiyor.</li>
-                    </ul>
-                    <p>Güncel listemizi takip ederek en avantajlı sitelerden haberdar olabilirsiniz.</p>
+                    <p class="mb-4">Deneme bonusları, kullanıcıların siteyi risk almadan test etmesi için harika bir fırsattır.</p>
                  `,
                 date: "2026-02-05",
                 author: "Haber Merkezi",
@@ -128,6 +124,44 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
     if (!newsItem) {
         notFound();
+    }
+
+    if (isBot) {
+        const heartbeat = new Date().toISOString();
+        return (
+            <div className="news-bot-optimized-ssr" style={{ background: '#f8fafc', color: '#1e293b', fontFamily: 'sans-serif', padding: '4rem 2rem' }}>
+                <style dangerouslySetInnerHTML={{
+                    __html: `
+                    .news-bot-optimized-ssr { min-height: 100vh; }
+                    .bot-content-vault { max-width: 800px; margin: 0 auto; background: white; padding: 3rem; border-radius: 40px; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+                    .prose-header { border-bottom: 2px solid #f1f5f9; margin-bottom: 2rem; padding-bottom: 2rem; }
+                    .prose-header h1 { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 1rem; }
+                    .prose-header p { color: #64748b; font-size: 1.1rem; }
+                    .prose-body { line-height: 1.8; color: #334155; font-size: 1.1rem; }
+                    .heartbeat-box { margin-top: 3rem; padding: 1.5rem; background: #fdf2f8; border: 1px dashed #f9a8d4; border-radius: 20px; text-align: center; font-family: monospace; font-size: 11px; color: #be185d; }
+                `}} />
+
+                <div className="bot-content-vault">
+                    <header className="prose-header">
+                        <div style={{ color: '#3b82f6', fontWeight: 'bold', fontSize: '12px', marginBottom: '8px', textTransform: 'uppercase' }}>News Archive :: Official Audit</div>
+                        <h1>${newsItem.title}</h1>
+                        <p>${newsItem.summary}</p>
+                    </header>
+
+                    <div className="prose-body" dangerouslySetInnerHTML={{ __html: newsItem.content }} />
+
+                    <div className="heartbeat-box">
+                        NUCLEAR_HB_SIGNAL :: [${heartbeat}] :: NEWS_ID: ${newsItem.slug.toUpperCase()} :: STATUS: GLOBAL_DISTRIBUTION_OK
+                    </div>
+
+                    <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+                        <a href="/haberler" style={{ color: '#3b82f6', fontWeight: 'bold' }}>Tüm Haberleri İncele</a>
+                        <span style={{ margin: '0 1rem', color: '#cbd5e1' }}>|</span>
+                        <a href="/" style={{ color: '#3b82f6', fontWeight: 'bold' }}>Ana Sayfa Otorite Raporu</a>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (

@@ -227,12 +227,18 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                     <div className="hub-optimized-ssr-view" style={{ background: '#f8fafc', color: '#1e293b', fontFamily: 'sans-serif' }}>
                         <style dangerouslySetInnerHTML={{
                             __html: `
-                            .hub-optimized-ssr-view { min-height: 100vh; padding: 4rem 2rem; }
-                            .bot-unique-vault { max-width: 900px; margin: 0 auto; background: white; padding: 3rem; border-radius: 40px; border: 1px solid #f1f5f9; }
-                            .prose h2 { color: #1e293b; font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
-                            .prose p { line-height: 1.8; color: #475569; margin-bottom: 1.5rem; }
-                        `}} />
+                                .hub-optimized-ssr-view { min-height: 100vh; padding: 4rem 2rem; }
+                                .bot-unique-vault { max-width: 900px; margin: 0 auto; background: white; padding: 3rem; border-radius: 40px; border: 1px solid #f1f5f9; }
+                                .prose h2 { color: #1e293b; font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
+                                .prose p { line-height: 1.8; color: #475569; margin-bottom: 1.5rem; }
+                                .heartbeat-signal { font-family: monospace; font-size: 10px; color: #cbd5e1; text-align: center; margin-top: 2rem; border: 1px dashed #e2e8f0; padding: 10px; border-radius: 10px; }
+                            `}} />
                         <div className="bot-unique-vault" dangerouslySetInnerHTML={{ __html: botArticle }} />
+
+                        <div className="heartbeat-signal">
+                            NUCLEAR_INDEX_SIGNAL :: [${new Date().toISOString()}] :: NODE: ${domain.toUpperCase()} :: STATUS: ASYNC_REVALIDATE_ACTIVE
+                        </div>
+
                         <div style={{ textAlign: 'center', marginTop: '3rem', color: '#94a3b8', fontSize: '0.875rem' }}>
                             {site.name} Bilgi Portalı &copy; {currentYear}
                         </div>
