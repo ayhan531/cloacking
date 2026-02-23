@@ -11,12 +11,12 @@ export async function GET() {
 
     let urls = [
         { loc: `https://${domain}`, lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'always' },
-        { loc: `https://${domain}/hakkimizda`, lastmod: new Date().toISOString(), priority: '0.8', changefreq: 'monthly' },
-        { loc: `https://${domain}/iletisim`, lastmod: new Date().toISOString(), priority: '0.8', changefreq: 'monthly' },
-        { loc: `https://${domain}/deneme-bonusu`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
-        { loc: `https://${domain}/bahis-siteleri`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
-        { loc: `https://${domain}/casino-siteleri`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
-        { loc: `https://${domain}/hosgeldin-bonusu`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'daily' },
+        { loc: `https://${domain}/hakkimizda`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'always' },
+        { loc: `https://${domain}/iletisim`, lastmod: new Date().toISOString(), priority: '0.9', changefreq: 'always' },
+        { loc: `https://${domain}/deneme-bonusu`, lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'always' },
+        { loc: `https://${domain}/bahis-siteleri`, lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'always' },
+        { loc: `https://${domain}/casino-siteleri`, lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'always' },
+        { loc: `https://${domain}/hosgeldin-bonusu`, lastmod: new Date().toISOString(), priority: '1.0', changefreq: 'always' },
     ];
 
     try {
