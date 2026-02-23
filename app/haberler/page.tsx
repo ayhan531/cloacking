@@ -105,12 +105,34 @@ export default async function NewsPage() {
         ];
     }
 
+    const newsSchema = {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "name": siteName,
+        "url": `https://${domain}`,
+        "description": `${siteName} - 2026 iGaming ve dijital eğlence dünyasından en güncel teknik analizler, denetim raporları ve deneme bonusu rehberleri.`,
+        "logo": `https://${domain}/logo.png`,
+    };
+
     return (
         <div className="min-h-screen font-sans bg-slate-50" style={{
             '--primary': colorScheme.primary,
             '--secondary': colorScheme.secondary,
             '--accent': colorScheme.accent,
         } as any}>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(newsSchema) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    "itemListElement": news.map((item, index) => ({
+                        "@type": "ListItem",
+                        "position": index + 1,
+                        "url": `https://${domain}/haberler/${item.slug}`,
+                        "name": item.title
+                    }))
+                })
+            }} />
             {/* Simple Header */}
             <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
