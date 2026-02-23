@@ -22,24 +22,33 @@ export default function MaskSite({ config }: MaskSiteProps) {
                 '--accent': colorScheme.accent,
             } as any}>
                 {/* News Header */}
-                <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+                <header className="bg-white/80 backdrop-blur-2xl border-b border-slate-200/60 sticky top-0 z-50">
                     <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-[var(--primary)] text-white flex items-center justify-center font-black text-xl rounded-lg">
+                        <div className="flex items-center gap-3 group cursor-pointer">
+                            <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white flex items-center justify-center font-black text-xl rounded-xl shadow-lg shadow-primary/20 group-hover:rotate-6 transition-transform">
                                 {maskContent?.siteName?.charAt(0) || 'V'}
                             </div>
-                            <span className="text-2xl font-black text-slate-900 tracking-tight uppercase">
+                            <span className="text-2xl font-black text-slate-900 tracking-tight uppercase group-hover:text-[var(--primary)] transition-colors">
                                 {maskContent?.siteName || 'VizyonTek'}
                             </span>
                         </div>
-                        <nav className="hidden md:flex gap-8">
+                        <nav className="hidden md:flex gap-10">
                             <a href="#" className="text-[var(--primary)] font-bold border-b-2 border-[var(--primary)] py-7">Gündem</a>
-                            <a href="#ekonomi" className="text-slate-600 font-bold hover:text-[var(--primary)] py-7 transition-colors">Ekonomi</a>
-                            <a href="#spor" className="text-slate-600 font-bold hover:text-[var(--primary)] py-7 transition-colors">Spor</a>
-                            <a href="#magazin" className="text-slate-600 font-bold hover:text-[var(--primary)] py-7 transition-colors">Magazin</a>
+                            <a href="#ekonomi" className="text-slate-500 font-bold hover:text-[var(--primary)] py-7 transition-colors relative group">
+                                Ekonomi
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--primary)] group-hover:w-full transition-all" />
+                            </a>
+                            <a href="#spor" className="text-slate-500 font-bold hover:text-[var(--primary)] py-7 transition-colors relative group">
+                                Spor
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--primary)] group-hover:w-full transition-all" />
+                            </a>
+                            <a href="#magazin" className="text-slate-500 font-bold hover:text-[var(--primary)] py-7 transition-colors relative group">
+                                Magazin
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--primary)] group-hover:w-full transition-all" />
+                            </a>
                         </nav>
-                        <Button className="bg-[var(--primary)] hover:bg-[var(--secondary)] text-white font-bold rounded-lg px-6">
-                            Abone Ol
+                        <Button className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:scale-105 hover:shadow-xl hover:shadow-primary/20 text-white font-bold rounded-xl px-8 h-12 transition-all">
+                            Üye Ol
                         </Button>
                     </div>
                 </header>
@@ -124,20 +133,22 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     </section>
 
                     {/* Services as Categories/Features */}
-                    <section className="bg-slate-100 -mx-6 px-6 py-20 mb-10">
-                        <div className="max-w-7xl mx-auto">
-                            <div className="text-center max-w-3xl mx-auto mb-16">
-                                <h2 className="text-3xl font-black text-slate-900 mb-4">Sektör Analizleri ve Raporlar</h2>
-                                <p className="text-slate-500 text-lg">Uzman ekibimiz tarafından hazırlanan detaylı incelemeler.</p>
+                    <section className="bg-slate-900 -mx-6 px-6 py-24 mb-10 overflow-hidden relative">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--primary)]/10 rounded-full blur-[100px]" />
+                        <div className="max-w-7xl mx-auto relative z-10">
+                            <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                                <h3 className="text-[var(--primary)] font-black uppercase tracking-[0.2em] text-sm">Kurumsal Raporlama</h3>
+                                <h2 className="text-5xl font-black text-white italic tracking-tighter">Sektör Analizleri ve <span className="text-slate-500">Global Raporlar</span></h2>
+                                <p className="text-slate-400 text-lg font-medium">Uzman ekibimiz tarafından hazırlanan, SHA-256 doğrulama teknolojisiyle korunan şeffaf veriler.</p>
                             </div>
-                            <div className="grid md:grid-cols-4 gap-6">
+                            <div className="grid md:grid-cols-4 gap-8">
                                 {maskContent?.services?.map((service: any) => (
-                                    <div key={service.id} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                        <div className="w-12 h-12 bg-blue-50 text-[var(--primary)] rounded-xl flex items-center justify-center mb-4">
-                                            <Award className="w-6 h-6" />
+                                    <div key={service.id} className="bg-white/5 backdrop-blur-sm p-8 rounded-[40px] border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-500 group">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-primary/20 group-hover:rotate-12 transition-transform">
+                                            <Award className="w-8 h-8" />
                                         </div>
-                                        <h4 className="font-bold text-slate-900 mb-2">{service.name}</h4>
-                                        <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-2">{service.description}</p>
+                                        <h4 className="font-bold text-white text-xl mb-3 tracking-tight">{service.name}</h4>
+                                        <p className="text-sm text-slate-400 leading-relaxed font-medium line-clamp-3">{service.description}</p>
                                     </div>
                                 )) || <div className="col-span-4 text-center text-slate-400">Hizmet bilgisi bulunamadı.</div>}
                             </div>
