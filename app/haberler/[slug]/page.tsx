@@ -165,58 +165,70 @@ export default async function NewsDetailPage({ params }: PageProps) {
     }
 
     return (
-        <div className="min-h-screen font-sans bg-slate-50" style={{
+        <div className="min-h-screen font-sans bg-slate-50 selection:bg-[var(--primary)] selection:text-white" style={{
             '--primary': colorScheme.primary,
             '--secondary': colorScheme.secondary,
             '--accent': colorScheme.accent,
         } as any}>
             {/* Header */}
-            <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+            <header className="bg-white/80 backdrop-blur-2xl border-b border-slate-200/60 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <Link href="/" className="text-2xl font-black text-slate-900 tracking-tight">
-                        {siteName || "Ana Sayfa"}
-                    </Link>
-                    <nav className="hidden md:flex gap-8">
-                        <Link href="/" className="text-slate-600 hover:text-[var(--primary)] font-medium transition">Ana Sayfa</Link>
-                        <Link href="/haberler" className="text-[var(--primary)] font-medium transition">Haberler</Link>
+                    <div className="flex items-center gap-3 group cursor-pointer">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] text-white flex items-center justify-center font-black text-xl rounded-xl shadow-lg shadow-primary/20 group-hover:rotate-6 transition-transform">
+                            {siteName?.charAt(0) || 'V'}
+                        </div>
+                        <Link href="/" className="text-2xl font-black text-slate-900 tracking-tight uppercase group-hover:text-[var(--primary)] transition-colors">
+                            {siteName || "Ana Sayfa"}
+                        </Link>
+                    </div>
+                    <nav className="hidden md:flex gap-10">
+                        <Link href="/" className="text-slate-500 font-bold hover:text-[var(--primary)] py-7 transition-colors">Ana Sayfa</Link>
+                        <Link href="/haberler" className="text-[var(--primary)] font-bold border-b-2 border-[var(--primary)] py-7">Haberler</Link>
                     </nav>
                 </div>
             </header>
 
-            <main className="py-20">
+            <main className="py-20 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-[var(--primary)]/5 rounded-full blur-[100px] -z-10" />
                 <div className="max-w-4xl mx-auto px-6">
-                    <Link href="/haberler" className="inline-flex items-center gap-2 text-slate-500 hover:text-[var(--primary)] font-medium mb-8 transition-colors">
-                        <ArrowLeft className="w-4 h-4" /> Tüm Haberlere Dön
+                    <Link href="/haberler" className="inline-flex items-center gap-2 text-slate-400 hover:text-[var(--primary)] font-black text-xs uppercase tracking-widest mb-10 transition-colors group">
+                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Geri Dön
                     </Link>
 
-                    <article className="bg-white rounded-[40px] shadow-sm border border-slate-100 overflow-hidden">
+                    <article className="bg-white rounded-[48px] shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
                         {newsItem.image && (
-                            <div className="h-[400px] w-full overflow-hidden">
+                            <div className="h-[450px] w-full overflow-hidden relative">
                                 <img src={newsItem.image} alt={newsItem.title} className="w-full h-full object-cover" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
                             </div>
                         )}
 
-                        <div className="p-10 md:p-14">
-                            <div className="flex flex-wrap items-center gap-6 text-sm font-bold text-slate-400 mb-8 border-b border-slate-100 pb-8">
-                                <span className="flex items-center gap-2"><Calendar className="w-4 h-4" /> {new Date(newsItem.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <div className="p-10 md:p-16">
+                            <div className="flex flex-wrap items-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-10 border-b border-slate-100 pb-10">
+                                <span className="flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-full border border-slate-100"><Calendar className="w-3.5 h-3.5 text-[var(--primary)]" /> {new Date(newsItem.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                                 {newsItem.author && (
-                                    <span className="flex items-center gap-2"><User className="w-4 h-4" /> {newsItem.author}</span>
+                                    <span className="flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-full border border-slate-100"><User className="w-3.5 h-3.5 text-[var(--primary)]" /> {newsItem.author}</span>
                                 )}
                                 {newsItem.tags && newsItem.tags.map(tag => (
-                                    <span key={tag} className="flex items-center gap-2 text-[var(--primary)] bg-blue-50 px-3 py-1 rounded-full"><Tag className="w-3 h-3" /> {tag}</span>
+                                    <span key={tag} className="flex items-center gap-2 text-white bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] px-4 py-2 rounded-full shadow-lg shadow-primary/20"><Tag className="w-3.5 h-3.5" /> {tag}</span>
                                 ))}
                             </div>
 
-                            <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight tracking-tight">{newsItem.title}</h1>
+                            <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-12 leading-[1.1] tracking-tighter italic">{newsItem.title}</h1>
 
-                            <div className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-[var(--primary)]">
+                            <div className="prose prose-xl prose-slate max-w-none prose-headings:font-black prose-headings:text-slate-900 prose-headings:italic prose-a:text-[var(--primary)] prose-p:leading-relaxed prose-p:text-slate-600">
                                 <div dangerouslySetInnerHTML={{ __html: newsItem.content }} />
                             </div>
 
-                            {/* Yazar ve Paylaşım Alanı */}
-                            <div className="mt-12 py-8 border-t border-slate-100 flex items-center justify-between">
-                                <div className="text-sm font-medium text-slate-500">
-                                    Editöryal inceleme tamamlanmıştır.
+                            {/* Share / Footer */}
+                            <div className="mt-16 pt-10 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                                <div className="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Editöryal İnceleme: Tamamlandı
+                                </div>
+                                <div className="flex gap-4">
+                                    <button className="flex items-center gap-2 px-6 py-3 bg-slate-50 rounded-2xl border border-slate-100 text-slate-900 font-bold text-sm hover:bg-slate-900 hover:text-white transition-all">
+                                        <Share2 className="w-4 h-4" /> Haberi Paylaş
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -224,8 +236,16 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 </div>
             </main>
 
-            <footer className="bg-slate-900 py-12 text-center mt-20">
-                <p className="text-slate-500">© 2026 {siteName}. Tüm hakları saklıdır.</p>
+            <footer className="bg-slate-950 py-20 text-center">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="flex items-center justify-center gap-4 mb-8">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] flex items-center justify-center shadow-lg">
+                            <ArrowLeft className="w-5 h-5 text-white rotate-180" />
+                        </div>
+                        <span className="text-2xl font-black italic tracking-tighter text-white uppercase">{siteName}</span>
+                    </div>
+                    <p className="text-white/20 text-xs font-black uppercase tracking-[0.3em]">© 2026 {siteName}. Tüm hakları saklıdır.</p>
+                </div>
             </footer>
         </div>
     );
