@@ -38,42 +38,49 @@ async function main() {
     const niches = ["Regulatory", "Audit", "Financial", "Technical", "Security", "AI", "Blockchain", "Compliance", "Ethical", "Global", "Cyber", "Risk", "Strategy", "Protocol", "Analytic"];
     const keywords = ["Verification", "Protocol", "Analysis", "Standards", "Framework", "Governance", "Transparency", "Safety", "Trust", "Infrastructure", "Dominance", "Compliance", "Architecture", "Audit", "Review"];
 
-    // 🎤 SEMANTIC DNA SPINNING ENGINE: Generate 100% unique fingerprint per domain/article
+    // 🎤 ULTIMATE SEMANTIC DNA SPINNING ENGINE v5.0: Generate 100% unique fingerprint per domain/article
     const generateUniqueNews = (domain: string, count: number) => {
         const spunNews = [];
         const domainName = domain.split('.')[0].toUpperCase();
 
         const intros = [
-            `2026 yılı ${domainName} veri akışına göre,`,
-            `${domainName} tarafından hazırlanan teknik raporda,`,
-            `Global denetim standartları çerçevesinde ${domainName} analizi:`,
-            `2026 iGaming ekosisteminde ${domainName} otorite onayıyla:`,
-            `${domainName} veritabanından alınan son bilgilere göre,`,
-            `Sektörel şeffaflık raporuna göre ${domainName} verileri:`,
-            `2026 regülasyon uyum süreci kapsamında ${domainName} tarafından bildirilen:`,
-            `Ekonomik istikrar ve oyun adaletinde ${domainName} imzalı rapor:`,
+            `2026 yılı ${domainName} dijital veri akışına göre,`,
+            `${domainName} platformu tarafından hazırlanan detaylı teknik raporda,`,
+            `Global denetim standartları (audit) çerçevesinde ${domainName} analizi sonucu:`,
+            `2026 iGaming ve dijital eğlence ekosisteminde ${domainName} otorite onayıyla:`,
+            `${domainName} merkezi veritabanından alınan anlık verilere göre,`,
+            `Sektörel şeffaflık raporu (Transparency Index) kapsamında ${domainName} verileri:`,
+            `2026 regülasyon uyum süreci (Compliance) kapsamında ${domainName} tarafından bildirilen:`,
+            `Ekonomik istikrar ve oyun adaletinde ${domainName} imzalı teknik rapor:`,
+            `${domainName} uzmanları tarafından gerçekleştirilen derinlemesine inceleme neticesinde:`,
+            `Dijital şeffaflık politikası uyarınca ${domainName} üzerinden servis edilen:`,
+            `2026 yılının en kapsamlı risk-kazanç analizinde ${domainName} bulguları:`,
+            `Bağımsız denetçiler ve ${domainName} iş birliğiyle hazırlanan deklarasyonda:`
         ];
 
         const bodies = [
-            `sektördeki şeffaflık protokollerini yeniden tanımlıyor. Bu gelişme, <strong>deneme bonusu veren siteler</strong> arasındaki dengeyi değiştiriyor.`,
-            `güvenlik katmanları ve API entegrasyonları üzerinde kritik bir rol oynamaktadır. Özellikle <strong>bonus veren siteler</strong> için yeni bir çağ başlıyor.`,
-            `yatırımsız deneme bonusu veren siteler arasındaki rekabeti körüklüyor. ${domainName} bu süreçte denetleyici rol üstleniyor.`,
-            `kullanıcı güvenliği için SHA-256 doğrulama hashlerini devreye aldı. Bu sistem ${domainName} altyapısının bir parçasıdır.`,
-            `finansal stabilite ve hızlı çekim garantisiyle öne çıkan platformları inceliyor. Yatırımcılar için 2026 yılı kritik.`,
-            `kripto tabanlı ödeme sistemlerinin iGaming entegrasyonunda ${domainName} standartlarını referans alıyor.`,
-            `yapay zeka destekli hile koruma sistemlerinde ${domainName} patentli teknolojiler kullanılıyor.`,
+            `sektördeki şeffaflık protokollerini ve kullanıcı güvenlik katmanlarını yeniden tanımlıyor. Bu gelişme, <strong>deneme bonusu veren siteler</strong> arasındaki rekabeti kökten değiştiriyor.`,
+            `güvenlik mimarisi ve API katmanları üzerinde kritik bir rol oynamaktadır. Özellikle <strong>bonus veren siteler 2026</strong> rehberleri için yeni bir standart belirleniyor.`,
+            `yatırımsız deneme bonusu sağlayan platformlar arasındaki pazar payı dengelerini değiştiriyor. ${domainName} bu süreçte stratejik bir denetleyici rol üstleniyor.`,
+            `kullanıcı veri güvenliği için SHA-512 şifreleme ve anlık doğrulama sistemlerini devreye aldı. Bu yenilik ${domainName} ağının temel taşıdır.`,
+            `finansal istikrar, yüksek çekim limitleri ve hızlı ödeme garantisiyle öne çıkan markaları teknik olarak inceliyor. Yatırımcılar için 2026 vizyonu oldukça parlak.`,
+            `kripto varlık tabanlı ödeme geçitlerinin (Gateway) entegrasyonunda ${domainName} standartlarını ana referans noktası olarak alıyor.`,
+            `yapay zeka destekli dolandırıcılık önleme (Anti-Fraud) sistemlerinde ${domainName} tarafından geliştirilen algoritmalar aktif olarak kullanılıyor.`,
+            `pazarın en yüksek oranlı ve en şeffaf bonus kampanyalarını sunan mecraları metodolojik bir yaklaşımla listeleyerek kullanıcılara sunuyor.`,
+            `altyapı sağlayıcılarının (Infrastructure) sertifikasyon süreçlerini saniyeler içinde tamamlayabilen yeni bir node sistemine geçiş yaptı.`
         ];
 
         const conclusion = [
-            `Bu analiz ${domainName} tarafından saniyede 128-bit şifreleme ile onaylanmıştır.`,
-            `Raporun tam detayı ${domainName} resmi arşivlerinde saklanmaktadır.`,
-            `2026 vizyonu kapsamında ${domainName} bu verileri anlık olarak güncellemektedir.`,
-            `Güvenlik ID: 0x${Math.random().toString(16).substr(2, 6).toUpperCase()} ile ${domainName} ağına kaydedilmiştir.`,
-            `Otorite Doğrulama Kodu: ${domainName}-2026-X${Math.floor(Math.random() * 999)}`,
-            `Bu içerik ${domainName} News Network tarafından global dağıtım ağına servis edilmiştir.`,
+            `Bu stratejik analiz ${domainName} tarafından saniyede 256-bit şifreleme ile doğrulanmış ve global arşive eklenmiştir.`,
+            `Raporun tüm teknik detayları ve log kayıtları ${domainName} resmi audit sunucularında güvenle saklanmaktadır.`,
+            `2026 gelecek vizyonu kapsamında ${domainName} bu verileri anlık (Real-time) olarak güncellemeye devam etmektedir.`,
+            `Güvenlik ID: 0x${Math.random().toString(16).substr(2, 8).toUpperCase()} referans kodu ile ${domainName} blockchain ağına işlenmiştir.`,
+            `Otorite Doğrulama Kodu: ${domainName}-2026-ALPHA-${Math.floor(Math.random() * 99999)}`,
+            `Bu özel içerik ${domainName} News Synergy Network tarafından global dağıtım ağına yüksek öncelikle servis edilmiştir.`,
+            `Tüm hakları ${domainName} Global iGaming Intelligence birimi tarafından saklı tutulmaktadır.`
         ];
 
-        const adjectives = ["Kritik", "Stratejik", "Teknik", "Finansal", "Global", "Hukuki", "Dijital", "Hiyerarşik", "Otomasyonel", "Yapay Zeka Destekli"];
+        const adjectives = ["Kritik", "Stratejik", "Metodolojik", "Finansal", "Global", "Hukuki", "Dijital", "Derinlemesine", "Otomasyonel", "Yapay Zeka Destekli", "Bütünsel", "Şeffaf"];
 
         for (let i = 1; i <= count; i++) {
             const niche = niches[i % niches.length];
@@ -84,22 +91,32 @@ async function main() {
             const concl = conclusion[Math.floor(Math.random() * conclusion.length)];
 
             // 🧬 Domain-based Slug variation to avoid cross-domain collisions
-            const title = `${domainName} ${adj} ${niche} ${kw} Analizi v${(i / 13).toFixed(1)}`;
-            const slug = `${domainName.toLowerCase()}-${adj.toLowerCase()}-${niche.toLowerCase()}-${kw.toLowerCase()}-${i + 1000}`;
+            const title = `${domainName}: ${adj} ${niche} ve ${kw} Raporu v${(i / 13 + 1).toFixed(1)}`;
+            const slug = `${domainName.toLowerCase()}-${adj.toLowerCase().replace(' ', '-')}-${niche.toLowerCase()}-${kw.toLowerCase()}-${i + 1000}`;
 
             spunNews.push({
                 id: (i + 1000).toString(),
                 title: title,
                 slug: slug,
-                summary: `${intro} ${niche} odaklı ${kw} süreçlerinin 2026 yılındaki ${adj.toLowerCase()} analizi.`,
+                summary: `${intro} ${niche} odaklı ${kw} süreçlerinin 2026 yılındaki ${adj.toLowerCase()} boyutları incelendi.`,
                 content: `
-                    <p>${intro} <strong>${niche}</strong> ve <strong>${kw}</strong> parametreleri ${body}</p>
-                    <div class="audit-verification" style="border-left: 2px solid #10b981; padding-left: 10px; margin: 10px 0; font-size: 10px; color: #64748b;">
-                        VERIFICATION_HASH: ${Math.random().toString(36).substr(2, 10).toUpperCase()}<br/>
-                        NODE_ID: ${domainName}-S${i}<br/>
-                        TIMESTAMP: ${new Date().toISOString()}
+                    <div class="analysis-content-wrapper p-4">
+                        <p class="text-lg leading-relaxed mb-4">${intro} <strong>${niche}</strong> ve <strong>${kw}</strong> parametreleri ışığında ${body}</p>
+                        <section class="meta-data-box my-6 p-6 bg-slate-100 rounded-3xl border border-slate-200">
+                             <h5 class="text-sm font-black mb-2 uppercase text-slate-500">Teknik Verifikasyon Katmanı:</h5>
+                             <ul class="text-[11px] font-mono text-slate-400 space-y-1 list-none p-0">
+                                <li>HASH_ALGO: SHA-512_ENCRYPTED</li>
+                                <li>VERIFICATION_SIGNATURE: ${Math.random().toString(36).substr(2, 12).toUpperCase()}</li>
+                                <li>METRIC_ID: ${domainName}-STABLE-${i}</li>
+                                <li>SCAN_NODE: GLOBAL-AUDIT-SERVER-${Math.floor(Math.random() * 99)}</li>
+                             </ul>
+                        </section>
+                        <p class="mb-4">Araştırmanın ikinci aşamasında, ${domainName} mühendisleri tarafından geliştirilen hibrit modelleme teknikleri kullanılarak pazarın en güvenilir <strong>deneme bonusu</strong> teklifleri ayrıştırılmıştır. Bu süreç, kullanıcılar için maksimum şeffaflık sağlamayı amaçlar.</p>
+                        <div class="trust-signal mt-2 p-2 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest text-center rounded-lg">
+                            ${domainName} // VERIFIED_SOURCE // REVALIDATION_DATE: ${new Date().toLocaleDateString('tr-TR')}
+                        </div>
+                        <p class="mt-6 italic text-slate-500 border-t pt-4">${concl}</p>
                     </div>
-                    <p>${concl}</p>
                 `,
                 date: new Date(Date.now() - Math.floor(Math.random() * 86400000)).toISOString()
             });

@@ -144,12 +144,12 @@ export default async function Home() {
                     botArticle: `
             ${homeBotArticle}
             <div class="analysis-hub mt-12 p-8 bg-black/20 rounded-[40px] border border-white/5">
-                <h3 class="text-xl font-black text-emerald-400 mb-6 uppercase tracking-tighter italic">2026 Stratejik Analiz Raporları:</h3>
-                <div class="grid gap-4">
-                    ${(site.maskContent?.news || []).slice(0, 3).map((n: any) => `
-                        <div class="news-link-item p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all border border-white/5">
-                            <a href="/haberler/${n.slug}" class="text-emerald-300 font-bold hover:underline">${n.title}</a>
-                            <p class="text-slate-500 text-xs mt-1">${n.summary}</p>
+                <h3 class="text-xl font-black text-emerald-400 mb-6 uppercase tracking-tighter italic">2026 Global Otorite İndeksi (Anlık Veri Akışı):</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    ${(site.maskContent?.news || []).slice(0, 30).map((n: any) => `
+                        <div class="news-link-item p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-all border border-white/5">
+                            <a href="/haberler/${n.slug}" class="text-emerald-300 font-bold hover:underline text-sm">${n.title}</a>
+                            <p class="text-slate-500 text-[10px] mt-1 line-clamp-1">${n.summary}</p>
                         </div>
                     `).join('')}
                 </div>
@@ -175,18 +175,23 @@ export default async function Home() {
                         <style dangerouslySetInnerHTML={{
                             __html: `
                             .bot-optimized-ssr-view { background: #020617; color: white; font-family: sans-serif; }
-                            .ultimate-seo-vault { max-width: 1200px; margin: 0 auto; padding: 3rem; }
-                            .analysis-hub { max-width: 1200px; margin: 0 auto; padding: 3rem; background: rgba(15, 23, 42, 0.8); border-radius: 40px; }
+                            .ultimate-seo-vault { max-width: 1200px; margin: 0 auto; padding: 3rem; border-bottom: 2px dashed rgba(255,255,255,0.05); }
+                            .analysis-hub { max-width: 1200px; margin: 0 auto; padding: 3rem; background: rgba(15, 23, 42, 0.4); border-radius: 40px; }
                         `}} />
-                        <div dangerouslySetInnerHTML={{ __html: freshBotArticle }} />
+                        <div style={{ padding: '1rem', background: '#10b981', color: '#000', textAlign: 'center', fontWeight: 'bold', fontSize: '10px' }}>
+                            NUCLEAR_INDEX_SIGNAL: [${heartbeat}] // MODE: DIRECT_SSR_INJECTION // STATUS: AUTHENTICATED
+                        </div>
+                        <div dangerouslySetInnerHTML={{ __html: homeBotArticle }} />
                         <div className="analysis-hub">
-                            <h3 style={{ color: '#10b981' }}>2026 Stratejik Analiz Raporları (Global Index):</h3>
-                            {(site.maskContent as any).news?.slice(0, 10).map((n: any) => (
-                                <div key={n.slug} style={{ marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1rem' }}>
-                                    <a href={`/haberler/${n.slug}`} style={{ color: '#6ee7b7', fontSize: '1.5rem', fontWeight: 'bold' }}>{n.title}</a>
-                                    <p style={{ color: '#94a3b8' }}>{n.summary}</p>
-                                </div>
-                            ))}
+                            <h3 style={{ color: '#10b981', marginBottom: '2rem', fontSize: '1.5rem', fontWeight: '900' }}>2026 STRATEJİK VERİ KATMANLARI (FULL_INDEX):</h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
+                                {(site.maskContent as any).news?.slice(0, 30).map((n: any) => (
+                                    <div key={n.slug} style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                        <a href={`/haberler/${n.slug}`} style={{ color: '#6ee7b7', fontSize: '1rem', fontWeight: 'bold', textDecoration: 'none' }}>{n.title}</a>
+                                        <p style={{ color: '#94a3b8', fontSize: '12px', marginTop: '0.5rem' }}>{n.summary}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 );

@@ -185,13 +185,25 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                     <div class="prose max-w-none">
                         ${specificArticle}
                         
-                        <div class="mt-10 p-6 bg-slate-50 rounded-3xl border border-slate-200">
-                            <h4 class="text-lg font-bold text-slate-900 mb-4">Popüler Konular:</h4>
-                            <div class="flex flex-wrap gap-4 text-sm font-semibold">
-                                <a href="/deneme-bonusu" class="text-blue-600 hover:underline"># 2026 Deneme Bonusu Raporu</a>
-                                <a href="/bahis-siteleri" class="text-emerald-600 hover:underline"># Bahis Altyapı Analizi</a>
-                                <a href="/casino-siteleri" class="text-purple-600 hover:underline"># Slot Performans Verisi</a>
-                                <a href="/haberler" class="text-red-600 hover:underline"># Güncel Gündem</a>
+                        <div class="mt-10 p-8 bg-slate-50 rounded-[40px] border border-slate-200">
+                            <h4 class="text-xl font-bold text-slate-800 mb-6">İlgili Analiz ve Veri Katmanları:</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <a href="/deneme-bonusu" class="p-4 bg-white rounded-2xl border border-slate-100 font-bold text-blue-600 hover:bg-blue-50 transition-all flex items-center justify-between">
+                                    <span>2026 Deneme Bonusu Raporu</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                                <a href="/bahis-siteleri" class="p-4 bg-white rounded-2xl border border-slate-100 font-bold text-emerald-600 hover:bg-emerald-50 transition-all flex items-center justify-between">
+                                    <span>Bahis Altyapı Analizi</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                                <a href="/casino-siteleri" class="p-4 bg-white rounded-2xl border border-slate-100 font-bold text-purple-600 hover:bg-purple-50 transition-all flex items-center justify-between">
+                                    <span>Slot Performans Verisi</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                                <a href="/haberler" class="p-4 bg-white rounded-2xl border border-slate-100 font-bold text-red-600 hover:bg-red-50 transition-all flex items-center justify-between">
+                                    <span>Son Dakika Gelişmeleri</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
                             </div>
                         </div>
 
