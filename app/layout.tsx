@@ -252,18 +252,25 @@ export default async function RootLayout({
                 </div>
               </div>
               <div className="col-span-1 md:col-span-2">
-                <div className="text-sm font-bold text-slate-300 mb-4 uppercase">Önerilen Kaynaklar</div>
+                <div className="text-sm font-bold text-slate-300 mb-4 uppercase">Global Otorite Portalları & Denetim Ağımız</div>
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
-                  {consortiumLinks.map((s, i) => (
-                    <a
-                      key={i}
-                      href={`https://${s.domain}`}
-                      className="text-xs font-medium text-slate-500 hover:text-emerald-400 transition-colors truncate"
-                      title={`${s.name} İnceleme`}
-                    >
-                      {s.name}
-                    </a>
-                  ))}
+                  {consortiumLinks.map((s, i) => {
+                    const domainSlug = s.domain.split('.')[0];
+                    const keywords = ["Deneme Bonusu 2026", "Bahis Raporu", "Casino Analiz", "Güncel Liste", "Güvenilir Platformlar"];
+                    const randomKeyword = keywords[i % keywords.length];
+
+                    return (
+                      <a
+                        key={i}
+                        href={`https://${s.domain}`}
+                        className="text-[10px] font-bold text-slate-500 hover:text-emerald-400 transition-colors truncate uppercase tracking-tighter"
+                        title={`${s.name} - ${randomKeyword}`}
+                      >
+                        <span className="text-emerald-900 mr-2">●</span>
+                        {s.name} {randomKeyword}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

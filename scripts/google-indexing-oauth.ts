@@ -27,7 +27,7 @@ const prisma = new PrismaClient();
 const CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID || '';
 const CLIENT_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET || '';
 const REDIRECT_URI = 'http://localhost:4242/callback';
-const TOKEN_PATH = path.join(__dirname, '../google-oauth-token.json');
+const TOKEN_PATH = path.join(process.cwd(), 'google-oauth-token.json');
 const SCOPES = ['https://www.googleapis.com/auth/indexing'];
 
 // -----------------------------------------------
