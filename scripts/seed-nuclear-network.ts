@@ -178,6 +178,7 @@ async function main() {
             await prisma.site.update({
                 where: { id: site.id },
                 data: {
+                    name: siteName,
                     isActive: true,
                     maskType: maskType,
                     maskContent: JSON.stringify(maskContent),
