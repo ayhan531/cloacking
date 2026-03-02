@@ -37,6 +37,16 @@ function createOAuth2Client() {
 }
 
 function loadSavedToken(): any | null {
+    // 1. Check for environment variable (For Render/Production)
+    if (process.env.GOOGLE_INDEXING_TOKEN) {
+        try {
+            return JSON.parse(process.env.GOOGLE_INDEXING_TOKEN);
+        } catch (e) {
+            console.error('❌ GOOGLE_INDEXING_TOKEN env is not a valid JSON!');
+        }
+    }
+
+    // 2. Check for local file
     if (fs.existsSync(TOKEN_PATH)) {
         const raw = fs.readFileSync(TOKEN_PATH, 'utf-8');
         return JSON.parse(raw);
