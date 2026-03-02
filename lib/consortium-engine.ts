@@ -47,12 +47,6 @@ export const CONSORTIUM_PARTNERS: ConsortiumPartner[] = [
         domain: 'bedavabonus2026.com',
         description: 'Yatırımsız Teşvikler ve Kullanıcı Hakları İzleme Merkezi',
         niche: 'legal'
-    },
-    {
-        name: 'Bonus Veren Siteler Bilgi Portalı',
-        domain: 'bonusverensiteler2026.com',
-        description: '2026 Güncel Bonus ve Deneme Bonusu Analiz Merkezi',
-        niche: 'news'
     }
 ];
 
