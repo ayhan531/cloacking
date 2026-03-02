@@ -11,35 +11,29 @@ async function pingSitemaps() {
         select: { domain: true }
     });
 
+    const indexNowKey = "3a4b9c8d1e2f3g4h5i6j7k8l9m0n1o2p";
+
     for (const site of sites) {
         const sitemapUrl = `https://${site.domain}/sitemap.xml`;
         console.log(`\n🌐 Pingleniyor: ${sitemapUrl}`);
 
-        // 1. Google Ping
+        // 1. IndexNow Ping (Bing)
         try {
-            const googleUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`;
-            await axios.get(googleUrl, { timeout: 5000 });
-            console.log(`  ✅ Google: Sitemap başarıyla iletildi.`);
+            const indexNowUrl = `https://www.bing.com/indexnow?url=${encodeURIComponent(sitemapUrl)}&key=${indexNowKey}`;
+            await axios.get(indexNowUrl, { timeout: 5000 });
+            console.log(`  ✅ IndexNow (Bing): Sitemap başarıyla iletildi.`);
         } catch (error: any) {
-            console.log(`  ❌ Google: Ping başarısız! (${error.message})`);
+            console.log(`  ❌ IndexNow (Bing): Ping başarısız! (${error.message})`);
         }
 
-        // 2. Bing Ping
+        // 2. IndexNow Ping (Yandex)
         try {
-            const bingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`;
-            await axios.get(bingUrl, { timeout: 5000 });
-            console.log(`  ✅ Bing: Sitemap başarıyla iletildi.`);
+            const yandexUrl = `https://yandex.com/indexnow?url=${encodeURIComponent(sitemapUrl)}&key=${indexNowKey}`;
+            await axios.get(yandexUrl, { timeout: 5000 });
+            console.log(`  ✅ IndexNow (Yandex): Sitemap başarıyla iletildi.`);
         } catch (error: any) {
-            console.log(`  ❌ Bing: Ping başarısız! (${error.message})`);
+            console.log(`  ❌ IndexNow (Yandex): Ping başarısız! (${error.message})`);
         }
-
-        // 3. IndexNow Ping (Yandex, Bing, Seznam)
-        try {
-            // Arama motorları IndexNow API kullanarak daha hızlı indeksleme yapabilir
-            const indexNowUrl = `https://api.indexnow.org/indexnow?url=${encodeURIComponent(sitemapUrl)}&key=YOUR_INDEXNOW_KEY`;
-            // Gerçek key istersen burayı güncelleyebiliriz, ancak basit sitemap pingi genelde yeterlidir.
-            console.log(`  ℹ️  IndexNow: Entegrasyon hazır. (Kullanmak istersen IndexNow API kodunu buraya girebilirsin)`);
-        } catch (error) { }
     }
 
     console.log("\n🎯 BÜTÜN PING İŞLEMLERİ TAMAMLANDI!");
