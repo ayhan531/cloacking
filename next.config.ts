@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: true,
+  // Disabling experimental features to stabilize build
   images: {
     unoptimized: true,
   },
