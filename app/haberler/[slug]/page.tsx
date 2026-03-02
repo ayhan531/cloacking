@@ -127,88 +127,81 @@ export default async function NewsDetailPage({ params }: PageProps) {
     }
 
     if (isBot) {
-        const heartbeat = new Date().toISOString();
-        return (
-            <div className="news-bot-optimized-ssr" style={{ background: '#020617', color: '#f8fafc', fontFamily: 'sans-serif', padding: '4rem 2rem' }}>
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                    .news-bot-optimized-ssr { min-height: 100vh; }
-                    .bot-content-vault { max-width: 900px; margin: 0 auto; background: rgba(15, 23, 42, 0.4); padding: 4rem; border-radius: 48px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
-                    .prose-header { border-bottom: 2px solid rgba(255,255,255,0.05); margin-bottom: 3rem; padding-bottom: 3rem; }
-                    .prose-header h1 { font-size: 3rem; font-weight: 900; color: #10b981; margin-bottom: 1.5rem; letter-spacing: -0.05em; text-transform: uppercase; font-style: italic; }
-                    .prose-header p { color: #94a3b8; font-size: 1.25rem; font-weight: 500; }
-                    .prose-body { line-height: 1.9; color: #cbd5e1; font-size: 1.125rem; }
-                    .bonus-matrix-box { margin: 3rem 0; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 32px; background: rgba(0, 0, 0, 0.5); overflow: hidden; }
-                    .matrix-table { width: 100%; border-collapse: collapse; text-align: left; }
-                    .matrix-table th { padding: 1.5rem; color: #10b981; font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 0.1em; border-bottom: 1px solid rgba(255,255,255,0.05); }
-                    .matrix-table td { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-                    .heartbeat-box { margin-top: 4rem; padding: 2rem; background: rgba(16, 185, 129, 0.05); border: 1px dashed rgba(16, 185, 129, 0.2); border-radius: 24px; text-align: center; font-family: monospace; font-size: 11px; color: #10b981; letter-spacing: 0.05em; }
-                `}} />
+        // GOOGLEBOT İÇİN TEMİZ, SEO UYUMLU, SEMANTİK VE "BEYAZ ŞAPKA" GÖRÜNÜMLÜ HABER ŞABLONU
+        // Asla "cloak", "bot", "hash" gibi kelimeler içermemeli!
+        const publishDate = new Date(newsItem.date).toISOString();
+        const modifiedDate = new Date().toISOString();
 
-                <div className="bot-content-vault">
-                    <header className="prose-header">
-                        <div style={{ color: '#10b981', fontWeight: '900', fontSize: '10px', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.3em' }}>
-                            Official Audit :: News & Distribution Hub
+        return (
+            <div style={{ backgroundColor: '#f9fafb', color: '#111827', fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif', padding: '2rem 1rem', minHeight: '100vh' }}>
+                <article style={{ maxWidth: '800px', margin: '0 auto', padding: '2.5rem', backgroundColor: '#ffffff', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+                    <header style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: '2rem', marginBottom: '2rem' }}>
+                        <nav aria-label="Breadcrumb" style={{ fontSize: '0.875rem', color: '#4b5563', marginBottom: '1.5rem', display: 'flex', gap: '0.5rem' }}>
+                            <a href="/" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: '500' }}>Anasayfa</a>
+                            <span>/</span>
+                            <a href="/haberler" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: '500' }}>Haberler</a>
+                            <span>/</span>
+                            <span style={{ color: '#9ca3af' }}>{newsItem.title}</span>
+                        </nav>
+                        <h1 itemProp="headline" style={{ fontSize: '2.5rem', fontWeight: '800', color: '#111827', margin: '0 0 1rem 0', lineHeight: '1.2', letterSpacing: '-0.025em' }}>
+                            {newsItem.title}
+                        </h1>
+                        <p itemProp="description" style={{ fontSize: '1.25rem', color: '#4b5563', margin: '0 0 1.5rem 0', lineHeight: '1.75' }}>
+                            {newsItem.summary}
+                        </p>
+                        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem', fontSize: '0.875rem', color: '#6b7280', marginTop: '1.5rem' }}>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <strong style={{ color: '#374151' }}>Yazar:</strong> {newsItem.author || "Haber Merkezi"}
+                            </span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <strong style={{ color: '#374151' }}>Yayınlanma:</strong> <time dateTime={publishDate}>{new Date(newsItem.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                            </span>
                         </div>
-                        <h1>{newsItem.title} (2026 ANALİZ)</h1>
-                        <p>{newsItem.summary}</p>
                     </header>
 
-                    <div className="prose-body">
-                        <div dangerouslySetInnerHTML={{ __html: newsItem.content }} />
+                    <main itemProp="articleBody" style={{ fontSize: '1.125rem', lineHeight: '1.8', color: '#374151' }}>
+                        <div className="bot-content" dangerouslySetInnerHTML={{ __html: newsItem.content }} />
+                    </main>
 
-                        <div className="bonus-matrix-box">
-                            <table className="matrix-table">
-                                <thead>
-                                    <tr>
-                                        <th>Haber segmenti</th>
-                                        <th>İlgili Bonus</th>
-                                        <th>Dogrulama Durumu</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style={{ fontWeight: 'bold', color: 'white' }}>Otorite A+ Kaynak</td>
-                                        <td style={{ color: '#10b981' }}>500 TL Deneme</td>
-                                        <td><span style={{ fontSize: '10px', background: 'rgba(16,185,129,0.2)', color: '#10b981', padding: '4px 10px', borderRadius: '10px', fontWeight: 'bold' }}>DOĞRULANDI</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style={{ fontWeight: 'bold', color: 'white' }}>V-Global Haber Agi</td>
-                                        <td style={{ color: '#10b981' }}>250 TL Nakit</td>
-                                        <td><span style={{ fontSize: '10px', background: 'rgba(16,185,129,0.2)', color: '#10b981', padding: '4px 10px', borderRadius: '10px', fontWeight: 'bold' }}>AKTİF</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <footer style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid #e5e7eb', fontSize: '0.875rem', color: '#6b7280' }}>
+                        {newsItem.tags && newsItem.tags.length > 0 && (
+                            <div style={{ marginBottom: '2rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                                <strong style={{ color: '#374151' }}>Etiketler:</strong>
+                                {newsItem.tags.map((tag: string, index: number) => (
+                                    <span key={index} style={{ backgroundColor: '#f3f4f6', padding: '0.375rem 0.75rem', borderRadius: '9999px', color: '#4b5563', fontWeight: '500' }}>{tag}</span>
+                                ))}
+                            </div>
+                        )}
+                        <p>© {new Date().getFullYear()} {siteName || domain}. Tüm hakları saklıdır. Sayfamızdaki içerikler bilgilendirme amaçlıdır.</p>
+                    </footer>
+                </article>
 
-                        <p style={{ marginTop: '2rem', color: '#64748b', fontSize: '14px' }}>
-                            <strong>EDİTÖR NOTU:</strong> 2026 yılı itibarıyla yayınlanan tüm haberlerimiz, en yüksek deneme bonusu veren sitelerin şeffaflık testlerini de içermektedir. Güvenilir bir bahis deneyimi için listelerimizi düzenli olarak takip ediniz.
-                        </p>
-                    </div>
-
-                    <div className="heartbeat-box">
-                        <span style={{ display: 'block', marginBottom: '8px' }}>🚀 NUCLEAR_SIGNAL_HEARTBEAT_V6</span>
-                        [ID: {newsItem.slug.toUpperCase()}] :: [TIME: {heartbeat}] :: [NODE: {domain.toUpperCase()}] :: [STATUS: SSR_INJECTION_ACTIVE]
-                    </div>
-
-                    <div style={{ marginTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '2rem', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-                        <a href="/haberler" style={{ color: '#10b981', fontWeight: '900', textDecoration: 'none', fontSize: '12px', textTransform: 'uppercase' }}>Haber Arşivi</a>
-                        <a href="/" style={{ color: '#10b981', fontWeight: '900', textDecoration: 'none', fontSize: '12px', textTransform: 'uppercase' }}>Otorite Raporu</a>
-                        <a href="/deneme-bonusu" style={{ color: '#10b981', fontWeight: '900', textDecoration: 'none', fontSize: '12px', textTransform: 'uppercase' }}>Bonus Veren Siteler</a>
-                    </div>
-                </div>
-
-                <script type="application/ld+json">
-                    {JSON.stringify({
+                <script type="application/ld+json" dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "ItemList",
-                        "name": `${newsItem.title} - İlgili Bonuslar Listesi`,
-                        "itemListElement": [
-                            { "@type": "ListItem", "position": 1, "name": "A+ Otorite Bonusu (500 TL)" },
-                            { "@type": "ListItem", "position": 2, "name": "V-Global Nakit Bonus (250 TL)" }
-                        ]
-                    })}
-                </script>
+                        "@type": "NewsArticle",
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": `https://${domain}/haberler/${newsItem.slug}`
+                        },
+                        "headline": newsItem.title,
+                        "description": newsItem.summary,
+                        "datePublished": publishDate,
+                        "dateModified": modifiedDate,
+                        "author": {
+                            "@type": "Person",
+                            "name": newsItem.author || "Haber Merkezi"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": siteName || domain,
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": `https://${domain}/logo.png`
+                            }
+                        }
+                    })
+                }} />
             </div>
         );
     }
