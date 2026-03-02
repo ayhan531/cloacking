@@ -21,8 +21,12 @@ export async function generateMetadata(): Promise<Metadata> {
             const currentYear = new Date().getFullYear();
 
             return {
-                title: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`,
-                description: site.seoSettings?.metaDescription || `${site.name} ile 2026 yılının en güncel deneme bonusu veren siteler listesine ulaşın.`,
+                title: `🔥 ${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler (Yatırımsız) - ${site.name}`,
+                description: `FLAŞ! ${currentMonth} ${currentYear} tarihli deneme bonusu veren siteler listesi güncellendi. ${site.name} otorite raporuyla yatırımsız ve çevrimsiz bedava bonus veren siteler burada.`,
+                openGraph: {
+                    title: `⚡ ${currentMonth} ${currentYear} Deneme Bonusu Listesi - ${site.name}`,
+                    description: `Piyasadaki en yüksek deneme bonusu veren siteler listesi anlık veri akışıyla yenilendi. Hemen inceleyin.`,
+                }
             };
         }
     } catch (e) { }
@@ -58,37 +62,36 @@ export default async function Home() {
                 "@type": "FAQPage",
                 "mainEntity": [{
                   "@type": "Question",
-                  "name": "2026 deneme bonusu veren siteler listesine nasıl güvenebilirim?",
+                  "name": "En iyi deneme bonusu veren siteler 2026 listesinde hangi siteler var?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Tarafımızca hazırlanan 2026 listesi, platformların teknik altyapıları, kullanıcı ödeme performansları ve uluslararası lisans otoritelerinin (MGA, CEG) son güncellemeleri baz alınarak doğrulanmıştır."
+                    "text": "2026 yılı özel listemizde yatırımsız 500 TL bonus veren platformlar, çevrimsiz freebet sunan yeni bahis siteleri ve güvenilir casino markaları yer almaktadır."
                   }
                 }, {
                   "@type": "Question",
-                  "name": "Yatırımsız bonus veren siteler 2026 yılında aktif mi?",
+                  "name": "Deneme bonusu 2026 yılında yatırımsız alınabilir mi?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Evet, 2026 yılında birçok otorite portalı, kullanıcılarına ilk üyelik aşamasında yatırım şartı aramadan 100 TL ile 500 TL arasında değişen deneme bonusları sunmaktadır."
+                    "text": "Evet, sitemizdeki listeler saniyeler içinde güncellenmekte olup 2026 yılında yatırım şartı aramayan tüm güncel deneme bonusu veren siteler ana sayfamızda listelenmiştir."
                   }
                 }]
               },
               {
                 "@context": "https://schema.org",
-                "@type": "ItemList",
-                "name": "2026 En İyi Deneme Bonusu Veren Siteler Listesi",
-                "itemListElement": [
-                  { "@type": "ListItem", "position": 1, "name": "Global Audit A+ Platform (500 TL Bonus)" },
-                  { "@type": "ListItem", "position": 2, "name": "Secure Betting Hub (250 TL Nakit)" },
-                  { "@type": "ListItem", "position": 3, "name": "Premium Slots Network (333 FreeSpin)" }
-                ]
+                "@type": "NewsArticle",
+                "headline": "FLAŞ: 2026 Deneme Bonusu Veren Siteler Listesi Yayınlandı!",
+                "image": ["https://${domain}/api/og"],
+                "datePublished": "${new Date(Date.now() - 3600000).toISOString()}",
+                "dateModified": "${new Date().toISOString()}",
+                "author": { "@type": "Person", "name": "SEO Otorite Botu" }
               }
             ]
             </script>
 
             <article class="prose prose-invert prose-lg max-w-none px-4 md:px-8 mt-6">
                 <header class="mb-10 border-b border-emerald-900/50 pb-8">
-                    <h1 class="text-4xl md:text-5xl font-black text-emerald-400 mb-4 tracking-tighter italic">
-                        DENEME BONUSU VEREN SİTELER 2026 (Yatırımsız & Güncel Liste)
+                    <h1 class="text-4xl md:text-5xl font-black text-emerald-400 mb-4 tracking-tighter italic uppercase underline decoration-emerald-500/30">
+                        2026 DENEME BONUSU VEREN SİTELER (YATIRIMSIZ & ŞARTSIZ LİSTE)
                     </h1>
                     <p class="text-slate-400 text-xl font-medium">
                         ${site.name} Otorite Raporu: ${currentMonth} ${currentYear} itibarıyla piyasadaki en yüksek deneme bonusu veren platformların teknik analizi ve tam listesi.
