@@ -25,7 +25,7 @@ async function checkLiveStatus() {
             console.log(`Description: ${description.substring(0, 100)}...`);
 
             // Check if unique keywords are present
-            if (html.includes('Elite Global Sigorta')) console.log('✅ Name uniqueness: FOUND (Elite Global Sigorta)');
+            if (html.includes('Flovaz Bonus Otoritesi')) console.log('✅ Name uniqueness: FOUND (Flovaz Bonus Otoritesi)');
             if (html.includes('Haber Analiz 2026')) console.log('✅ Name uniqueness: FOUND (Haber Analiz 2026)');
 
         } catch (e) {

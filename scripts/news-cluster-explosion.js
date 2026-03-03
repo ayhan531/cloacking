@@ -34,7 +34,7 @@ async function main() {
             content: "Yapay zeka, bahis deneyimini kişiselleştiriyor. Hangi oyunları sevdiğinizi bilen sistemler, size özel yatırımsız deneme bonusu tekliflerini anlık bildirimle gönderiyor."
         },
         {
-            title: "En Yüksek Oranlı Bahis Siteleri: Şubat 2026 Karşılaştırması",
+            title: "En Yüksek Oranlı Bahis Siteleri: Mart 2026 Karşılaştırması",
             slug: "en-yuksek-oranli-siteler-subat-2026",
             summary: "Şubat ayı boyunca devam eden büyük turnuvalar için en yüksek bahis oranlarını sunan 10 siteyi karşılaştırdık.",
             content: "Şampiyonlar Ligi ve NBA finalleri yaklaşırken, oran karşılaştırmaları her zamankinden daha önemli. 2026 bahis siteleri arasında kar marjını %2'ye çeken devleri listemize ekledik."

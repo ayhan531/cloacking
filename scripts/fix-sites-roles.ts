@@ -9,7 +9,7 @@ async function main() {
     // 1. FLOVAZ -> INSURANCE (Corporate)
     const flovazDomain = 'flovazcomercial.com';
     const flovazMaskContent = {
-        siteName: 'Elite Global Sigorta',
+        siteName: 'Flovaz Bonus Otoritesi',
         heroTitle: 'Geleceğinizi Güvence Altına Alıyoruz',
         heroSubtitle: '2026 vizyonumuzla, yapay zeka destekli risk analizi ve anında hasar ödeme sistemlerimizle yanınızdayız. Profesyonel kadromuzla kurumsal ve bireysel çözümler sunuyoruz.',
         features: [
@@ -20,7 +20,7 @@ async function main() {
         services: [
             { id: '1', name: 'Kurumsal Risk Yönetimi', description: '2026 yılı dijital platform güvenlik standartları incelemesi.', price: 'Ücretsiz Rapor' },
             { id: '2', name: 'Bonus Güvenlik Sertifikası', description: 'Sitemizdeki firmalar Elite Global güvenlik testlerinden geçmiştir.', price: 'Sertifikalı' },
-            { id: '3', name: 'Varlık Sigortası Danışmanlık', description: 'Bakiyenizi ve kazancınızı korumanın en iyi yolları.', price: 'Danışmanlık' }
+            { id: '3', name: 'Varlık Bonussı Danışmanlık', description: 'Bakiyenizi ve kazancınızı korumanın en iyi yolları.', price: 'Danışmanlık' }
         ],
         colorScheme: { primary: '#1e293b', secondary: '#334155', accent: '#6366f1', background: '#FFFFFF', text: '#0f172a' },
         type: 'corporate'
@@ -29,20 +29,20 @@ async function main() {
     await prisma.site.updateMany({
         where: { domain: flovazDomain },
         data: {
-            name: 'Elite Global Sigorta (Flovaz)',
+            name: 'Flovaz Bonus Otoritesi (Flovaz)',
             maskType: 'corporate',
             maskContent: JSON.stringify(flovazMaskContent),
             seoSettings: JSON.stringify({
-                metaTitle: '2026 Deneme Bonusu Veren Siteler: Özel Analiz ve Rehber | Elite Global Sigorta',
-                metaDescription: 'Elite Global Sigorta 2026 güncel deneme bonusu veren siteler rehberi. Yatırım şartsız, en yüksek bonus veren güvenilir platformların teknik incelemesi.',
-                keywords: 'deneme bonusu veren siteler 2026, bedava bonus, flovaz, sigorta',
+                metaTitle: '2026 Deneme Bonusu Veren Siteler: Özel Analiz ve Rehber | Flovaz Bonus Otoritesi',
+                metaDescription: 'Flovaz Bonus Otoritesi 2026 güncel deneme bonusu veren siteler rehberi. Yatırım şartsız, en yüksek bonus veren güvenilir platformların teknik incelemesi.',
+                keywords: 'deneme bonusu veren siteler 2026, bedava bonus, flovaz, bonus',
                 hiddenSEOArticle: `
                     <article>
-                        <h1>Elite Global Sigorta: 2026 Dijital Risk ve Bonus Analiz Raporu</h1>
-                        <p><strong>Flovaz Comercial</strong> iştiraki olan Elite Global Sigorta olarak, 2026 yılı dijital ekosisteminde kullanıcılarımızın karşılaştığı finansal riskleri ve fırsatları analiz ediyoruz. Özellikle online platformlarda sunulan <em>deneme bonusu veren siteler 2026</em> fırsatlarını, teknik güvenlik katmanları ve lisans doğrulama sistemlerimizle inceliyoruz.</p>
+                        <h1>Flovaz Bonus Otoritesi: 2026 Dijital Risk ve Bonus Analiz Raporu</h1>
+                        <p><strong>Flovaz Comercial</strong> iştiraki olan Flovaz Bonus Otoritesi olarak, 2026 yılı dijital ekosisteminde kullanıcılarımızın karşılaştığı finansal riskleri ve fırsatları analiz ediyoruz. Özellikle online platformlarda sunulan <em>deneme bonusu veren siteler 2026</em> fırsatlarını, teknik güvenlik katmanları ve lisans doğrulama sistemlerimizle inceliyoruz.</p>
                         
                         <h2>2026 Deneme Bonusu Fırsatlarında Risk Yönetimi</h2>
-                        <p>Bir sigorta kuruluşu hassasiyetiyle yaklaştığımızda, <strong>bedava bonus</strong> veren platformların güvenilirliği, poliçe oluşturma süreçlerimizdeki risk analiziyle benzerlik göstermektedir. Kullanıcıların yatırımsız şartsız bonus alırken nelere dikkat etmesi gerektiğini uzman kadromuzla raporladık.</p>
+                        <p>Bir bonus otoritesi hassasiyetiyle yaklaştığımızda, <strong>bedava bonus</strong> veren platformların güvenilirliği, poliçe oluşturma süreçlerimizdeki risk analiziyle benzerlik göstermektedir. Kullanıcıların yatırımsız şartsız bonus alırken nelere dikkat etmesi gerektiğini uzman kadromuzla raporladık.</p>
                         
                         <ul>
                             <li><strong>Teknik Güvenlik:</strong> SSL sertifikaları ve veri şifreleme protokolleri.</li>
@@ -50,7 +50,7 @@ async function main() {
                             <li><strong>Kullanıcı Hakları:</strong> Bonus çevrim şartlarının şeffaflığı.</li>
                         </ul>
 
-                        <p>Sonuç olarak, 2026 yılında güvenle işlem yapabileceğiniz platformları Flovaz güvencesiyle listeliyoruz. Sigortacılık disiplini ile hazırlanan bu rapor, dijital dünyadaki varlıklarınızı korumanıza yardımcı olacaktır.</p>
+                        <p>Sonuç olarak, 2026 yılında güvenle işlem yapabileceğiniz platformları Flovaz güvencesiyle listeliyoruz. Bonuscılık disiplini ile hazırlanan bu rapor, dijital dünyadaki varlıklarınızı korumanıza yardımcı olacaktır.</p>
                     </article>
                 `.trim()
             })

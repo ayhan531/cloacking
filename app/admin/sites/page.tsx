@@ -352,7 +352,7 @@ export default function SitesPage() {
                                     <div className="space-y-2">
                                         <Label>Site İsmi (Admin İçin)</Label>
                                         <Input
-                                            placeholder="Örn: Sigorta Projesi"
+                                            placeholder="Örn: Bonus Projesi"
                                             value={newSite.name}
                                             onChange={(e) => setNewSite({ ...newSite, name: e.target.value })}
                                         />
@@ -360,7 +360,7 @@ export default function SitesPage() {
                                     <div className="space-y-2">
                                         <Label>Domain</Label>
                                         <Input
-                                            placeholder="Örn: sigorta-projesi.com"
+                                            placeholder="Örn: bonus-projesi.com"
                                             value={newSite.domain}
                                             onChange={(e) => setNewSite({ ...newSite, domain: e.target.value })}
                                         />
@@ -374,7 +374,7 @@ export default function SitesPage() {
                                         onChange={(e) => setNewSite({ ...newSite, maskType: e.target.value as any })}
                                     >
                                         <option value="corporate">Kurumsal / Şirket</option>
-                                        <option value="insurance">Sigorta / Finans</option>
+                                        <option value="insurance">Bonus / Finans</option>
                                         <option value="ecommerce">E-Ticaret</option>
                                         <option value="blog">Blog / Haber</option>
                                     </select>
@@ -457,7 +457,7 @@ export default function SitesPage() {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label>Hizmetler (Örn: Yangın Sigortası, Kasko)</Label>
+                                    <Label>Hizmetler (Örn: Yangın Bonussı, Kasko)</Label>
                                     <p className="text-xs text-gray-500 mb-2">Virgülle ayırarak hızlıca ekleyebilirsiniz.</p>
                                     <Input
                                         placeholder="Hizmet 1, Hizmet 2, Hizmet 3"

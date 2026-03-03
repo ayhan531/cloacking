@@ -64,7 +64,7 @@ export async function getSiteByDomain(domain: string, fullData: boolean = true):
                 showBettingTo: { mobile: true, includedCountries: ["TR", "CY"] }
             };
             const defaultSeo = {
-                metaTitle: `Şubat 2026 Deneme Bonusu Veren Siteler - ${cleanDomain.split('.')[0].toUpperCase()}`,
+                metaTitle: `Mart 2026 Deneme Bonusu Veren Siteler - ${cleanDomain.split('.')[0].toUpperCase()}`,
                 metaDescription: `${cleanDomain} ile 2026'nın en güncel deneme bonusu veren sitelerini ve yatırımsız karşılıksız bonusları keşfedin.`,
                 keywords: "deneme bonusu veren siteler 2026, bedava bonus, yatırımsız deneme bonusu, 500 tl deneme bonusu"
             };

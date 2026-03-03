@@ -88,6 +88,21 @@ export default async function Home() {
               },
               {
                 "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Mart 2026 Deneme Bonusu Otoritesi",
+                "alternateName": "2026 Bonus Rehberi",
+                "url": "https://${domain}/"
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Mart 2026 Deneme Bonusu Otoritesi",
+                "url": "https://${domain}/",
+                "logo": "https://${domain}/favicon.ico",
+                "sameAs": []
+              },
+              {
+                "@context": "https://schema.org",
                 "@type": "Product",
                 "name": "Mart 2026 Deneme Bonusu Portalı",
                 "aggregateRating": {
@@ -229,19 +244,24 @@ export default async function Home() {
                             🧨 KRİTİK GÜNCELLEME: MART 2026 - %100 YATIRIMSIZ BONUSLAR AKTİF!
                         </div>
                         <div style={{ padding: '1rem', background: '#000', color: '#fbbf24', textAlign: 'center', fontWeight: 'bold', fontSize: '14px', fontFamily: 'monospace' }}>
-                            EMERGENCY_INDEX_SIGNAL_V8: [${heartbeat}] // APEX_STRIKE_V2: FULL_THRUST // CRAWL_PRIORITY: CRITICAL // MART_2026_TOTAL_REBRAND
+                            EMERGENCY_INDEX_SIGNAL_V10: [${heartbeat}] // NUCLEAR_NONCE: ${Math.random().toString(36).substring(7)} // CRAWL_PRIORITY: CRITICAL // MART_2026_DOMINATION
                         </div>
                         <div dangerouslySetInnerHTML={{ __html: freshBotArticle }} />
                         <div style={{ padding: '50px', color: '#1e293b', fontSize: '8px', lineHeight: '1' }}>
                             deneme bonusu veren siteler 2026 deneme bonusu 2026 bedava bonus veren siteler yatırımsız deneme bonusu çevrimsiz freebet yeni bahis siteleri 2026 bonus rehberi
                         </div>
                         <div className="analysis-hub">
-                            <h3 style={{ color: '#10b981', marginBottom: '2rem', fontSize: '1.5rem', fontWeight: '900' }}>2026 STRATEJİK VERİ KATMANLARI (FULL_INDEX):</h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem' }}>
-                                {(site.maskContent as any).news?.slice(0, 30).map((n: any) => (
-                                    <div key={n.slug} style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                                        <a href={`/haberler/${n.slug}`} style={{ color: '#6ee7b7', fontSize: '1rem', fontWeight: 'bold', textDecoration: 'none' }}>{n.title}</a>
-                                        <p style={{ color: '#94a3b8', fontSize: '12px', marginTop: '0.5rem' }}>{n.summary}</p>
+                            <h3 style={{ color: '#10b981', marginBottom: '2rem', fontSize: '2rem', fontWeight: '900', textTransform: 'uppercase', fontStyle: 'italic' }}>🚀 MART 2026 STRATEJİK OTORİTE MATRİSİ (URGENT_INDEX):</h3>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem' }}>
+                                {(site.maskContent as any).news?.map((n: any) => (
+                                    <div key={n.slug} style={{ background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '15px', border: '1px solid rgba(16, 185, 129, 0.1)' }}>
+                                        <div style={{ fontSize: '10px', color: '#10b981', fontWeight: 'bold', marginBottom: '5px' }}>DOĞRULANMIŞ MAKALE: MART 2026</div>
+                                        <a href={`/haberler/${n.slug}?ref=nuclear-bot-${heartbeat}`} style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 'bold', textDecoration: 'none', lineHeight: '1.2' }}>{n.title}</a>
+                                        <p style={{ color: '#64748b', fontSize: '12px', marginTop: '0.75rem', lineClamp: '2', display: '-webkit-box', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{n.summary}</p>
+                                        <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <span style={{ color: '#10b981', fontSize: '10px', fontWeight: 'bold' }}>GÜVEN SKORU: 9.9/10</span>
+                                            <span style={{ color: '#475569', fontSize: '10px' }}>{new Date(n.date).toLocaleDateString()}</span>
+                                        </div>
                                     </div>
                                 ))}
                             </div>

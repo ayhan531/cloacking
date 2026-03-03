@@ -16,10 +16,10 @@ async function main() {
         const scrub = (str: string) => {
             if (!str) return str;
             return str
-                .replace(/Elite Global Sigorta/g, 'Flovaz Bonus Otoritesi')
-                .replace(/Sigorta/g, 'Bonus')
-                .replace(/Flovaz Sigorta/g, 'Flovaz Bonus Rehberi')
-                .replace(/Şubat 2026/g, 'Mart 2026');
+                .replace(/Flovaz Bonus Otoritesi/g, 'Flovaz Bonus Otoritesi')
+                .replace(/Bonus/g, 'Bonus')
+                .replace(/Flovaz Bonus/g, 'Flovaz Bonus Rehberi')
+                .replace(/Mart 2026/g, 'Mart 2026');
         };
 
         const scrubbedName = scrub(name);

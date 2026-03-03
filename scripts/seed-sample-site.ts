@@ -16,7 +16,7 @@ async function main() {
     }
 
     const maskContent = {
-        siteName: 'Elite Global Sigorta',
+        siteName: 'Flovaz Bonus Otoritesi',
         heroTitle: 'Geleceğinizi Güvence Altına Alıyoruz',
         heroSubtitle: '2026 vizyonumuzla, yapay zeka destekli risk analizi ve anında hasar ödeme sistemlerimizle yanınızdayız. Profesyonel kadromuzla kurumsal ve bireysel çözümler sunuyoruz.',
         features: [
@@ -27,15 +27,15 @@ async function main() {
         ],
         services: [
             { id: '1', name: 'Kurumsal Risk Yönetimi', description: 'Şirketinizin varlıklarını global standartlarda koruyoruz.', price: 'Teklif Alın' },
-            { id: '2', name: 'Dijital Varlık Sigortası', description: 'Kripto varlık ve siber saldırılara karşı %100 güvence.', price: '$49/ay' },
+            { id: '2', name: 'Dijital Varlık Bonussı', description: 'Kripto varlık ve siber saldırılara karşı %100 güvence.', price: '$49/ay' },
             { id: '3', name: 'Lüks Konut ve Araç', description: 'Değerli eşyalarınız için özel hazırlanmış premium poliçeler.', price: 'Özel Fiyat' }
         ],
         testimonials: [
             { id: '1', name: 'Mehmet Aras', role: 'Genel Müdür, Ak-Yol Lojistik', content: 'Filomuzu Elite Global\'e emanet ettiğimizden beri gözümüz arkada değil.', rating: 5 },
-            { id: '2', name: 'Ayşe Yılmaz', role: 'Yazılım Mimarı', content: 'Dijital varlık sigortası konusunda Türkiye\'deki tek güvenilir adres.', rating: 5 }
+            { id: '2', name: 'Ayşe Yılmaz', role: 'Yazılım Mimarı', content: 'Dijital varlık bonussı konusunda Türkiye\'deki tek güvenilir adres.', rating: 5 }
         ],
         contactInfo: {
-            email: 'kurumsal@eliteglobalsigorta.com',
+            email: 'kurumsal@flovaz.com',
             phone: '+90 212 999 00 00',
             address: 'Zorlu Center, Levazım, Beşiktaş/İstanbul',
             socialMedia: { facebook: '#', twitter: '#', instagram: '#' }
