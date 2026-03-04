@@ -1,17 +1,4 @@
-/**
- * 🚀 NUCLEAR GOOGLE INDEXING API - OAuth2 Browser Flow
- *
- * JSON key dosyası GEREKMEZ. Tarayıcıda Google hesabınla giriş yaparsın,
- * token otomatik kaydedilir ve tüm URL'ler Google'a anlık push'lanır.
- *
- * KULLANIM:
- * 1. Google Cloud Console'dan OAuth2 Client ID oluştur (Web Application türü)
- *    → Authorized redirect URIs: http://localhost:4242/callback
- * 2. Bu dosyanın yanına CLIENT_ID ve CLIENT_SECRET'i .env'e ekle:
- *    GOOGLE_OAUTH_CLIENT_ID=...
- *    GOOGLE_OAUTH_CLIENT_SECRET=...
- * 3. npx ts-node scripts/google-indexing-oauth.ts
- */
+
 
 import { google } from 'googleapis';
 import { PrismaClient } from '@prisma/client';
