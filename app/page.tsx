@@ -5,8 +5,8 @@ import { headers } from "next/headers";
 import { getSiteByDomain, type SiteConfig } from "@/lib/site-service";
 import type { Metadata } from "next";
 
-export const dynamic = 'force-dynamic'; // 🔥 FORCE LIVE UPDATES (HEARTBEAT)
-export const revalidate = 0; // ⚡ NO CACHE
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function generateMetadata(): Promise<Metadata> {
     const headersList = await headers();
@@ -22,11 +22,11 @@ export async function generateMetadata(): Promise<Metadata> {
             }
 
             return {
-                title: seoSettings.metaTitle || `🚨 MART 2026: Deneme Bonusu Veren Siteler (KESİN LİSTE) - ${site.name}`,
+                title: seoSettings.metaTitle || ` MART 2026: Deneme Bonusu Veren Siteler (KESİN LİSTE) - ${site.name}`,
                 description: seoSettings.metaDescription || `DİKKAT! Mart 2026 tarihli en özel deneme bonusu veren siteler listesi BURADA. %100 yatırımsız, karşılıksız ve çevrimsiz bonusları anında alın. Otorite onaylı tek rehber.`,
                 keywords: seoSettings.keywords || "deneme bonusu veren siteler 2026",
                 openGraph: {
-                    title: seoSettings.metaTitle || `🧨 MART 2026 BOMBA BONUS LİSTESİ - ${site.name}`,
+                    title: seoSettings.metaTitle || ` MART 2026 BOMBA BONUS LİSTESİ - ${site.name}`,
                     description: seoSettings.metaDescription || `Piyasadaki tüm bonusları eledik, sadece en yüksek verenleri bıraktık. Kaçırmayın!`,
                 }
             };
@@ -268,8 +268,8 @@ export default async function Home() {
                                 ))}
                             </div>
                         </div>
-                        {site.seoSettings && (JSON.parse(site.seoSettings as string).footerMatrix) && (
-                            <div dangerouslySetInnerHTML={{ __html: JSON.parse(site.seoSettings as string).footerMatrix }} />
+                        {site.seoSettings && (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings).footerMatrix && (
+                            <div dangerouslySetInnerHTML={{ __html: (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings).footerMatrix }} />
                         )}
                     </div>
                 );
