@@ -288,7 +288,7 @@ export default async function Home() {
                 );
             }
 
-            return <MaskSite config={config} />;
+            return <CloakedHome preloadedConfig={config} />;
         }
     } catch (error) {
         console.error("Home Page Critical Error for domain " + domain + ":", error);

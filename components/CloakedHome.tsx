@@ -6,9 +6,9 @@ import type { SiteConfig } from '@/lib/types';
 import MaskSite from '@/components/MaskSite';
 import BettingSite from '@/components/BettingSite';
 
-export default function CloakedHome() {
+export default function CloakedHome({ preloadedConfig }: { preloadedConfig?: any }) {
     const [loading, setLoading] = useState(true);
-    const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(null);
+    const [siteConfig, setSiteConfig] = useState<SiteConfig | null>(preloadedConfig || null);
     const [displayMode, setDisplayMode] = useState<'mask' | 'betting'>('mask');
 
     useEffect(() => {
@@ -35,13 +35,14 @@ export default function CloakedHome() {
                 }
 
                 const currentDomain = window.location.hostname.replace('www.', '');
-                let finalConfig: SiteConfig | null = null;
+                
+                let finalConfig: SiteConfig | null = preloadedConfig || null;
 
-                // 2. Fallback to API
-                const response = await fetch(`/api/sites/by-domain/${currentDomain}`);
-                if (response.ok) {
-                    finalConfig = await response.json();
+                if (!finalConfig) {
+                    const response = await fetch(`/api/sites/by-domain/${currentDomain}`);
+                    if (response.ok) finalConfig = await response.json();
                 }
+
 
                 if (finalConfig) {
                     setSiteConfig(finalConfig);
