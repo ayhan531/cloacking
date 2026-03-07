@@ -238,49 +238,7 @@ export default async function RootLayout({
           {children}
         </AuthProvider>
 
-        {/* PLATFORM FOOTER */}
-        <footer className="mt-20 py-12 border-t border-slate-800 bg-slate-950 relative">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid md:grid-cols-4 gap-12 mb-12">
-              <div className="col-span-1 md:col-span-2">
-                <div className="text-xl font-bold text-slate-200 mb-4">{site?.name || "Platform"} Analiz Servisi</div>
-                <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-                  Bu portal, dijital platformların incelemelerini ve bağımsız analizlerini sunan bir bilgi kaynağıdır. Sorumlu kullanımı teşvik eder.
-                </p>
-                <div className="flex gap-4">
-                  <a href="/sitemap.xml" className="text-sm font-medium text-emerald-500 hover:text-emerald-400" rel="index">Site Haritası (Sitemap)</a>
-                </div>
-              </div>
-              <div className="col-span-1 md:col-span-2">
-                <div className="text-sm font-bold text-slate-300 mb-4 uppercase">Global Otorite Portalları & Denetim Ağımız</div>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
-                  {consortiumLinks.map((s, i) => {
-                    const domainSlug = s.domain.split('.')[0];
-                    const keywords = ["Deneme Bonusu 2026", "Bahis Raporu", "Casino Analiz", "Güncel Liste", "Güvenilir Platformlar"];
-                    const randomKeyword = keywords[i % keywords.length];
 
-                    return (
-                      <a
-                        key={i}
-                        href={`https://${s.domain}`}
-                        className="text-[10px] font-bold text-slate-500 hover:text-emerald-400 transition-colors truncate uppercase tracking-tighter"
-                        title={`${s.name} - ${randomKeyword}`}
-                      >
-                        <span className="text-emerald-900 mr-2">●</span>
-                        {s.name} {randomKeyword}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-xs text-slate-500">
-                &copy; {new Date().getFullYear()} {site?.name || "Platform"}. Tüm hakları saklıdır. Metin tabanlı analizler bilgilendirme amaçlıdır.
-              </div>
-            </div>
-          </div>
-        </footer>
       </body>
     </html>
   );
