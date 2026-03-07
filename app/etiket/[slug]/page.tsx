@@ -27,10 +27,11 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function ProgrammaticPage({ params }: { params: { slug: string } }) {
+export default async function ProgrammaticPage({ params }: { params: Promise<{ slug: string }> }) {
     // URL host bilgisini almak için server component'te header okuyamıyoruz, 
     // ancak bu sayfalar botlar tarafindan taranacak.
-    const slug = params.slug;
+    const resolvedParams = await params;
+    const slug = resolvedParams.slug;
 
     // Geçerli bir anahtar kelime var mı bul
     const matchedKw = LONG_TAIL_KEYWORDS.find(k => generateSlug(k) === slug);
