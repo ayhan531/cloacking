@@ -58,7 +58,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     <section className="grid md:grid-cols-12 gap-8 mb-16">
                         <div className="md:col-span-8 relative group cursor-pointer overflow-hidden rounded-3xl h-[500px]">
                             {maskContent.heroImage ? (
-                                <img src={maskContent.heroImage} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={maskContent.heroImage} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                             ) : (
                                 <div className="w-full h-full bg-slate-200 flex items-center justify-center">
                                     <TrendingUp className="w-20 h-20 text-slate-400" />
@@ -113,7 +113,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                 <a href={`/haberler/${item.slug}`} key={item.id} className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300">
                                     {item.image && (
                                         <div className="h-48 overflow-hidden">
-                                            <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                            <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                         </div>
                                     )}
                                     <div className="p-6">
@@ -155,7 +155,18 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         </div>
                     </section>
 
-                    {/* Footer */}
+                    
+            {/* Advertise Banner */}
+            <div className="my-12 animate-pulse text-center w-full px-4 max-w-4xl mx-auto" onClick={() => window.open('https://t.me/atlastunahan', '_blank')}>
+                <div className="bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 p-[2px] rounded-3xl cursor-pointer hover:scale-105 transition-transform shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                    <div className="bg-slate-900 rounded-3xl py-6 px-4">
+                        <h2 className="text-xl font-black italic text-white mb-1">📢 BURAYA REKLAM VERMEK İÇİN TIKLAYIN</h2>
+                        <p className="text-sm font-medium text-gray-400">Bizimle İletişime Geçin</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Footer */}
                     <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
                         <div className="grid md:grid-cols-4 gap-12 mb-12">
                             <div className="col-span-2">
@@ -170,6 +181,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                     <li><a href="#" className="hover:text-[var(--primary)]">Hakkımızda</a></li>
                                     <li><a href="#" className="hover:text-[var(--primary)]">Künye</a></li>
                                     <li><a href="#" className="hover:text-[var(--primary)]">İletişim</a></li>
+                                    <li><a href="https://t.me/atlastunahan" target="_blank" className="hover:text-purple-600 font-bold text-purple-500">Telegram Kanalı</a></li>
                                     <li><a href="#" className="hover:text-[var(--primary)]">Gizlilik Politikası</a></li>
                                 </ul>
                             </div>
@@ -224,7 +236,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     <div className="flex items-center gap-3 group cursor-pointer">
                         <div className="w-10 h-10 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform duration-500">
                             {maskContent.logo ? (
-                                <img src={maskContent.logo} alt={maskContent.siteName} className="w-6 h-6 object-contain brightness-0 invert" />
+                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={maskContent.logo} alt={maskContent.siteName} className="w-6 h-6 object-contain brightness-0 invert" />
                             ) : (
                                 <Shield className="w-6 h-6 text-white" />
                             )}
@@ -342,8 +354,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                         <div className="relative group">
                             <div className="absolute -inset-1 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] rounded-[40px] blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                             {maskContent.heroImage ? (
-                                <img
-                                    src={maskContent.heroImage}
+                                <img                                     src={maskContent.heroImage}
                                     alt={seoSettings.metaTitle || "Elite Global 2026 Teknik Analiz"}
                                     className="relative rounded-[40px] shadow-2xl w-full h-auto object-cover transform rotate-2 hover:rotate-0 transition-transform duration-700"
                                 />
@@ -376,7 +387,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             <Card key={service.id || idx} className="border-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 group overflow-hidden rounded-[32px] bg-white">
                                 {service.image && (
                                     <div className="h-64 overflow-hidden">
-                                        <img src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                        <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={service.image} alt={service.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                     </div>
                                 )}
                                 <CardHeader className="p-8">
@@ -471,7 +482,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                 </p>
                                 <div className="flex items-center gap-4">
                                     {t.avatar ? (
-                                        <img src={t.avatar} className="w-14 h-14 rounded-full border-2 border-[var(--primary)] object-cover" />
+                                        <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={t.avatar} className="w-14 h-14 rounded-full border-2 border-[var(--primary)] object-cover" />
                                     ) : (
                                         <div className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center font-bold text-white text-xl">
                                             {t.name?.[0] || 'U'}
@@ -538,6 +549,17 @@ export default function MaskSite({ config }: MaskSiteProps) {
                 </div>
             </section>
 
+            
+            {/* Advertise Banner */}
+            <div className="my-12 animate-pulse text-center w-full px-4 max-w-4xl mx-auto" onClick={() => window.open('https://t.me/atlastunahan', '_blank')}>
+                <div className="bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 p-[2px] rounded-3xl cursor-pointer hover:scale-105 transition-transform shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                    <div className="bg-slate-900 rounded-3xl py-6 px-4">
+                        <h2 className="text-xl font-black italic text-white mb-1">📢 BURAYA REKLAM VERMEK İÇİN TIKLAYIN</h2>
+                        <p className="text-sm font-medium text-gray-400">Bizimle İletişime Geçin</p>
+                    </div>
+                </div>
+            </div>
+
             {/* Footer */}
             <footer className="bg-slate-950 py-20 border-t border-white/5">
                 <div className="max-w-7xl mx-auto px-6">
@@ -566,7 +588,7 @@ export default function MaskSite({ config }: MaskSiteProps) {
                             <h4 className="text-white font-black uppercase tracking-widest text-xs mb-8">Bizi Takip Edin</h4>
                             <div className="flex justify-center md:justify-start gap-6">
                                 {['Facebook', 'Twitter', 'Instagram'].map((social) => (
-                                    <a key={social} href="#" className="text-white/60 hover:text-white transition-colors font-bold uppercase tracking-tighter text-sm">
+                                    <a key={social} href={social === 'Instagram' ? 'https://t.me/atlastunahan' : '#'} className="text-white/60 hover:text-white transition-colors font-bold uppercase tracking-tighter text-sm">
                                         {social}
                                     </a>
                                 ))}

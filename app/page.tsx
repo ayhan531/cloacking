@@ -271,6 +271,19 @@ export default async function Home() {
                         {site.seoSettings && (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings).footerMatrix && (
                             <div dangerouslySetInnerHTML={{ __html: (typeof site.seoSettings === 'string' ? JSON.parse(site.seoSettings) : site.seoSettings).footerMatrix }} />
                         )}
+                        <div style={{ marginTop: '50px', padding: '30px', background: 'rgba(0,0,0,0.5)', borderTop: '2px solid #10b981', textAlign: 'left' }}>
+                            <h4 style={{ color: '#10b981', fontSize: '14px', marginBottom: '15px', fontWeight: 'bold' }}>🔗 MART 2026 RESMİ ANALİZ %100 GÜVEN AĞI (OFFICIAL PARTNERS):</h4>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', fontSize: '12px' }}>
+                                <a href="https://flovazcomercial.com" style={{ color: '#94a3b8', textDecoration: 'none' }}>🛡️ FLOVAZ ANALİZ</a>
+                                <a href="https://bedavabonus2026.com" style={{ color: '#94a3b8', textDecoration: 'none' }}>⭐ BEDAVA BONUS 2026</a>
+                                <a href="https://haber-analiz2026.com" style={{ color: '#94a3b8', textDecoration: 'none' }}>🗞️ HABER ANALİZ</a>
+                                <a href="https://vizyontekyazilim.com" style={{ color: '#94a3b8', textDecoration: 'none' }}>💻 VİZYON TEK</a>
+                                <a href="https://yasalbonus2026.com" style={{ color: '#94a3b8', textDecoration: 'none' }}>✅ YASAL BONUS</a>
+                                <a href="https://2026bonuslar.com" style={{ color: '#94a3b8', textDecoration: 'none' }}>🔥 2026 BONUSLAR</a>
+                                <a href="https://independent-news.org" style={{ color: '#94a3b8', textDecoration: 'none' }}>📰 INDEPENDENT NEWS</a>
+                                <a href="/etiketler" style={{ color: '#10b981', fontWeight: 'bold' }}>🔎 TÜM ANALİZLER (1337+)</a>
+                            </div>
+                        </div>
                     </div>
                 );
             }

@@ -158,7 +158,7 @@ export default async function NewsPage() {
                             <Link href={`/haberler/${item.slug}`} key={item.id} className="group flex flex-col bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                                 {item.image ? (
                                     <div className="h-56 overflow-hidden relative">
-                                        <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                        <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
                                     </div>
                                 ) : (

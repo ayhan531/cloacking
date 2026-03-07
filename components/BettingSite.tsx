@@ -9,7 +9,7 @@ interface BettingSiteProps {
     config: SiteConfig;
 }
 
-type ViewType = 'Anasayfa' | 'Kazananlar' | 'Çark' | 'Çekilişler';
+type ViewType = 'Anasayfa' | 'Kazananlar' | 'Çekilişler';
 
 export default function BettingSite({ config }: BettingSiteProps) {
     const { bettingContent } = config;
@@ -22,6 +22,43 @@ export default function BettingSite({ config }: BettingSiteProps) {
     const [activeSlide, setActiveSlide] = useState(0);
     const [hasMounted, setHasMounted] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [liveWinners, setLiveWinners] = useState<any[]>([]);
+    const [liveGiveaways, setLiveGiveaways] = useState<any[]>([]);
+
+    useEffect(() => {
+        if (bettingContent?.liveWinners) setLiveWinners(bettingContent.liveWinners);
+        if (bettingContent?.giveaways) setLiveGiveaways(bettingContent.giveaways);
+    }, [bettingContent]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const names = ['Ahmet***', 'Mehmet***', 'Can***', 'Kaan***', 'Elif***', 'Ayşe***', 'Gizem***', 'Burak***', 'Tunahan***', 'Atlas***'];
+            const games = ['Sweet Bonanza', 'Gates of Olympus', 'Aviatör', 'Rulet', 'Blackjack', 'Starlight Princess', 'Deduş'];
+            const amounts = ['5.450 ₺', '12.300 ₺', '45.000 ₺', '8.750 ₺', '24.900 ₺', '150.000 ₺', '1.250.000 ₺', '35.000 ₺'];
+            
+            const newWinner = {
+                id: Math.random().toString(),
+                brandLogo: `https://placehold.co/100x100/1e293b/a855f7?text=WIN`,
+                amount: amounts[Math.floor(Math.random() * amounts.length)],
+                username: names[Math.floor(Math.random() * names.length)],
+                timeAgo: 'Şimdi',
+                game: games[Math.floor(Math.random() * games.length)],
+            };
+            
+            setLiveWinners(prev => {
+                const arr = prev.length > 0 ? prev : Array.from({length: 10}).map((_, i) => ({ ...newWinner, id: i.toString()}));
+                const newWinners = [newWinner, ...arr].slice(0, 15);
+                return newWinners.map((w, i) => i === 0 ? w : { ...w, timeAgo: `${i} dk önce` });
+            });
+
+            setLiveGiveaways(prev => prev.map(g => ({
+                ...g,
+                participantCount: parseInt(g.participantCount || '100') + Math.floor(Math.random() * 5),
+            })));
+        }, 4000);
+        return () => clearInterval(interval);
+    }, []);
+
 
     useEffect(() => {
         setHasMounted(true);
@@ -73,7 +110,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                 <div className="flex gap-4 px-4 overflow-x-auto no-scrollbar scroll-smooth">
                     {bettingContent?.brandCarousel?.map((brand: any) => (
                         <a key={brand.id} href={brand.link} className="flex-shrink-0 w-36 h-20 bg-slate-800/50 backdrop-blur-md rounded-xl border border-white/10 flex items-center justify-center p-4 hover:border-purple-500/50 transition-colors">
-                            <img src={brand.logo || `https://via.placeholder.com/150x80/222/fff?text=${brand.name}`} alt={brand.name} className="max-w-full max-h-full object-contain filter brightness-125" />
+                            <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={brand.logo || `https://via.placeholder.com/150x80/222/fff?text=${brand.name}`} alt={brand.name} className="max-w-full max-h-full object-contain filter brightness-125" />
                         </a>
                     ))}
                 </div>
@@ -93,7 +130,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                                         <source src={slide.video} type="video/mp4" />
                                     </video>
                                 ) : (
-                                    <img src={slide.image || 'https://via.placeholder.com/800x400/222/fff?text=SLIDER'} className="w-full h-full object-cover opacity-60" />
+                                    <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={slide.image || 'https://via.placeholder.com/800x400/222/fff?text=SLIDER'} className="w-full h-full object-cover opacity-60" />
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
                             </div>
@@ -159,7 +196,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                                 <div className="bg-purple-600 text-[8px] font-black px-1.5 py-0.5 rounded text-white italic">DENEME BONUSU</div>
                             </div>
                             <div className="w-full aspect-video bg-black/40 rounded-lg overflow-hidden flex items-center justify-center">
-                                <img src={bonus.image || 'https://via.placeholder.com/300x150/444/fff?text=BONUS'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={bonus.image || 'https://via.placeholder.com/300x150/444/fff?text=BONUS'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                             </div>
                             <h3 className="text-sm font-bold leading-tight">{bonus.title}</h3>
                             <div className="text-yellow-500 font-black text-xs uppercase tracking-wider">{bonus.amount}</div>
@@ -182,9 +219,9 @@ export default function BettingSite({ config }: BettingSiteProps) {
                     {(activeFilter === 'Trend' ? (bettingContent?.trendSites || []) :
                         activeFilter === 'Popüler' ? (bettingContent?.brandCarousel || []) :
                             [...(bettingContent?.trendSites || []), ...(bettingContent?.brandCarousel || [])]).map((site: any, idx: number) => (
-                                <div key={`${site.id}-${idx}`} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-2 group">
+                                <div key={`${site.id}-${idx}`} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-2 group cursor-pointer hover:bg-slate-800/60" onClick={() => window.open(site.link, '_blank')}>
                                     <div className="h-12 flex items-center justify-center">
-                                        <img src={site.logo || 'https://via.placeholder.com/80x40'} className="max-h-full max-w-full object-contain brightness-125" />
+                                        <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={site.logo || 'https://via.placeholder.com/80x40'} className="max-h-full max-w-full object-contain brightness-125" />
                                     </div>
                                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{site.name}</span>
                                     <Button variant="ghost" className="w-full h-8 text-[10px] font-bold text-purple-400 hover:text-purple-300 p-0" onClick={() => window.open(site.link, '_blank')}>
@@ -196,6 +233,17 @@ export default function BettingSite({ config }: BettingSiteProps) {
             </section>
 
             {/* Recommended Sites Grid (Shared) */}
+            
+            {/* Advertise Banner */}
+            <div className="my-8 animate-pulse text-center w-full px-2" onClick={() => window.open('https://t.me/atlastunahan', '_blank')}>
+                <div className="bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 p-[2px] rounded-3xl cursor-pointer hover:scale-105 transition-transform shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                    <div className="bg-slate-900 rounded-3xl py-6 px-4">
+                        <h2 className="text-xl font-black italic text-white mb-1">📢 BURAYA REKLAM VERMEK İÇİN TIKLAYIN</h2>
+                        <p className="text-sm font-medium text-gray-400">Telegram Üzerinden İletişime Geçin</p>
+                    </div>
+                </div>
+            </div>
+
             {renderRecommended()}
         </div>
     );
@@ -208,12 +256,12 @@ export default function BettingSite({ config }: BettingSiteProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-20">
-                {bettingContent?.giveaways?.map((giveaway: any) => (
+                {liveGiveaways.map((giveaway: any) => (
                     <div key={giveaway.id} className="bg-slate-800/80 backdrop-blur-lg border border-white/5 rounded-3xl p-6 space-y-6 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 blur-3xl -z-10" />
                         <div className="flex flex-col items-center text-center space-y-4">
                             <div className="w-32 h-16 flex items-center justify-center">
-                                <img src={giveaway.brandLogo || 'https://via.placeholder.com/150x80/000/fff?text=BRAND'} alt={giveaway.brandName} className="max-h-full max-w-full object-contain brightness-125" />
+                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={giveaway.brandLogo || 'https://via.placeholder.com/150x80/000/fff?text=BRAND'} alt={giveaway.brandName} className="max-h-full max-w-full object-contain brightness-125" />
                             </div>
                             <div>
                                 <h3 className="text-2xl font-black uppercase italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-400">{giveaway.prize}</h3>
@@ -264,11 +312,11 @@ export default function BettingSite({ config }: BettingSiteProps) {
             </div>
 
             <div className="space-y-3 pb-20">
-                {bettingContent?.liveWinners?.map((winner: any) => (
+                {liveWinners.map((winner: any) => (
                     <div key={winner.id} className="bg-slate-800/40 border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:bg-slate-800/60 transition-all shadow-lg hover:border-emerald-500/30">
                         <div className="flex items-center gap-4">
                             <div className="w-14 h-14 bg-black/40 rounded-xl flex items-center justify-center p-2 border border-white/5 shadow-inner">
-                                <img src={winner.brandLogo || 'https://via.placeholder.com/50x50/333/fff?text=Bet'} className="max-w-full max-h-full object-contain filter group-hover:brightness-125 transition-all" />
+                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={winner.brandLogo || 'https://via.placeholder.com/50x50/333/fff?text=Bet'} className="max-w-full max-h-full object-contain filter group-hover:brightness-125 transition-all" />
                             </div>
                             <div>
                                 <p className="font-black text-lg tracking-tight text-white group-hover:text-emerald-400 transition-colors uppercase italic">{winner.amount}</p>
@@ -356,12 +404,12 @@ export default function BettingSite({ config }: BettingSiteProps) {
 
             <div className="grid grid-cols-2 gap-4">
                 {(bettingContent?.brandCarousel || []).concat(bettingContent?.brandCarousel || []).slice(0, 10).map((site: any, idx: number) => (
-                    <div key={idx} className="bg-slate-800/60 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 relative group">
+                    <div key={idx} className="bg-slate-800/60 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 relative group cursor-pointer hover:bg-slate-800/80 hover:border-purple-500/50" onClick={() => window.open(site.link, '_blank')}>
                         <div className="absolute top-2 left-2 bg-yellow-500 text-[8px] font-black px-2 py-0.5 rounded text-black italic">
                             {idx % 3 === 0 ? 'BONUS KRALI' : idx % 2 === 0 ? 'YENİ SİTE' : 'POPÜLER'}
                         </div>
                         <div className="h-14 flex items-center justify-center p-2">
-                            <img src={site.logo || 'https://via.placeholder.com/80x40'} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300" />
+                            <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={site.logo || 'https://via.placeholder.com/80x40'} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300" />
                         </div>
                         <div className="bg-black/40 px-2 py-0.5 rounded-full">
                             <p className="text-[8px] text-gray-300 font-black uppercase tracking-widest tracking-widest">{site.name}</p>
@@ -423,7 +471,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
             <div className="pt-16 px-4">
                 {activeView === 'Anasayfa' && renderHome()}
                 {activeView === 'Kazananlar' && renderWinners()}
-                {activeView === 'Çark' && renderWheel()}
+                
                 {activeView === 'Çekilişler' && renderGiveaways()}
             </div>
 
@@ -435,7 +483,9 @@ export default function BettingSite({ config }: BettingSiteProps) {
                         <button
                             key={item.id}
                             onClick={() => {
-                                if (['Anasayfa', 'Kazananlar', 'Çark', 'Çekilişler'].includes(item.label)) {
+                                if (item.label.toLowerCase().includes('telegram') || item.icon === 'Send') {
+                                    window.open('https://t.me/atlastunahan', '_blank');
+                                } else if (['Anasayfa', 'Kazananlar', 'Çekilişler'].includes(item.label)) {
                                     setActiveView(item.label as ViewType);
                                     window.scrollTo(0, 0);
                                 } else if (item.link && item.link !== '#') {
@@ -488,7 +538,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                                                 <source src={currentPopup.video} type="video/mp4" />
                                             </video>
                                         ) : (
-                                            <img src={currentPopup.image || 'https://via.placeholder.com/400x500/222/fff?text=POPUP'} className="w-full h-full object-cover opacity-60 mix-blend-overlay" />
+                                            <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={currentPopup.image || 'https://via.placeholder.com/400x500/222/fff?text=POPUP'} className="w-full h-full object-cover opacity-60 mix-blend-overlay" />
                                         )}
                                     </div>
                                     <div className="relative space-y-2">
@@ -526,7 +576,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                                                     <source src={popup.video} type="video/mp4" />
                                                 </video>
                                             ) : (
-                                                <img src={popup.image || 'https://via.placeholder.com/400x500/222/fff?text=POPUP'} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity mix-blend-overlay" />
+                                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={popup.image || 'https://via.placeholder.com/400x500/222/fff?text=POPUP'} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity mix-blend-overlay" />
                                             )}
                                         </div>
                                         <div className="relative h-full flex flex-col justify-end p-8 text-center space-y-4">
@@ -560,7 +610,7 @@ export default function BettingSite({ config }: BettingSiteProps) {
                                         <source src={currentPopup.video} type="video/mp4" />
                                     </video>
                                 ) : (
-                                    <img src={currentPopup.image || 'https://via.placeholder.com/1200x800/222/fff?text=FULL+POPUP'} className="w-full h-full object-cover opacity-50" />
+                                    <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={currentPopup.image || 'https://via.placeholder.com/1200x800/222/fff?text=FULL+POPUP'} className="w-full h-full object-cover opacity-50" />
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                             </div>

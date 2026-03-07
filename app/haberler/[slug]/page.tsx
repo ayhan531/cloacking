@@ -98,9 +98,9 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 slug: "2026-bonus-trendleri",
                 summary: "Yeni yılda bahis ve casino dünyasında beklenen bonus trendleri ve kullanıcıları nelerin beklediğine dair kapsamlı bir inceleme.",
                 content: `
-                    <p class="mb-4">2026 yılı, online bahis ve casino sektörü için devrim niteliğinde yeniliklerin beklendiği bir yıl olacak...</p>
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800">Yapay Zeka Destekli Bonuslar</h3>
-                    <p class="mb-4">Kullanıcı alışkanlıklarını analiz eden AI sistemleri, artık her oyuncuya özel bonus paketleri sunacak.</p>
+                    <p className="mb-4">2026 yılı, online bahis ve casino sektörü için devrim niteliğinde yeniliklerin beklendiği bir yıl olacak...</p>
+                    <h3 className="text-2xl font-bold mb-3 text-slate-800">Yapay Zeka Destekli Bonuslar</h3>
+                    <p className="mb-4">Kullanıcı alışkanlıklarını analiz eden AI sistemleri, artık her oyuncuya özel bonus paketleri sunacak.</p>
                 `,
                 date: "2026-01-15",
                 author: "Editör Ekibi",
@@ -112,7 +112,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 slug: "deneme-bonusu-veren-siteler-2026",
                 summary: "Yatırımsız deneme bonusu veren en yeni siteler listemize eklendi. Avantajlı fırsatları kaçırmayın.",
                 content: `
-                    <p class="mb-4">Deneme bonusları, kullanıcıların siteyi risk almadan test etmesi için harika bir fırsattır.</p>
+                    <p className="mb-4">Deneme bonusları, kullanıcıların siteyi risk almadan test etmesi için harika bir fırsattır.</p>
                  `,
                 date: "2026-02-05",
                 author: "Haber Merkezi",
@@ -240,7 +240,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
                     <article className="bg-white rounded-[48px] shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
                         {newsItem.image && (
                             <div className="h-[450px] w-full overflow-hidden relative">
-                                <img src={newsItem.image} alt={newsItem.title} className="w-full h-full object-cover" />
+                                <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src='https://placehold.co/400x200/1e293b/a855f7?text=RESIM+BULUNAMADI'; }} src={newsItem.image} alt={newsItem.title} className="w-full h-full object-cover" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
                             </div>
                         )}
