@@ -2,14 +2,24 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 /**
- * 🛠️ NUCLEAR 404 REDIRECT MIDDLEWARE v1.0
- * Google Search Console'daki 404 hatalarını temizlemek için.
- * Bulunamayan tüm sayfaları (Sitemap, Robot, Asset harici) ana sayfaya 301 yönlendirir.
+ * 🛠️ NUCLEAR SEO & REDIRECT MIDDLEWARE v2.0
+ * Bütün proxy ve middleware mantığı tek dosyada birleştirildi.
  */
 export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
+    const url = request.nextUrl.clone();
+    const host = request.headers.get('host') || '';
+    const pathname = url.pathname;
 
-    // Önemli dosyaları (Assets, API, Static files) yönlendirme harici tut
+    // 1. WWW -> Non-WWW Yönlendirmesi (SEO Best Practice)
+    if (host.startsWith('www.')) {
+        const newHost = host.replace('www.', '');
+        const newUrl = `https://${newHost}${pathname}${url.search}`;
+        return NextResponse.redirect(newUrl, 301);
+    }
+
+    const domain = host.split(':')[0]; // Pure domain
+
+    // Vercel / Next.js dahili dosyaları pas geç (Performans)
     const isPublicFile = /\.(.*)$/.test(pathname);
     const isNextInternal = pathname.startsWith('/_next') || pathname.includes('/api/');
     const isServiceFiles = pathname === '/robots.txt' || pathname === '/sitemap.xml' || pathname.endsWith('.txt');
@@ -18,23 +28,19 @@ export function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // Bilinen sayfalar haricindeki her şeyi ana sayfaya yönlendirme mantığı (Burada pathler manuel girilmelidir)
-    // Ancak basitlik ve GSC temizliği için şimdilik "Catch-All" mantığıyla ilerliyoruz
-    // EĞER Sayfa bulunamazsa (ve statik bir route değilse) yönlendir.
+    // Response oluştur
+    const response = NextResponse.next();
 
-    return NextResponse.next();
+    // 2. Canonical URL Header Enjeksiyonu
+    const canonicalUrl = `https://${domain}${pathname === '/' ? '' : pathname}`;
+    response.headers.set('Link', `<${canonicalUrl}>; rel="canonical"`);
+
+    return response;
 }
 
-// Opsiyonel: Sadece belirli pathleri yakalayabiliriz.
+// Sadece sayfaları (statiği hariç tut) yakala
 export const config = {
     matcher: [
-        /*
-         * Match all request paths except for the ones starting with:
-         * - api (API routes)
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico (favicon file)
-         */
         '/((?!api|_next/static|_next/image|favicon.ico).*)',
     ],
 };
