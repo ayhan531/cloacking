@@ -141,10 +141,55 @@ async function main() {
         // 🧬 DNA Diversification happens here
         const domainSpecificNews = generateUniqueNews(domain, 200);
 
+        // 🎯 DOMAIN-SPECIFIC UNIQUE SEO — Each site targets DIFFERENT keywords to avoid cannibalization
+        const domainSeoMap: Record<string, { title: string; desc: string; kw: string }> = {
+            'flovazcomercial.com': {
+                title: `Deneme Bonusu Veren Siteler 2026 ✅ Yatırımsız ${currentMonth} Listesi`,
+                desc: `${currentMonth} ${currentYear} güncel deneme bonusu veren siteler listesi! 500 TL yatırımsız bonus, çevrimsiz freebet ve bedava casino deneme fırsatları. Editör onaylı güvenilir siteler.`,
+                kw: 'deneme bonusu veren siteler, deneme bonusu veren siteler 2026, yatırımsız deneme bonusu, deneme bonusu'
+            },
+            'bedavabonus2026.com': {
+                title: `Bedava Bonus Veren Siteler 2026 🎁 ${currentMonth} Güncel Liste`,
+                desc: `2026 bedava bonus veren siteler tam listesi. Ücretsiz casino bonusları, kayıt bonusu, hoşgeldin freespin kampanyaları. Para yatırmadan kazanmaya başla!`,
+                kw: 'bedava bonus, bedava bonus veren siteler, ücretsiz bonus 2026, kayıt bonusu, hoşgeldin bonusu'
+            },
+            'haber-analiz2026.com': {
+                title: `Bahis Haberleri ve Bonus Analiz 2026 📰 ${currentMonth} Raporu`,
+                desc: `2026 yılı bahis dünyası haberleri, yeni açılan siteler, bonus kampanya analizleri ve editör incelemeleri. Günlük güncellenen tarafsız bahis haberleri.`,
+                kw: 'bahis haberleri, bonus analiz 2026, bahis site incelemeleri, yeni bahis siteleri 2026'
+            },
+            'vizyontekyazilim.com': {
+                title: `Casino Siteleri İnceleme 2026 🔍 Güvenilir Platform Rehberi - ${currentMonth}`,
+                desc: `Güvenilir casino siteleri teknik inceleme ve karşılaştırma. Lisans doğrulama, ödeme hızı testi, kullanıcı yorumları. 2026 en iyi casino siteleri rehberi.`,
+                kw: 'güvenilir casino siteleri, casino siteleri 2026, casino incelemeleri, en iyi casino siteleri'
+            },
+            'yasalbonus2026.com': {
+                title: `Yasal Bahis Siteleri 2026 ⚖️ Lisanslı ve Güvenilir ${currentMonth} Listesi`,
+                desc: `Türkiye'de yasal ve lisanslı bahis siteleri 2026 tam rehberi. BTK onaylı, MGA lisanslı güvenilir platformlar. Yasal bonus kampanyaları ve giriş adresleri.`,
+                kw: 'yasal bahis siteleri, lisanslı bahis siteleri 2026, güvenilir bahis siteleri, yasal bonus'
+            },
+            '2026bonuslar.com': {
+                title: `Casino Bonusları 2026 🎰 Çevrimsiz Freebet ve Freespin ${currentMonth}`,
+                desc: `2026 en yüksek casino bonusları! Çevrimsiz freebet, 200 freespin, nakit iade kampanyaları. Slot ve canlı casino bonuslarını karşılaştır. Kaçırma!`,
+                kw: 'casino bonusları 2026, çevrimsiz bonus, freespin veren siteler, freebet 2026, slot bonusu'
+            },
+            'independent-news.org': {
+                title: `Bağımsız Bahis İncelemeleri 2026 📊 Tarafsız Site Denetim Raporu`,
+                desc: `Bağımsız ve tarafsız online bahis sitesi incelemeleri. Doğrulanmış kullanıcı yorumları, ödeme kanıtları ve güvenlik denetim raporları. 2026 güncel.`,
+                kw: 'bağımsız bahis inceleme, bahis site denetim, güvenilir bahis incelemeleri 2026, tarafsız casino değerlendirme'
+            }
+        };
+
+        const domainSeo = domainSeoMap[domain] || {
+            title: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${siteName}`,
+            desc: `${domain} - 2026 yılının en güncel bonus rehberi.`,
+            kw: 'deneme bonusu veren siteler 2026'
+        };
+
         const seoSettings = {
-            metaTitle: `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${siteName} Official`,
-            metaDescription: `${domain} - 2026 yılının en güncel, yatırımsız deneme bonusu ve bedava bonus veren siteler listesi. Profesyonel analiz ve teknik raporlar.`,
-            keywords: "deneme bonusu veren siteler 2026, bonus veren siteler 2026, bedava bonus, yatırımsız deneme bonusu, casino bonusları, bahis analiz 2026"
+            metaTitle: domainSeo.title,
+            metaDescription: domainSeo.desc,
+            keywords: domainSeo.kw
         };
 
         // Preserve niche identity while injecting 200 articles
