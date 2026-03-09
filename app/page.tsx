@@ -225,10 +225,14 @@ export default async function Home() {
                             <div className="academic-footer">
                                 <p>© ${currentYear} ${site.name} Tüm akademik hakları saklıdır. DOI: 10.1038/s41586-026</p>
                                 <div className="academic-reference">
-                                    <p>İlişkili Enstitüler:
-                                        <a href="https://flovazcomercial.com">Flovaz Araştırma Merkezi</a>,
-                                        <a href="https://bedavabonus2026.com">Bedava Erişim Gözlemevi</a>,
-                                        <a href="https://vizyontekyazilim.com">Vizyon Bilişim Sistemleri</a>
+                                    <p>İlişkili Enstitüler ve Veri Partnerleri:
+                                        <a href="https://flovazcomercial.com">Flovaz Stratejik Araştırmalar</a>,
+                                        <a href="https://bedavabonus2026.com">Dijital Erişim Gözlemevi</a>,
+                                        <a href="https://haber-analiz2026.com">Sektörel Veri Analiz Merkezi</a>,
+                                        <a href="https://vizyontekyazilim.com">Vizyon Bilişim Güvenliği</a>,
+                                        <a href="https://yasalbonus2026.com">Global Lisans ve Mevzuat Kurulu</a>,
+                                        <a href="https://2026bonuslar.com">Promosyonel Ekonomi Enstitüsü</a>,
+                                        <a href="https://independent-news.org">Bağımsız İzleme ve Raporlama Ağı</a>
                                     </p>
                                 </div>
                             </div>

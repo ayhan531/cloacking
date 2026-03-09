@@ -49,7 +49,7 @@ const TARGETS = [
 
 async function simulateHumanSearch(target: typeof TARGETS[0]) {
     const browser = await puppeteer.launch({
-        headless: false, // Gerçekten izlemek istersen true yapabilirsin
+        headless: true, // Sunucu dostu hale getirdik
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
