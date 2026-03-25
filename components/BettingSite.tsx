@@ -109,8 +109,8 @@ export default function BettingSite({ config }: BettingSiteProps) {
             <div className="relative overflow-hidden py-4 -mx-4">
                 <div className="flex gap-4 px-4 overflow-x-auto no-scrollbar scroll-smooth">
                     {bettingContent?.brandCarousel?.map((brand: any) => (
-                        <a key={brand.id} href={brand.link} className="flex-shrink-0 w-36 h-20 bg-slate-800/50 backdrop-blur-md rounded-xl border border-white/10 flex items-center justify-center p-4 hover:border-purple-500/50 transition-colors">
-                            <img onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/400x200/1e293b/a855f7?text=RESİM+BULUNAMADI'; }} src={brand.logo || `https://via.placeholder.com/150x80/222/fff?text=${brand.name}`} alt={brand.name} className="max-w-full max-h-full object-contain filter brightness-125" />
+                        <a key={brand.id} href={brand.link} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 w-36 h-20 bg-slate-800/50 backdrop-blur-md rounded-xl border border-white/10 flex items-center justify-center p-4 hover:border-purple-500/50 transition-colors">
+                            <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain filter" />
                         </a>
                     ))}
                 </div>
@@ -141,10 +141,11 @@ export default function BettingSite({ config }: BettingSiteProps) {
                                     <h2 className="text-3xl font-black italic tracking-tighter text-white uppercase leading-none">{slide.title}</h2>
                                     <p className="text-gray-300 text-sm font-medium tracking-wide uppercase drop-shadow-lg">{slide.subtitle}</p>
                                 </div>
-                                <Button className="w-fit px-8 h-12 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black italic uppercase rounded-xl shadow-xl shadow-purple-900/40 active:scale-95 transition-all"
-                                    onClick={() => window.open(slide.ctaLink, '_blank')}>
-                                    {slide.ctaText}
-                                </Button>
+                                <a href={slide.ctaLink} target="_blank" rel="noopener noreferrer" className="w-fit">
+                                    <Button className="px-8 h-12 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black italic uppercase rounded-xl shadow-xl shadow-purple-900/40 active:scale-95 transition-all">
+                                        {slide.ctaText}
+                                    </Button>
+                                </a>
                             </div>
                         </div>
                     ))}
@@ -713,6 +714,23 @@ export default function BettingSite({ config }: BettingSiteProps) {
                     animation: spin-slow 8s linear infinite;
                 }
             `}</style>
+            {/* 🛸 FLOATING STICKY ACTION (MOBILE) */}
+            <div className="fixed bottom-24 right-4 z-[9999] group animate-bounce pointer-events-auto">
+                <a 
+                    href={(config.bettingContent as any)?.brandCarousel?.[0]?.link || (config.bettingContent as any)?.brands?.[0]?.link || 'https://sahabet.com'} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 bg-gradient-to-r from-red-600 to-purple-600 p-2 pr-6 rounded-full shadow-2xl hover:scale-110 transition-all duration-500 border-2 border-white/20"
+                >
+                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center font-black text-red-600 text-xs shadow-inner">
+                        WIN
+                    </div>
+                    <div>
+                        <div className="text-white font-black text-sm italic tracking-tighter leading-none uppercase">500 TL HEDİYE</div>
+                        <div className="text-white/90 font-bold text-[8px] uppercase tracking-widest italic text-center">ŞİMDİ AL →</div>
+                    </div>
+                </a>
+            </div>
         </div>
     );
 }

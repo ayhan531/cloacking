@@ -36,13 +36,11 @@ export async function generateMetadata(): Promise<Metadata> {
       const currentMonth = monthNames[new Date().getMonth()];
       const currentYear = new Date().getFullYear();
 
-      // Dynamic Title Injections
+      // Dynamic Title Injections (ULTIMATE URGENCY)
+      const currentHour = new Date().getHours() + 3; // TR time adjust
+      const currentMinute = new Date().getMinutes();
       let title = seo.metaTitle || site.name;
-      if (title.toLowerCase().includes('deneme bonusu')) {
-        title = `${currentMonth} ${currentYear} Deneme Bonusu Veren Siteler - ${site.name}`;
-      } else if (!title.includes(String(currentYear))) {
-        title = `${title} [${currentMonth} ${currentYear}]`;
-      }
+      title = `🚨 #1 LİDER: [08:26] 24 Mart SABAH GÜNCEL | Deneme Bonusu Veren Siteler 2026 (Hakkındaki Her Şey)`;
 
       return {
         title: title,

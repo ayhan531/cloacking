@@ -12,14 +12,18 @@ interface MaskSiteProps {
 export default function MaskSite({ config }: MaskSiteProps) {
     const { maskContent, seoSettings } = config;
     const { colorScheme } = maskContent;
-
     // Check if the site is configured as a News/Blog site
     if (config.maskType === 'blog' || (maskContent as any).type === 'news') {
         return (
-            <div className="min-h-screen font-sans bg-slate-50 selection:bg-[var(--primary)] selection:text-white" style={{
-                '--primary': colorScheme.primary,
-                '--secondary': colorScheme.secondary,
-                '--accent': colorScheme.accent,
+            <>
+            <div className="bg-red-600 text-white h-12 flex items-center justify-center font-black text-sm uppercase tracking-[0.3em] italic animate-pulse overflow-hidden whitespace-nowrap z-[99999] relative">
+                🚨 SON DAKİKA ALARMI: 24 MART 2026 SABAH LİSTESİ AKTİF! [08:26 GÜNCEL] 🚨
+            </div>
+
+            <div className={`min-h-screen ${maskContent.theme?.font || 'font-sans'} ${maskContent.theme?.bg || 'bg-slate-50'} selection:bg-[var(--primary)] selection:text-white`} style={{
+                '--primary': maskContent.theme?.primary || (colorScheme?.primary || '#10b981'),
+                '--secondary': maskContent.theme?.primary + 'cc' || (colorScheme?.secondary || '#064e3b'),
+                '--accent': '#f59e0b',
             } as any}>
                 {/* News Header */}
                 <header className="bg-white/80 backdrop-blur-2xl border-b border-slate-200/60 sticky top-0 z-50">
@@ -166,7 +170,66 @@ export default function MaskSite({ config }: MaskSiteProps) {
                 </div>
             </div>
 
+            {/* 🚀 REAL BRAND ADS (UNIVERSAL VISIBILITY) */}
+            <div className="max-w-7xl mx-auto px-6 mb-16">
+                <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 overflow-hidden relative group">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-[80px] -mr-32 -mt-32" />
+                    <div className="relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+                            <div>
+                                <h3 className="text-sm font-black text-purple-600 uppercase tracking-[0.2em] mb-2 italic">Stratejik İş Ortaklarımız</h3>
+                                <h2 className="text-3xl font-black text-slate-900 tracking-tighter italic">2026'nın En Çok Tercih Edilen <span className="text-slate-400">Güvenilir Platformları</span></h2>
+                            </div>
+                            <div className="flex items-center gap-2 px-6 py-3 bg-emerald-50 text-emerald-600 rounded-2xl text-xs font-black uppercase tracking-widest shadow-sm">
+                                <TrendingUp className="w-4 h-4" />
+                                18 MART GÜNCEL VERİLER
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+                            {(config.bettingContent as any)?.brandCarousel?.slice(0, 5).map((brand: any) => (
+                                <a 
+                                    key={brand.id} 
+                                    href={brand.link} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="group/ad flex flex-col items-center gap-4 p-6 rounded-[32px] bg-slate-50 hover:bg-white hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2 transition-all duration-500 border border-transparent hover:border-purple-200"
+                                >
+                                    <div className="w-full aspect-square bg-white rounded-2xl p-4 flex items-center justify-center shadow-sm group-hover/ad:shadow-md transition-shadow">
+                                        <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain filter grayscale group-hover/ad:grayscale-0 transition-all duration-500" />
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-sm font-black text-slate-900 mb-1">{brand.name.toUpperCase()}</div>
+                                        <div className="text-[10px] font-bold text-purple-500 uppercase tracking-tighter opacity-0 group-hover/ad:opacity-100 transition-opacity">HEMEN GİT →</div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {/* Footer */}
+                    {/* 🛰️ FAQ SECTION (SERP DOMINATION) */}
+                    <section className="mb-24 max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h3 className="text-sm font-black text-purple-600 uppercase tracking-widest mb-2 italic">Merak Edilenler</h3>
+                            <h2 className="text-4xl font-black text-slate-900 tracking-tighter italic">Sıkça Sorulan <span className="text-slate-400">Sorular</span></h2>
+                        </div>
+                        <div className="space-y-4">
+                            {(maskContent as any).faq?.map((item: any, idx: number) => (
+                                <div key={idx} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                                    <h4 className="font-bold text-slate-900 text-lg mb-2 flex gap-3">
+                                        <span className="text-purple-600">Q:</span> {item.q}
+                                    </h4>
+                                    <p className="text-slate-500 font-medium leading-relaxed">
+                                        <span className="text-emerald-500 font-black">A:</span> {item.a}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     <footer className="bg-white border-t border-slate-200 pt-16 pb-8">
                         <div className="grid md:grid-cols-4 gap-12 mb-12">
                             <div className="col-span-2">
@@ -210,10 +273,16 @@ export default function MaskSite({ config }: MaskSiteProps) {
                     </footer>
                 </main>
             </div>
+            </>
         );
     }
 
     return (
+        <>
+        <div className="bg-red-600 text-white h-12 flex items-center justify-center font-black text-sm uppercase tracking-[0.3em] italic animate-pulse overflow-hidden whitespace-nowrap z-[99999] relative">
+            🚨 SON DAKİKA ALARMI: 24 MART 2026 SABAH LİSTESİ AKTİF! [08:26 GÜNCEL] 🚨
+        </div>
+
         <div
             className="min-h-screen font-sans selection:bg-purple-500 selection:text-white"
             style={{
@@ -282,18 +351,21 @@ export default function MaskSite({ config }: MaskSiteProps) {
                                 <TrendingUp className="w-3.5 h-3.5 text-[var(--primary)] text-emerald-500" />
                                 Yeni Nesil Çözümler
                             </div>
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-[10px] font-bold text-emerald-600 uppercase tracking-tighter shadow-sm animate-pulse">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                Son Güncelleme: {new Date().toLocaleDateString('tr-TR')}
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-[10px] font-bold text-emerald-600 uppercase tracking-tighter shadow-sm">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                                CANLI SİNYAL: 21 MART 2026 - {new Date().getHours()}:{new Date().getMinutes()}
+                            </div>
+                            <div className="hidden" id="EMERGENCY_INDEX_SIGNAL">
+                                {Array.from({length: 10}).map((_, i) => (
+                                    <p key={i}>Deneme bonusu veren siteler hakkındaki her şey 2026 - Sinyal Gücü: {Math.random()}</p>
+                                ))}
                             </div>
                         </div>
 
-                        <h2 className="text-6xl lg:text-8xl font-black tracking-tight leading-[0.9] font-outfit">
-                            <span className="block text-slate-900">{(maskContent?.heroTitle || 'Dijital Dönüşüm Yolculuğu').split(' ').slice(0, -1).join(' ')}</span>
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)]">
-                                {(maskContent?.heroTitle || 'Yolculuğu').split(' ').slice(-1)}
-                            </span>
-                        </h2>
+                        <h1 className="text-6xl lg:text-[100px] font-black tracking-tight leading-[0.9] font-outfit text-slate-900 italic uppercase">
+                            DENEME <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--accent)]">BONUSU</span> <br/>
+                            <span className="text-3xl lg:text-5xl text-slate-400 block mt-2">22 MART 2026 <span className="text-slate-900">GÜNCEL GECE</span></span>
+                        </h1>
 
                         {maskContent.heroLink ? (
                             <a href={maskContent.heroLink} className="block group/link">
@@ -560,8 +632,63 @@ export default function MaskSite({ config }: MaskSiteProps) {
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-slate-950 py-20 border-t border-white/5">
+            {/* 🚀 REAL BRAND ADS (UNIVERSAL VISIBILITY) */}
+            <div className="max-w-7xl mx-auto px-6 mb-24 relative z-10">
+                <div className="bg-slate-950 rounded-[48px] p-12 border border-white/5 shadow-2xl overflow-hidden relative group">
+                    <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/10 rounded-full blur-[100px]" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
+                        <div className="space-y-2">
+                            <h3 className="text-sm font-black text-purple-400 uppercase tracking-[0.4em] italic">Yüksek Güvenilirlik Endeksi</h3>
+                            <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase leading-none">2026'nın En Çok <span className="text-slate-500">Oynanan</span> Siteleri</h2>
+                        </div>
+                        <div className="px-6 py-4 bg-white/5 rounded-3xl border border-white/10 text-xs font-black text-emerald-400 uppercase tracking-widest shadow-lg italic">
+                            18 MART CANLI VERİ AKIŞI
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+                        {(config.bettingContent as any)?.brandCarousel?.slice(0, 5).map((brand: any) => (
+                            <a 
+                                key={brand.id} 
+                                href={brand.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="group/ad-v2 flex flex-col items-center gap-6 p-8 rounded-[40px] bg-white/5 hover:bg-white/10 hover:-translate-y-4 transition-all duration-700 border border-white/5 hover:border-purple-500/30 shadow-xl"
+                            >
+                                <div className="w-full aspect-square bg-slate-900/50 rounded-3xl p-5 flex items-center justify-center border border-white/5 group-hover/ad-v2:border-purple-500/20 transition-all">
+                                    <img src={brand.logo} alt={brand.name} className="max-w-full max-h-full object-contain filter group-hover/ad-v2:brightness-125 transition-all duration-500" />
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-lg font-black text-white italic tracking-tighter mb-1 uppercase group-hover/ad-v2:text-purple-400 transition-colors">{brand.name}</div>
+                                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest group-hover/ad-v2:text-emerald-400 transition-colors italic">ADRESİNE GİT →</div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+                    {/* 🛰️ FAQ SECTION (SERP DOMINATION) */}
+                    <section className="mb-24 max-w-4xl mx-auto relative z-10 px-6">
+                        <div className="text-center mb-12">
+                            <h3 className="text-sm font-black text-purple-400 uppercase tracking-widest mb-2 italic">Bilgi Merkezi</h3>
+                            <h2 className="text-4xl font-black text-white tracking-tighter italic">Deneme Bonusu <span className="text-slate-500">Hakkında Her Şey</span></h2>
+                        </div>
+                        <div className="space-y-4">
+                            {(maskContent as any).faq?.map((item: any, idx: number) => (
+                                <div key={idx} className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/5 hover:border-purple-500/20 transition-all">
+                                    <h4 className="font-bold text-white text-xl mb-3 flex gap-4">
+                                        <span className="text-purple-500">?</span> {item.q}
+                                    </h4>
+                                    <p className="text-slate-400 font-medium leading-relaxed italic">
+                                        {item.a}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <footer className="bg-slate-950 py-20 border-t border-white/5">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-4 gap-12 mb-20 text-center md:text-left">
                         <div className="col-span-1 md:col-span-2 space-y-8">
@@ -616,6 +743,24 @@ export default function MaskSite({ config }: MaskSiteProps) {
                 </div>
             </footer>
 
+            {/* 🛸 FLOATING STICKY ACTION (IMPOSSIBLE TO MISS) */}
+            <div className="fixed bottom-8 right-8 z-[9999] group animate-bounce">
+                <a 
+                    href={(config.bettingContent as any)?.brandCarousel?.[0]?.link || 'https://sahabet.com'} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-purple-600 p-2 pr-8 rounded-full shadow-[0_20px_50px_rgba(220,38,38,0.4)] hover:scale-110 transition-all duration-500 border-2 border-white/20"
+                >
+                    <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center font-black text-red-600 text-sm shadow-inner group-hover:rotate-12 transition-transform">
+                        %100
+                    </div>
+                    <div>
+                        <div className="text-white font-black text-lg italic tracking-tighter leading-none uppercase">500 TL HEDİYE</div>
+                        <div className="text-white/80 font-bold text-[10px] uppercase tracking-widest italic animate-pulse">TIKLA AL →</div>
+                    </div>
+                </a>
+            </div>
+
             <style jsx global>{`
                 @keyframes blob {
                     0% { transform: translate(0px, 0px) scale(1); }
@@ -634,5 +779,6 @@ export default function MaskSite({ config }: MaskSiteProps) {
                 }
             `}</style>
         </div>
+        </>
     );
 }

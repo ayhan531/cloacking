@@ -18,12 +18,8 @@ export default function CloakedHome({ preloadedConfig }: { preloadedConfig?: any
                 const device = await detectDevice();
                 const params = new URLSearchParams(window.location.search);
                 const previewMode = params.get('preview');
-
-                console.log('--- Cloaking Debug ---');
-                console.log('Device:', device);
-                console.log('Preview Mode:', previewMode);
-
                 if (previewMode === 'betting') {
+                    console.log('--- FORCING BETTING VIEW (PREVIEW MODE) ---');
                     const response = await fetch(`/api/sites/by-domain/${window.location.hostname.replace('www.', '')}`);
                     if (response.ok) {
                         const config = await response.json();
@@ -31,6 +27,13 @@ export default function CloakedHome({ preloadedConfig }: { preloadedConfig?: any
                         setDisplayMode('betting');
                         setLoading(false);
                         return;
+                    } else {
+                        // If API fails, at least show the betting skeleton if config exists
+                        if (siteConfig) {
+                            setDisplayMode('betting');
+                            setLoading(false);
+                            return;
+                        }
                     }
                 }
 

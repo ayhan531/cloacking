@@ -31,6 +31,7 @@ export interface MaskContent {
     colorScheme: ColorScheme;
     news?: NewsItem[];
     botArticle?: string;
+    theme?: any;
 }
 
 export interface NewsItem {
