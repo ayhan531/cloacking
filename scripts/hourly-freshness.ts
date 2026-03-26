@@ -53,4 +53,4 @@ async function main() {
     console.log("\n🛰️ ALL SITES SYNCED. RUNNING INDEXING API...");
 }
 
-main().catch(console.error).finally(() => p => prisma.$disconnect());
+main().catch(console.error).finally(() => prisma.$disconnect());

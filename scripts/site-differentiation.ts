@@ -70,14 +70,19 @@ async function main() {
             h1: strategy.h1
         };
 
+        let seoSettings = JSON.parse(site.seoSettings || "{}");
+        seoSettings.metaTitle = strategy.title;
+        seoSettings.metaDescription = strategy.desc;
+
         await prisma.site.update({
             where: { id: site.id },
             data: {
                 name: strategy.name,
-                metaTitle: strategy.title,
-                maskContent: JSON.stringify(maskContent)
+                maskContent: JSON.stringify(maskContent),
+                seoSettings: JSON.stringify(seoSettings)
             }
         });
+
         
         console.log(`   ✅ New Name: ${strategy.name}`);
         console.log(`   ✅ New Title: ${strategy.title}`);
