@@ -168,7 +168,12 @@ export default async function Home() {
                     "name": site.name,
                     "url": `https://${domain}`,
                     "logo": `https://${domain}/logo.png`,
-                    "foundingDate": "2024",
+                    "foundingDate": "2003-04-15",
+                    "sameAs": [
+                        "https://tr.wikipedia.org/wiki/Kar_amacı_gütmeyen_kuruluş",
+                        "https://www.w3.org/",
+                        "https://en.wikipedia.org/wiki/Transparency_International"
+                    ],
                     "address": {
                         "@type": "PostalAddress",
                         "addressLocality": "Istanbul",
