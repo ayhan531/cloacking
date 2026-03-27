@@ -52,6 +52,11 @@ export async function generateMetadata(): Promise<Metadata> {
         },
         verification: {
           google: seo.googleSiteVerification || undefined,
+          yandex: seo.yandexVerification || 'bf924ac9c3741995',
+          yahoo: seo.bingVerification || undefined,
+          other: {
+              me: ['my-email@domain.com'],
+          },
         },
         openGraph: {
           title: title,
