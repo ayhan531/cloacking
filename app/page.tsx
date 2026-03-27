@@ -209,8 +209,42 @@ export default async function Home() {
                         { "@type": "ListItem", "position": 2, "name": maskContent.niche || "Analizler", "item": `https://${domain}/haberler` },
                         { "@type": "ListItem", "position": 3, "name": "22 Mart 2026 Raporu" }
                     ]
+                },
+                {
+                    "@context": "https://schema.org",
+                    "@type": "DiscussionForumPosting",
+                    "headline": "2026 Deneme Bonusu Paylaşım Platformu",
+                    "author": { "@type": "Person", "name": "Umut_K" },
+                    "datePublished": new Date(Date.now() - 3600000).toISOString(),
+                    "interactionStatistic": {
+                        "@type": "InteractionCounter",
+                        "interactionType": "https://schema.org/CommentAction",
+                        "userInteractionCount": 142
+                    },
+                    "comment": [
+                        {
+                            "@type": "Comment",
+                            "author": { "@type": "Person", "name": "BahoBaba" },
+                            "text": "Beyler dün 500 TL çevrimsiz bonus aldım süperdi, hemen çektim yatırımsız hesaba geçti.",
+                            "datePublished": new Date(Date.now() - 1200000).toISOString()
+                        },
+                        {
+                            "@type": "Comment",
+                            "author": { "@type": "Person", "name": "SlotUzmani" },
+                            "text": "Free spin veren güvenilir siteleri tek tek deniyorum, en iyileri bu listedekiler harika şeffaflık.",
+                            "datePublished": new Date(Date.now() - 600000).toISOString()
+                        }
+                    ]
                 }
             ]);
+
+            // Fake User Comments Data
+            const recentComments = [
+                { user: "BahoBaba55", time: "12 Dk önce", text: "Az önce 500 TL aldım kanka çevrimsizdi hemen çektim, sağlam liste." },
+                { user: "CemalAbi", time: "24 Dk önce", text: "Deneme bonusu veren siteler 2026 listesinde 1 numara burası, güvenilir hepsi." },
+                { user: "SlotKrali", time: "1 Saat önce", text: "Freespinler müthiş abi, yatırımsız bakiye çok kolay katlanıyor." },
+                { user: "KuponMakinesi", time: "2 Saat önce", text: "Beyler Papara ile anında çektiler parayı, helal olsun." }
+            ];
 
             const homeBotArticle = `
                 <div class="academic-header">
@@ -251,6 +285,25 @@ export default async function Home() {
                     <h2>3. Sonuç ve Öneriler</h2>
                     <p class="academic-text">Elde edilen bulgular ışığında, tüketicilerin finansal katılım sağlamadan önce ürünleri test edebilme hakkı, genel pazar ahlakı standartlarını yükseltmektedir. <strong>Deneme bonusu veren siteler 2026</strong> ve <strong>yatırımsız deneme bonusu</strong> sistemleri, rekabetçi kalitenin turnusol kağıdıdır.</p>
                 </div>
+
+                <div class="academic-section">
+                    <h2>🔥 Canlı Topluluk Tartışmaları (Son 24 Saat)</h2>
+                    <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px;">
+                        ${recentComments.map(c => `
+                            <div style="border-bottom: 1px dotted #cbd5e1; padding-bottom: 15px; margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <strong style="color: #2563eb; font-size: 0.95rem;">👤 ${c.user}</strong>
+                                    <span style="color: #94a3b8; font-size: 0.8rem;">⏲️ ${c.time}</span>
+                                </div>
+                                <p style="color: #334155; font-size: 0.9rem; margin: 0; line-height: 1.5;">"${c.text}"</p>
+                            </div>
+                        `).join('')}
+                        <div style="text-align: center; margin-top: 10px;">
+                            <a href="#" style="color: #2563eb; font-size: 0.9rem; text-decoration: none; font-weight: bold;">+ 138 Diğer Yorumu Gör</a>
+                        </div>
+                    </div>
+                </div>
+
 
                 ${citationData.length > 0 ? `
                 <div class="academic-section">
